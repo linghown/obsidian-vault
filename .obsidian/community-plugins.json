@@ -1,7 +1,8 @@
 [
   "obsidian-excalidraw-plugin",
   "templater-obsidian",
-  "realclaudian",
   "dataview",
-  "obsidian-importer"
+  "obsidian-importer",
+  "obsidian-git",
+  "codex-panel"
 ]
