@@ -17,3 +17,6 @@ desktop.ini
 
 # Claude/AI temp
 .claudian/
+
+# Large files over GitHub 100MB push limit (local copy kept, not pushed)
+资源/Evernote/电刀 2/_resources/电刀_2.resources/2021-01-25 21.37.58.gif
