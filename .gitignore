@@ -1,0 +1,19 @@
+# Obsidian workspace files (change frequently, cause conflicts)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/workspace.json.bak
+
+# Obsidian cache
+.obsidian/cache
+.obsidian/plugins/*/data.json
+
+# Trash
+.trash/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Claude/AI temp
+.claudian/
