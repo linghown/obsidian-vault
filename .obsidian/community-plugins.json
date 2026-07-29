@@ -6,5 +6,9 @@
   "obsidian-git",
   "codex-panel",
   "editing-toolbar",
-  "table-editor-obsidian"
+  "table-editor-obsidian",
+  "quickadd",
+  "calendar",
+  "obsidian-tasks-plugin",
+  "recent-files-obsidian"
 ]
