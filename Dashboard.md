@@ -26,4 +26,3 @@
 
 - 新建笔记：Ctrl+N，写好拖进对应的文件夹
 - 插入模板：Ctrl+P 输入 "Templates: Insert" 选模板
-- 一键同步：Ctrl+P 输入 "obsidian git: commit and push"（obsidian-git 插件）
