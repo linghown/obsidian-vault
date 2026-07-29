@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"98ef871464ffb0c9","type":"text","text":"右中肺","x":-320,"y":8,"width":160,"height":52,"color":"2"},
+		{"id":"4967a317d6eeaa75","type":"text","text":"右下肺","x":-320,"y":160,"width":160,"height":52,"color":"2"},
+		{"id":"b08836066c1a3625","type":"text","text":"左下肺","x":160,"y":100,"width":160,"height":52,"color":"2"},
+		{"id":"990ec0f8eff64842","type":"text","text":"左上肺","x":160,"y":-180,"width":160,"height":52,"color":"2"},
+		{"id":"e55016e12c9a216b","type":"text","text":"右上肺","x":-320,"y":-232,"width":160,"height":52,"color":"2"},
+		{"id":"fbd7759239fc82c6","type":"text","text":"**肺叶切除术**[[肺叶切除术.canvas]]","x":-60,"y":-12,"width":180,"height":72,"color":"1"}
+	],
+	"edges":[]
+}
