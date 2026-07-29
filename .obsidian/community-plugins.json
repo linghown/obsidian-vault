@@ -4,5 +4,7 @@
   "dataview",
   "obsidian-importer",
   "obsidian-git",
-  "codex-panel"
+  "codex-panel",
+  "editing-toolbar",
+  "table-editor-obsidian"
 ]
