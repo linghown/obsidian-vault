@@ -1,0 +1,219 @@
+/* ===== Homepage CSS for Obsidian ===== */
+/* Activated by cssclasses: home in frontmatter */
+/* Works with Blue Topaz light theme */
+
+/* === Hide titles for container callouts === */
+.home [data-callout="pill"] .callout-title,
+.home [data-callout="grid"] .callout-title,
+.home [data-callout="grid2"] .callout-title {
+    display: none !important;
+}
+
+/* === Remove default styling for container callouts === */
+.home [data-callout="pill"],
+.home [data-callout="grid"],
+.home [data-callout="grid2"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+}
+
+.home [data-callout="pill"] .callout-content,
+.home [data-callout="grid"] .callout-content,
+.home [data-callout="grid2"] .callout-content {
+    padding: 0 !important;
+}
+
+/* === Folder link pills === */
+.home [data-callout="pill"] .callout-content p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+}
+
+.home [data-callout="pill"] .callout-content a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--background-secondary-alt, #f5f6f8);
+    border: 1px solid var(--background-modifier-border, #e8ecf1);
+    border-radius: 8px;
+    padding: 5px 14px;
+    font-size: 13px;
+    color: var(--text-normal, #5a6a76) !important;
+    text-decoration: none !important;
+    transition: all 0.15s;
+}
+
+.home [data-callout="pill"] .callout-content a:hover {
+    background: var(--interactive-accent-hover, #e8f4ff);
+    border-color: var(--interactive-accent, #4a9eff);
+    color: var(--interactive-accent, #4a9eff) !important;
+}
+
+/* === 3-column grid for quick entry cards === */
+.home [data-callout="grid"] .callout-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+}
+
+/* === 2-column grid for recent + tasks === */
+.home [data-callout="grid2"] .callout-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* === Individual card styling === */
+.home [data-callout="grid"] .callout,
+.home [data-callout="grid2"] .callout {
+    margin: 0 !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+.home [data-callout="grid"] .callout-title,
+.home [data-callout="grid2"] .callout-title {
+    display: flex !important;
+    padding: 8px 14px !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.home [data-callout="grid"] .callout-content,
+.home [data-callout="grid2"] .callout-content {
+    padding: 4px 14px 10px !important;
+}
+
+.home [data-callout="grid"] .callout-content ul,
+.home [data-callout="grid2"] .callout-content ul {
+    padding-left: 0 !important;
+    list-style: none !important;
+}
+
+.home [data-callout="grid"] .callout-content li,
+.home [data-callout="grid2"] .callout-content li {
+    padding: 5px 0 !important;
+    border-bottom: 1px dashed var(--background-modifier-border, #eef0f3) !important;
+    font-size: 13.5px !important;
+}
+
+.home [data-callout="grid"] .callout-content li:last-child,
+.home [data-callout="grid2"] .callout-content li:last-child {
+    border-bottom: none !important;
+}
+
+/* === Card colors: 领域 (note=blue) === */
+.home [data-callout="grid"] [data-callout="note"] {
+    border-top: 3px solid #3498db !important;
+}
+
+/* === Card colors: 项目 (example=orange) === */
+.home [data-callout="grid"] [data-callout="example"] {
+    border-top: 3px solid #e67e22 !important;
+}
+
+/* === Card colors: 资源 (abstract=purple) === */
+.home [data-callout="grid"] [data-callout="abstract"] {
+    border-top: 3px solid #8e44ad !important;
+}
+
+/* === Dataview table styling === */
+.home .dataview.table-view-table {
+    width: 100%;
+    font-size: 13.5px;
+}
+
+.home .dataview.table-view-table th {
+    display: none;
+}
+
+.home .dataview.table-view-table td {
+    padding: 6px 4px !important;
+    border-bottom: 1px solid var(--background-modifier-border, #f0f2f5) !important;
+}
+
+.home .dataview.table-view-table td:last-child {
+    color: var(--text-muted, #a0b0bc);
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* === Task list card styling === */
+.home [data-callout="grid2"] [data-callout="warning"] .contains-task-list {
+    padding-left: 0 !important;
+    list-style: none !important;
+}
+
+.home [data-callout="grid2"] [data-callout="warning"] .task-list-item {
+    padding: 8px 10px !important;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border: 1px solid var(--background-modifier-border, #e8ecf1) !important;
+    background: var(--background-secondary-alt, #f8f9fb);
+    font-size: 13.5px !important;
+}
+
+/* === Questions callout === */
+.home [data-callout="question"] {
+    background: var(--background-secondary-alt, #fafbfc) !important;
+}
+
+.home [data-callout="question"] .callout-content ol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 20px;
+    padding-left: 0 !important;
+    list-style: none !important;
+    counter-reset: q-counter;
+}
+
+.home [data-callout="question"] .callout-content ol li {
+    counter-increment: q-counter;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    padding: 3px 0;
+    color: var(--text-muted, #5a6a76);
+}
+
+.home [data-callout="question"] .callout-content ol li::before {
+    content: counter(q-counter);
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--background-modifier-border, #e8ecf1);
+    color: var(--text-muted, #8a9ba8);
+}
+
+/* === Responsive === */
+@media (max-width: 700px) {
+    .home [data-callout="grid"] .callout-content {
+        grid-template-columns: 1fr !important;
+    }
+    .home [data-callout="grid2"] .callout-content {
+        grid-template-columns: 1fr !important;
+    }
+    .home [data-callout="question"] .callout-content ol {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 900px) and (min-width: 701px) {
+    .home [data-callout="grid"] .callout-content {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
