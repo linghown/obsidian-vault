@@ -1,18 +1,83 @@
 /* ===== Homepage CSS for Obsidian ===== */
 /* Activated by cssclasses: home in frontmatter */
 /* Works with Blue Topaz light theme */
+/* Supports both Reading View and Live Preview */
 
-/* === Hide titles for container callouts === */
+/* === Style Settings 配置面板 === */
+/* @settings
+name: Homepage 主页样式
+id: homepage
+description: 主页 Homepage.md 的卡片布局、颜色、间距等自定义设置
+settings:
+    -
+        id: hp-card-radius
+        title: 卡片圆角
+        type: variable-text
+        description: 快速入口卡片的圆角大小
+        default: 10px
+    -
+        id: hp-card-gap
+        title: 卡片间距
+        type: variable-text
+        description: 卡片之间的间距
+        default: 14px
+    -
+        id: hp-domain-color
+        title: 领域卡片颜色
+        type: variable-color
+        format: hex
+        default: '#3498db'
+    -
+        id: hp-project-color
+        title: 项目卡片颜色
+        type: variable-color
+        format: hex
+        default: '#e67e22'
+    -
+        id: hp-resource-color
+        title: 资源卡片颜色
+        type: variable-color
+        format: hex
+        default: '#8e44ad'
+    -
+        id: hp-note-size
+        title: 笔记列表字号
+        type: variable-text
+        default: 13.5px
+    -
+        id: hp-pill-radius
+        title: 文件夹链接圆角
+        type: variable-text
+        default: 8px
+*/
+
+:root {
+    --hp-card-radius: 10px;
+    --hp-card-gap: 14px;
+    --hp-domain-color: #3498db;
+    --hp-project-color: #e67e22;
+    --hp-resource-color: #8e44ad;
+    --hp-note-size: 13.5px;
+    --hp-pill-radius: 8px;
+}
+
+/* === Hide titles for container callouts (Reading + Live Preview) === */
 .home [data-callout="pill"] .callout-title,
 .home [data-callout="grid"] .callout-title,
-.home [data-callout="grid2"] .callout-title {
+.home [data-callout="grid2"] .callout-title,
+.home .cm-embed-block[data-callout="pill"] .callout-title,
+.home .cm-embed-block[data-callout="grid"] .callout-title,
+.home .cm-embed-block[data-callout="grid2"] .callout-title {
     display: none !important;
 }
 
 /* === Remove default styling for container callouts === */
 .home [data-callout="pill"],
 .home [data-callout="grid"],
-.home [data-callout="grid2"] {
+.home [data-callout="grid2"],
+.home .cm-embed-block[data-callout="pill"],
+.home .cm-embed-block[data-callout="grid"],
+.home .cm-embed-block[data-callout="grid2"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -22,25 +87,30 @@
 
 .home [data-callout="pill"] .callout-content,
 .home [data-callout="grid"] .callout-content,
-.home [data-callout="grid2"] .callout-content {
+.home [data-callout="grid2"] .callout-content,
+.home .cm-embed-block[data-callout="pill"] .callout-content,
+.home .cm-embed-block[data-callout="grid"] .callout-content,
+.home .cm-embed-block[data-callout="grid2"] .callout-content {
     padding: 0 !important;
 }
 
 /* === Folder link pills === */
-.home [data-callout="pill"] .callout-content p {
+.home [data-callout="pill"] .callout-content p,
+.home .cm-embed-block[data-callout="pill"] .callout-content p {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin: 0;
 }
 
-.home [data-callout="pill"] .callout-content a {
+.home [data-callout="pill"] .callout-content a,
+.home .cm-embed-block[data-callout="pill"] .callout-content a {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     background: var(--background-secondary-alt, #f5f6f8);
     border: 1px solid var(--background-modifier-border, #e8ecf1);
-    border-radius: 8px;
+    border-radius: var(--hp-pill-radius);
     padding: 5px 14px;
     font-size: 13px;
     color: var(--text-normal, #5a6a76) !important;
@@ -48,21 +118,24 @@
     transition: all 0.15s;
 }
 
-.home [data-callout="pill"] .callout-content a:hover {
+.home [data-callout="pill"] .callout-content a:hover,
+.home .cm-embed-block[data-callout="pill"] .callout-content a:hover {
     background: var(--interactive-accent-hover, #e8f4ff);
     border-color: var(--interactive-accent, #4a9eff);
     color: var(--interactive-accent, #4a9eff) !important;
 }
 
 /* === 3-column grid for quick entry cards === */
-.home [data-callout="grid"] .callout-content {
+.home [data-callout="grid"] .callout-content,
+.home .cm-embed-block[data-callout="grid"] .callout-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
+    gap: var(--hp-card-gap);
 }
 
 /* === 2-column grid for recent + tasks === */
-.home [data-callout="grid2"] .callout-content {
+.home [data-callout="grid2"] .callout-content,
+.home .cm-embed-block[data-callout="grid2"] .callout-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -70,63 +143,78 @@
 
 /* === Individual card styling === */
 .home [data-callout="grid"] .callout,
-.home [data-callout="grid2"] .callout {
+.home [data-callout="grid2"] .callout,
+.home .cm-embed-block[data-callout="grid"] .callout,
+.home .cm-embed-block[data-callout="grid2"] .callout {
     margin: 0 !important;
-    border-radius: 10px !important;
+    border-radius: var(--hp-card-radius) !important;
     overflow: hidden;
 }
 
 .home [data-callout="grid"] .callout-title,
-.home [data-callout="grid2"] .callout-title {
+.home [data-callout="grid2"] .callout-title,
+.home .cm-embed-block[data-callout="grid"] .callout-title,
+.home .cm-embed-block[data-callout="grid2"] .callout-title {
     display: flex !important;
     padding: 8px 14px !important;
     font-size: 13.5px !important;
     font-weight: 700 !important;
-    border-radius: 10px 10px 0 0 !important;
+    border-radius: var(--hp-card-radius) var(--hp-card-radius) 0 0 !important;
 }
 
 .home [data-callout="grid"] .callout-content,
-.home [data-callout="grid2"] .callout-content {
+.home [data-callout="grid2"] .callout-content,
+.home .cm-embed-block[data-callout="grid"] .callout-content,
+.home .cm-embed-block[data-callout="grid2"] .callout-content {
     padding: 4px 14px 10px !important;
 }
 
 .home [data-callout="grid"] .callout-content ul,
-.home [data-callout="grid2"] .callout-content ul {
+.home [data-callout="grid2"] .callout-content ul,
+.home .cm-embed-block[data-callout="grid"] .callout-content ul,
+.home .cm-embed-block[data-callout="grid2"] .callout-content ul {
     padding-left: 0 !important;
     list-style: none !important;
 }
 
 .home [data-callout="grid"] .callout-content li,
-.home [data-callout="grid2"] .callout-content li {
+.home [data-callout="grid2"] .callout-content li,
+.home .cm-embed-block[data-callout="grid"] .callout-content li,
+.home .cm-embed-block[data-callout="grid2"] .callout-content li {
     padding: 5px 0 !important;
     border-bottom: 1px dashed var(--background-modifier-border, #eef0f3) !important;
-    font-size: 13.5px !important;
+    font-size: var(--hp-note-size) !important;
 }
 
 .home [data-callout="grid"] .callout-content li:last-child,
-.home [data-callout="grid2"] .callout-content li:last-child {
+.home [data-callout="grid2"] .callout-content li:last-child,
+.home .cm-embed-block[data-callout="grid"] .callout-content li:last-child,
+.home .cm-embed-block[data-callout="grid2"] .callout-content li:last-child {
     border-bottom: none !important;
 }
 
 /* === Card colors: 领域 (note=blue) === */
-.home [data-callout="grid"] [data-callout="note"] {
-    border-top: 3px solid #3498db !important;
+.home [data-callout="grid"] [data-callout="note"],
+.home .cm-embed-block[data-callout="grid"] [data-callout="note"] {
+    border-top: 3px solid var(--hp-domain-color) !important;
 }
 
 /* === Card colors: 项目 (example=orange) === */
-.home [data-callout="grid"] [data-callout="example"] {
-    border-top: 3px solid #e67e22 !important;
+.home [data-callout="grid"] [data-callout="example"],
+.home .cm-embed-block[data-callout="grid"] [data-callout="example"] {
+    border-top: 3px solid var(--hp-project-color) !important;
 }
 
 /* === Card colors: 资源 (abstract=purple) === */
-.home [data-callout="grid"] [data-callout="abstract"] {
-    border-top: 3px solid #8e44ad !important;
+.home [data-callout="grid"] [data-callout="abstract"],
+.home .cm-embed-block[data-callout="grid"] [data-callout="abstract"] {
+    border-top: 3px solid var(--hp-resource-color) !important;
 }
 
 /* === Dataview table styling === */
 .home .dataview.table-view-table {
     width: 100%;
-    font-size: 13.5px;
+    font-size: 14.5px;
 }
 
 .home .dataview.table-view-table th {
@@ -134,24 +222,38 @@
 }
 
 .home .dataview.table-view-table td {
-    padding: 6px 4px !important;
+    padding: 8px 6px !important;
     border-bottom: 1px solid var(--background-modifier-border, #f0f2f5) !important;
+    font-size: 14.5px;
 }
 
 .home .dataview.table-view-table td:last-child {
     color: var(--text-muted, #a0b0bc);
-    font-size: 12px;
+    font-size: 12.5px;
     text-align: right;
     white-space: nowrap;
 }
 
+.home .dataview.table-view-table td a {
+    font-size: 14.5px;
+    font-weight: 500;
+}
+
+/* === Hide Tasks plugin toolbar (Filter + Copy button) === */
+.home .plugin-tasks-toolbar,
+.home .cm-embed-block .plugin-tasks-toolbar {
+    display: none !important;
+}
+
 /* === Task list card styling === */
-.home [data-callout="grid2"] [data-callout="warning"] .contains-task-list {
+.home [data-callout="grid2"] [data-callout="warning"] .contains-task-list,
+.home .cm-embed-block[data-callout="grid2"] [data-callout="warning"] .contains-task-list {
     padding-left: 0 !important;
     list-style: none !important;
 }
 
-.home [data-callout="grid2"] [data-callout="warning"] .task-list-item {
+.home [data-callout="grid2"] [data-callout="warning"] .task-list-item,
+.home .cm-embed-block[data-callout="grid2"] [data-callout="warning"] .task-list-item {
     padding: 8px 10px !important;
     border-radius: 8px;
     margin-bottom: 6px;
@@ -161,11 +263,42 @@
 }
 
 /* === Questions callout === */
-.home [data-callout="question"] {
+.home [data-callout="question"],
+.home .cm-embed-block[data-callout="question"] {
     background: var(--background-secondary-alt, #fafbfc) !important;
 }
 
-.home [data-callout="question"] .callout-content ol {
+/* Hide the "?" icon circle on question callout */
+.home [data-callout="question"] .callout-icon,
+.home .cm-embed-block[data-callout="question"] .callout-icon {
+    display: none !important;
+}
+
+.home [data-callout="question"] .callout-title,
+.home .cm-embed-block[data-callout="question"] .callout-title {
+    padding-left: 14px !important;
+}
+
+.home [data-callout="question"] .callout-title-inner,
+.home .cm-embed-block[data-callout="question"] .callout-title-inner {
+    padding-left: 0 !important;
+}
+
+/* === Hide note properties panel (YAML frontmatter display) === */
+.home .metadata-container,
+.home .metadata-properties,
+.home .frontmatter,
+.home .cm-embed-block.frontmatter,
+.home .cm-line.cm-active ~ .frontmatter {
+    display: none !important;
+}
+
+.home .mod-header {
+    display: none !important;
+}
+
+.home [data-callout="question"] .callout-content ol,
+.home .cm-embed-block[data-callout="question"] .callout-content ol {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4px 20px;
@@ -174,7 +307,8 @@
     counter-reset: q-counter;
 }
 
-.home [data-callout="question"] .callout-content ol li {
+.home [data-callout="question"] .callout-content ol li,
+.home .cm-embed-block[data-callout="question"] .callout-content ol li {
     counter-increment: q-counter;
     display: flex;
     align-items: flex-start;
@@ -184,7 +318,8 @@
     color: var(--text-muted, #5a6a76);
 }
 
-.home [data-callout="question"] .callout-content ol li::before {
+.home [data-callout="question"] .callout-content ol li::before,
+.home .cm-embed-block[data-callout="question"] .callout-content ol li::before {
     content: counter(q-counter);
     width: 20px;
     height: 20px;
@@ -201,19 +336,23 @@
 
 /* === Responsive === */
 @media (max-width: 700px) {
-    .home [data-callout="grid"] .callout-content {
+    .home [data-callout="grid"] .callout-content,
+    .home .cm-embed-block[data-callout="grid"] .callout-content {
         grid-template-columns: 1fr !important;
     }
-    .home [data-callout="grid2"] .callout-content {
+    .home [data-callout="grid2"] .callout-content,
+    .home .cm-embed-block[data-callout="grid2"] .callout-content {
         grid-template-columns: 1fr !important;
     }
-    .home [data-callout="question"] .callout-content ol {
+    .home [data-callout="question"] .callout-content ol,
+    .home .cm-embed-block[data-callout="question"] .callout-content ol {
         grid-template-columns: 1fr !important;
     }
 }
 
 @media (max-width: 900px) and (min-width: 701px) {
-    .home [data-callout="grid"] .callout-content {
+    .home [data-callout="grid"] .callout-content,
+    .home .cm-embed-block[data-callout="grid"] .callout-content {
         grid-template-columns: 1fr 1fr !important;
     }
 }
