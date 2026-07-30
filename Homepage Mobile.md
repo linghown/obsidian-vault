@@ -13,13 +13,13 @@ cssclasses:
 ## 快速入口
 
 > [!shortcuts]
-> - [[收件箱/收件箱|📥 收件箱]] `0`
-> - [[领域/领域|📁 领域]] `9`
-> - [[项目/项目|📂 项目]] `2`
-> - [[资源/资源|📚 资源]] `158`
-> - [[归档/归档|📦 归档]] `0`
-> - [[Attachments/Attachments|📎 附件]] `3`
-> - [[Templates/Templates|🧩 模板]] `1`
+> - <a href="#" class="hp-folder-link" data-folder="收件箱">📥 收件箱</a> `0`
+> - <a href="#" class="hp-folder-link" data-folder="领域">📁 领域</a> `9`
+> - <a href="#" class="hp-folder-link" data-folder="项目">📂 项目</a> `2`
+> - <a href="#" class="hp-folder-link" data-folder="资源">📚 资源</a> `158`
+> - <a href="#" class="hp-folder-link" data-folder="归档">📦 归档</a> `0`
+> - <a href="#" class="hp-folder-link" data-folder="Attachments">📎 附件</a> `3`
+> - <a href="#" class="hp-folder-link" data-folder="Templates">🧩 模板</a> `1`
 
 > [!navgrid]
 > > [!note] 📁　领域　　`9篇`
