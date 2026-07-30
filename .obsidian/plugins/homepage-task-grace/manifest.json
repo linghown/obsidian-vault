@@ -1,9 +1,9 @@
 {
   "id": "homepage-task-grace",
   "name": "Homepage Task Grace Period",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "minAppVersion": "1.8.0",
-  "description": "Adds Homepage task undo and mobile folder navigation.",
+  "description": "Adds a 10-second undo window before Homepage tasks are committed as completed.",
   "author": "Local",
   "isDesktopOnly": false
 }
