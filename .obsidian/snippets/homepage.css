@@ -1,9 +1,10 @@
-/* ===== Homepage CSS for Obsidian ===== */
-/* Activated by cssclasses: home in frontmatter */
-/* Works with Blue Topaz light theme */
-/* Supports both Reading View and Live Preview */
+/* ==================================================================== */
+/*  Homepage CSS v9 — Complete Rewrite to Match Preview HTML            */
+/*  Overrides Blue Topaz theme defaults with !important                 */
+/*  Works in Reading View (primary) and Live Preview (secondary)        */
+/* ==================================================================== */
 
-/* === Style Settings 配置面板 === */
+/* === Style Settings === */
 /* @settings
 name: Homepage 主页样式
 id: homepage
@@ -52,6 +53,7 @@ settings:
 */
 
 :root {
+    --hp-accent: #4a9eff;
     --hp-card-radius: 10px;
     --hp-card-gap: 14px;
     --hp-domain-color: #3498db;
@@ -61,173 +63,291 @@ settings:
     --hp-pill-radius: 8px;
 }
 
-/* === Hide titles for container callouts (Reading + Live Preview) === */
-.home [data-callout="pill"] .callout-title,
-.home [data-callout="grid"] .callout-title,
-.home [data-callout="grid2"] .callout-title,
-.home .cm-embed-block[data-callout="pill"] .callout-title,
-.home .cm-embed-block[data-callout="grid"] .callout-title,
-.home .cm-embed-block[data-callout="grid2"] .callout-title {
+/* ================================================================== */
+/*  1. Hide properties panel (YAML frontmatter display)               */
+/* ================================================================== */
+.home .metadata-container,
+.home .metadata-properties,
+.home .frontmatter,
+.home .mod-header {
     display: none !important;
 }
 
-/* === Remove default styling for container callouts === */
+/* ================================================================== */
+/*  2. H1 / H2 heading styles                                          */
+/* ================================================================== */
+
+/* H1 — subtle, not too large */
+.home .markdown-preview-section h1,
+.home h1.cm-header-1 {
+    font-size: 1.6em !important;
+    font-weight: 700 !important;
+    margin: 0.3em 0 0.5em !important;
+}
+
+/* H2 — section title with blue vertical bar (like preview) */
+.home .markdown-preview-section h2,
+.home h2.cm-header-2 {
+    position: relative;
+    padding-left: 14px !important;
+    font-size: 1.25em !important;
+    font-weight: 700 !important;
+    border-bottom: none !important;
+    margin-top: 1.5em !important;
+    margin-bottom: 0.6em !important;
+    color: #2c3e50 !important;
+}
+
+/* Blue bar before H2 — Reading View */
+.home .markdown-preview-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 18px;
+    background: var(--hp-accent);
+    border-radius: 2px;
+}
+
+/* H3 */
+.home .markdown-preview-section h3,
+.home h3.cm-header-3 {
+    font-size: 1.1em !important;
+    margin: 0.4em 0 0.2em !important;
+}
+
+/* ================================================================== */
+/*  3. Quote callout — gradient banner (like preview)                  */
+/* ================================================================== */
+.home [data-callout="quote"] {
+    background: linear-gradient(135deg, #f0f7ff 0%, #f5f0ff 100%) !important;
+    border: none !important;
+    border-left: 4px solid var(--hp-accent) !important;
+    border-radius: 0 8px 8px 0 !important;
+    padding: 12px 20px !important;
+    margin: 0 0 24px 0 !important;
+    box-shadow: none !important;
+}
+
+/* Quote title — small label style */
+.home [data-callout="quote"] .callout-title {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 0 4px !important;
+    color: var(--hp-accent) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Hide quote icon */
+.home [data-callout="quote"] .callout-icon {
+    display: none !important;
+}
+
+/* Quote content */
+.home [data-callout="quote"] .callout-content {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.home [data-callout="quote"] .callout-content p {
+    margin: 4px 0 !important;
+}
+
+/* First paragraph (date) — muted */
+.home [data-callout="quote"] .callout-content p:first-child {
+    font-size: 14px !important;
+    color: #8a9ba8 !important;
+}
+
+/* Second paragraph (quote text) — italic, larger */
+.home [data-callout="quote"] .callout-content p:nth-child(2) {
+    font-size: 15px !important;
+    color: #3d4f5c !important;
+    font-style: italic;
+}
+
+/* Last paragraph (source) — small, muted */
+.home [data-callout="quote"] .callout-content p:last-child {
+    font-size: 12px !important;
+    color: #a0b0bc !important;
+}
+
+/* ================================================================== */
+/*  4. Container callouts (pill, grid) — strip ALL default chrome      */
+/* ================================================================== */
 .home [data-callout="pill"],
-.home [data-callout="grid"],
-.home [data-callout="grid2"],
-.home .cm-embed-block[data-callout="pill"],
-.home .cm-embed-block[data-callout="grid"],
-.home .cm-embed-block[data-callout="grid2"] {
+.home [data-callout="grid"] {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
     padding: 0 !important;
-    margin-bottom: 20px !important;
+    margin: 0 0 20px 0 !important;
+    --callout-color: 0, 0, 0 !important;
 }
 
+/* Hide container callout titles */
+.home [data-callout="pill"] .callout-title,
+.home [data-callout="grid"] .callout-title {
+    display: none !important;
+}
+
+/* Container callout content — no padding, transparent */
 .home [data-callout="pill"] .callout-content,
-.home [data-callout="grid"] .callout-content,
-.home [data-callout="grid2"] .callout-content,
-.home .cm-embed-block[data-callout="pill"] .callout-content,
-.home .cm-embed-block[data-callout="grid"] .callout-content,
-.home .cm-embed-block[data-callout="grid2"] .callout-content {
+.home [data-callout="grid"] .callout-content {
     padding: 0 !important;
+    background: transparent !important;
 }
 
-/* === Folder link pills === */
-.home [data-callout="pill"] .callout-content,
-.home .cm-embed-block[data-callout="pill"] .callout-content {
-    display: flex;
+/* ================================================================== */
+/*  5. Pill links — folder quick-access buttons                        */
+/* ================================================================== */
+.home [data-callout="pill"] .callout-content {
+    display: flex !important;
     flex-wrap: wrap;
-    gap: 12px;
-    margin: 0;
+    gap: 10px;
+    margin-bottom: 16px !important;
 }
 
-.home [data-callout="pill"] .callout-content p,
-.home .cm-embed-block[data-callout="pill"] .callout-content p {
-    margin: 0 !important;
-    line-height: 1;
-    display: flex;
-}
-
-.home [data-callout="pill"] .callout-content strong,
-.home .cm-embed-block[data-callout="pill"] .callout-content strong {
-    font-weight: 700;
-    display: inline-flex;
-}
-
-.home [data-callout="pill"] .callout-content a,
-.home .cm-embed-block[data-callout="pill"] .callout-content a {
-    display: inline-flex;
+/* Each <p> becomes a pill button */
+.home [data-callout="pill"] .callout-content p {
+    display: inline-flex !important;
     align-items: center;
     gap: 4px;
-    background: var(--background-secondary-alt, #f5f6f8);
-    border: 1px solid var(--background-modifier-border, #e8ecf1);
+    background: #f5f6f8;
+    border: 1px solid #e8ecf1;
     border-radius: var(--hp-pill-radius);
     padding: 6px 16px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-normal, #5a6a76) !important;
-    text-decoration: none !important;
-    transition: all 0.15s;
+    color: #5a6a76;
+    margin: 0 !important;
     line-height: 1.4;
+    transition: all 0.15s;
+    cursor: pointer;
 }
 
-.home [data-callout="pill"] .callout-content a:hover,
-.home .cm-embed-block[data-callout="pill"] .callout-content a:hover {
-    background: var(--interactive-accent-hover, #e8f4ff);
-    border-color: var(--interactive-accent, #4a9eff);
-    color: var(--interactive-accent, #4a9eff) !important;
+/* Pill hover */
+.home [data-callout="pill"] .callout-content p:hover {
+    background: #e8f4ff;
+    border-color: var(--hp-accent);
+    color: var(--hp-accent);
     transform: translateY(-1px);
 }
 
-/* === 3-column grid for quick entry cards === */
-.home [data-callout="grid"] .callout-content,
-.home .cm-embed-block[data-callout="grid"] .callout-content {
-    display: grid;
+/* Links inside pills inherit color */
+.home [data-callout="pill"] .callout-content p a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* ================================================================== */
+/*  6. Grid — 3-column card layout                                     */
+/* ================================================================== */
+.home [data-callout="grid"] .callout-content {
+    display: grid !important;
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--hp-card-gap);
 }
 
-/* === 2-column grid for recent + tasks === */
-.home [data-callout="grid2"] .callout-content,
-.home .cm-embed-block[data-callout="grid2"] .callout-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
+/* ================================================================== */
+/*  7. Card styling — clean white cards with colored top border        */
+/*     Override Obsidian default (left border + colored background)    */
+/* ================================================================== */
 
-/* === Individual card styling === */
-.home [data-callout="grid"] .callout,
-.home [data-callout="grid2"] .callout,
-.home .cm-embed-block[data-callout="grid"] .callout,
-.home .cm-embed-block[data-callout="grid2"] .callout {
-    margin: 0 !important;
+/* Base card: remove ALL default callout styling */
+.home [data-callout="grid"] .callout-content > .callout {
+    background: #fafbfc !important;
+    border: 1px solid #e8ecf1 !important;
+    border-left: 1px solid #e8ecf1 !important;
     border-radius: var(--hp-card-radius) !important;
+    margin: 0 !important;
     overflow: hidden;
+    box-shadow: none !important;
+    padding: 0 !important;
 }
 
-.home [data-callout="grid"] .callout-title,
-.home [data-callout="grid2"] .callout-title,
-.home .cm-embed-block[data-callout="grid"] .callout-title,
-.home .cm-embed-block[data-callout="grid2"] .callout-title {
-    display: flex !important;
-    padding: 8px 14px !important;
-    font-size: 13.5px !important;
-    font-weight: 700 !important;
-    border-radius: var(--hp-card-radius) var(--hp-card-radius) 0 0 !important;
-}
-
-.home [data-callout="grid"] .callout-content,
-.home [data-callout="grid2"] .callout-content,
-.home .cm-embed-block[data-callout="grid"] .callout-content,
-.home .cm-embed-block[data-callout="grid2"] .callout-content {
-    padding: 4px 14px 10px !important;
-}
-
-.home [data-callout="grid"] .callout-content ul,
-.home [data-callout="grid2"] .callout-content ul,
-.home .cm-embed-block[data-callout="grid"] .callout-content ul,
-.home .cm-embed-block[data-callout="grid2"] .callout-content ul {
-    padding-left: 0 !important;
-    list-style: none !important;
-}
-
-.home [data-callout="grid"] .callout-content li,
-.home [data-callout="grid2"] .callout-content li,
-.home .cm-embed-block[data-callout="grid"] .callout-content li,
-.home .cm-embed-block[data-callout="grid2"] .callout-content li {
-    padding: 5px 0 !important;
-    border-bottom: 1px dashed var(--background-modifier-border, #eef0f3) !important;
-    font-size: var(--hp-note-size) !important;
-}
-
-.home [data-callout="grid"] .callout-content li:last-child,
-.home [data-callout="grid2"] .callout-content li:last-child,
-.home .cm-embed-block[data-callout="grid"] .callout-content li:last-child,
-.home .cm-embed-block[data-callout="grid2"] .callout-content li:last-child {
-    border-bottom: none !important;
-}
-
-/* === Card colors: 领域 (note=blue) === */
-.home [data-callout="grid"] [data-callout="note"],
-.home .cm-embed-block[data-callout="grid"] [data-callout="note"] {
+/* Card top border colors */
+.home [data-callout="grid"] .callout-content > [data-callout="note"] {
     border-top: 3px solid var(--hp-domain-color) !important;
 }
-
-/* === Card colors: 项目 (example=orange) === */
-.home [data-callout="grid"] [data-callout="example"],
-.home .cm-embed-block[data-callout="grid"] [data-callout="example"] {
+.home [data-callout="grid"] .callout-content > [data-callout="example"] {
     border-top: 3px solid var(--hp-project-color) !important;
 }
-
-/* === Card colors: 资源 (abstract=purple) === */
-.home [data-callout="grid"] [data-callout="abstract"],
-.home .cm-embed-block[data-callout="grid"] [data-callout="abstract"] {
+.home [data-callout="grid"] .callout-content > [data-callout="abstract"] {
     border-top: 3px solid var(--hp-resource-color) !important;
 }
 
-/* === Dataview table styling === */
+/* Card title — clean, no icon */
+.home [data-callout="grid"] .callout-content > .callout > .callout-title {
+    background: transparent !important;
+    color: #2c3e50 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    padding: 10px 14px 2px !important;
+    border-radius: 0 !important;
+    border: none !important;
+}
+
+/* Hide card icons */
+.home [data-callout="grid"] .callout-content > .callout > .callout-title .callout-icon,
+.home [data-callout="grid"] .callout-content > .callout > .callout-title .callout-fold {
+    display: none !important;
+}
+
+/* Card content area */
+.home [data-callout="grid"] .callout-content > .callout > .callout-content {
+    background: transparent !important;
+    padding: 0 14px 10px !important;
+}
+
+/* Card list — no bullets, custom styling */
+.home [data-callout="grid"] .callout-content > .callout > .callout-content ul {
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+/* Card list items — dashed separator */
+.home [data-callout="grid"] .callout-content > .callout > .callout-content li {
+    padding: 5px 0 !important;
+    border-bottom: 1px dashed #eef0f3 !important;
+    font-size: var(--hp-note-size) !important;
+    line-height: 1.5;
+}
+
+.home [data-callout="grid"] .callout-content > .callout > .callout-content li:last-child {
+    border-bottom: none !important;
+}
+
+/* Card links — blue with ▸ marker */
+.home [data-callout="grid"] .callout-content > .callout > .callout-content li a {
+    color: var(--hp-accent) !important;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.home [data-callout="grid"] .callout-content > .callout > .callout-content li a:hover {
+    color: #1a7de8 !important;
+    text-decoration: underline !important;
+}
+
+/* ▸ marker before each link */
+.home [data-callout="grid"] .callout-content > .callout > .callout-content li a::before {
+    content: '▸';
+    color: #c8d4dd;
+    font-size: 11px;
+}
+
+/* ================================================================== */
+/*  8. Dataview table — clean list style                               */
+/* ================================================================== */
 .home .dataview.table-view-table {
     width: 100%;
     font-size: 14.5px;
@@ -239,12 +359,12 @@ settings:
 
 .home .dataview.table-view-table td {
     padding: 8px 6px !important;
-    border-bottom: 1px solid var(--background-modifier-border, #f0f2f5) !important;
+    border-bottom: 1px solid #f0f2f5 !important;
     font-size: 14.5px;
 }
 
 .home .dataview.table-view-table td:last-child {
-    color: var(--text-muted, #a0b0bc);
+    color: #a0b0bc;
     font-size: 12.5px;
     text-align: right;
     white-space: nowrap;
@@ -253,22 +373,40 @@ settings:
 .home .dataview.table-view-table td a {
     font-size: 14.5px;
     font-weight: 500;
+    color: #3d4f5c !important;
+    text-decoration: none !important;
 }
 
-/* === Hide Tasks plugin toolbar (Filter + Copy button) === */
+.home .dataview.table-view-table td a:hover {
+    color: var(--hp-accent) !important;
+}
+
+/* ================================================================== */
+/*  9. Tasks — compact card style                                      */
+/* ================================================================== */
+
+/* Hide Tasks plugin toolbar (Filter + Copy) */
 .home .plugin-tasks-toolbar,
 .home .cm-embed-block .plugin-tasks-toolbar {
     display: none !important;
 }
 
-/* === Task list card styling (refined) === */
+/* Task list — no indentation, no bullets */
+.home .contains-task-list,
+.home .cm-embed-block .contains-task-list {
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+/* Task item — card style */
 .home .task-list-item,
 .home .cm-embed-block .task-list-item {
     padding: 6px 10px !important;
     border-radius: 6px;
     margin-bottom: 5px;
-    border: 1px solid var(--background-modifier-border, #e8ecf1) !important;
-    background: var(--background-secondary-alt, #f8f9fb);
+    border: 1px solid #e8ecf1 !important;
+    background: #f8f9fb;
     font-size: 13px !important;
     line-height: 1.45;
     list-style: none;
@@ -280,13 +418,15 @@ settings:
     overflow: hidden;
 }
 
+/* Task hover */
 .home .task-list-item:hover,
 .home .cm-embed-block .task-list-item:hover {
-    background: var(--background-secondary, #f0f3f7);
-    border-color: var(--interactive-accent, #4a9eff) !important;
+    background: #f0f3f7;
+    border-color: var(--hp-accent) !important;
     box-shadow: 0 1px 4px rgba(74, 158, 255, 0.08);
 }
 
+/* Checkbox */
 .home .task-list-item .task-list-item-checkbox,
 .home .cm-embed-block .task-list-item .task-list-item-checkbox {
     margin: 0 !important;
@@ -294,8 +434,10 @@ settings:
     width: 14px !important;
     height: 14px !important;
     transform: scale(0.95);
+    cursor: pointer;
 }
 
+/* Task text — flex grow, 2-line clamp */
 .home .task-list-item .task-list-text,
 .home .cm-embed-block .task-list-item .task-list-text {
     flex: 1;
@@ -308,7 +450,7 @@ settings:
     word-break: break-word;
 }
 
-/* Date / priority badge in task — push to rightmost */
+/* Task meta (date/priority) — push to rightmost */
 .home .task-list-item .task-meta,
 .home .cm-embed-block .task-list-item .task-meta {
     flex-shrink: 0;
@@ -316,93 +458,86 @@ settings:
     font-size: 11px !important;
     padding: 1px 6px;
     border-radius: 4px;
-    background: var(--background-modifier-border-hover, #e8ecf1);
-    color: var(--text-muted, #8a9ba8);
+    background: #e8ecf1;
+    color: #8a9ba8;
     white-space: nowrap;
     order: 99;
 }
 
-.home .contains-task-list,
-.home .cm-embed-block .contains-task-list {
-    padding-left: 0 !important;
-    list-style: none !important;
-    margin: 0 !important;
-}
-
-/* Done task visual */
+/* Done task */
 .home .task-list-item.is-checked,
 .home .cm-embed-block .task-list-item.is-checked {
     opacity: 0.55;
     text-decoration: line-through;
 }
 
-/* Task priority/due date accent */
-.home .task-list-item .task-priority,
-.home .cm-embed-block .task-list-item .task-priority {
-    font-weight: 700;
+/* ================================================================== */
+/*  10. 12 Questions — 2-column grid with numbered squares             */
+/* ================================================================== */
+
+/* Question callout — clean container */
+.home [data-callout="question"] {
+    background: #fafbfc !important;
+    border: 1px solid #e8ecf1 !important;
+    border-left: 1px solid #e8ecf1 !important;
+    border-radius: 10px !important;
+    padding: 16px 20px !important;
+    margin: 0 0 20px 0 !important;
+    box-shadow: none !important;
+    --callout-color: 0, 0, 0 !important;
 }
 
-/* === Questions callout === */
-.home [data-callout="question"],
-.home .cm-embed-block[data-callout="question"] {
-    background: var(--background-secondary-alt, #fafbfc) !important;
+/* Question title — small muted label */
+.home [data-callout="question"] .callout-title {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 0 8px !important;
+    color: #a0b0bc !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
 }
 
-/* Hide the "?" icon circle on question callout */
+/* Hide question icon */
 .home [data-callout="question"] .callout-icon,
-.home .cm-embed-block[data-callout="question"] .callout-icon {
+.home [data-callout="question"] .callout-fold {
     display: none !important;
 }
 
-.home [data-callout="question"] .callout-title,
-.home .cm-embed-block[data-callout="question"] .callout-title {
-    padding-left: 14px !important;
+/* Question content */
+.home [data-callout="question"] .callout-content {
+    background: transparent !important;
+    padding: 0 !important;
 }
 
-.home [data-callout="question"] .callout-title-inner,
-.home .cm-embed-block[data-callout="question"] .callout-title-inner {
-    padding-left: 0 !important;
-}
-
-/* === Hide note properties panel (YAML frontmatter display) === */
-.home .metadata-container,
-.home .metadata-properties,
-.home .frontmatter,
-.home .cm-embed-block.frontmatter,
-.home .cm-line.cm-active ~ .frontmatter {
-    display: none !important;
-}
-
-.home .mod-header {
-    display: none !important;
-}
-
-.home [data-callout="question"] .callout-content ol,
-.home .cm-embed-block[data-callout="question"] .callout-content ol {
+/* 2-column grid for questions */
+.home [data-callout="question"] .callout-content ol {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4px 20px;
     padding-left: 0 !important;
     list-style: none !important;
     counter-reset: q-counter;
+    margin: 0 !important;
 }
 
-.home [data-callout="question"] .callout-content ol li,
-.home .cm-embed-block[data-callout="question"] .callout-content ol li {
+/* Each question item */
+.home [data-callout="question"] .callout-content ol li {
     counter-increment: q-counter;
     display: flex;
     align-items: flex-start;
     gap: 8px;
     font-size: 13px;
     padding: 3px 0;
-    color: var(--text-muted, #5a6a76);
+    color: #5a6a76;
+    line-height: 1.5;
 }
 
-.home [data-callout="question"] .callout-content ol li::before,
-.home .cm-embed-block[data-callout="question"] .callout-content ol li::before {
+/* Numbered square */
+.home [data-callout="question"] .callout-content ol li::before {
     content: counter(q-counter);
     width: 20px;
     height: 20px;
+    min-width: 20px;
     border-radius: 4px;
     font-size: 11px;
     font-weight: 700;
@@ -410,53 +545,21 @@ settings:
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: var(--background-modifier-border, #e8ecf1);
-    color: var(--text-muted, #8a9ba8);
+    background: #e8ecf1;
+    color: #8a9ba8;
 }
 
-/* === Responsive === */
-@media (max-width: 700px) {
-    .home [data-callout="grid"] .callout-content,
-    .home .cm-embed-block[data-callout="grid"] .callout-content {
-        grid-template-columns: 1fr !important;
-    }
-    .home [data-callout="grid2"] .callout-content,
-    .home .cm-embed-block[data-callout="grid2"] .callout-content {
-        grid-template-columns: 1fr !important;
-    }
-    .home [data-callout="question"] .callout-content ol,
-    .home .cm-embed-block[data-callout="question"] .callout-content ol {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-@media (max-width: 900px) and (min-width: 701px) {
-    .home [data-callout="grid"] .callout-content,
-    .home .cm-embed-block[data-callout="grid"] .callout-content {
-        grid-template-columns: 1fr 1fr !important;
-    }
-}
-
-/* === Shrink heading size on home and index pages (incl. emoji) === */
-.home h1, .index-page h1,
-.home h2, .index-page h2,
-.home h3, .index-page h3,
-.home h4, .index-page h4,
-.home h5, .index-page h5,
-.home h6, .index-page h6 {
-    line-height: 1.3;
-}
-
+/* ================================================================== */
+/*  11. Heading size overrides (home + index pages)                    */
+/* ================================================================== */
 .home h1, .index-page h1 {
     font-size: 1.6em !important;
-    margin: 0.4em 0 0.3em !important;
+    margin: 0.3em 0 0.5em !important;
 }
 
 .home h2, .index-page h2 {
     font-size: 1.25em !important;
     margin: 0.5em 0 0.25em !important;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--background-modifier-border, #eef0f3);
 }
 
 .home h3, .index-page h3 {
@@ -470,7 +573,7 @@ settings:
     font-weight: 600;
 }
 
-/* Shrink the embedded heading emoji character */
+/* Shrink heading emoji */
 .home h1 > .emoji, .index-page h1 > .emoji,
 .home h2 > .emoji, .index-page h2 > .emoji,
 .home h3 > .emoji, .index-page h3 > .emoji,
@@ -479,22 +582,47 @@ settings:
     vertical-align: middle;
 }
 
-/* === Page Preview (hover popover) — shrink to ~2/3 and hide properties === */
+/* ================================================================== */
+/*  12. Hover popover — shrink to 2/3, hide properties                 */
+/* ================================================================== */
 .popover.hover-popover,
 .hover-popover {
-    transform: scale(0.67) !important;
-    transform-origin: top left !important;
-    width: 150% !important;        /* compensate for the scale so width appears as 2/3 of original */
-    max-width: 600px !important;
+    max-width: 300px !important;
+    width: 300px !important;
 }
 
 .popover.hover-popover .markdown-preview-view,
 .hover-popover .markdown-preview-view {
-    max-height: 600px;
+    max-height: 500px;
     overflow: auto;
+    padding: 12px 14px !important;
+    font-size: 12px !important;
+    line-height: 1.5;
 }
 
-/* Hide the frontmatter / properties block in hover preview */
+.popover.hover-popover .markdown-preview-view p,
+.popover.hover-popover .markdown-preview-view li,
+.hover-popover .markdown-preview-view p,
+.hover-popover .markdown-preview-view li {
+    font-size: 12px !important;
+}
+
+.popover.hover-popover .markdown-preview-view h1,
+.hover-popover .markdown-preview-view h1 {
+    font-size: 1.4em !important;
+}
+
+.popover.hover-popover .markdown-preview-view h2,
+.hover-popover .markdown-preview-view h2 {
+    font-size: 1.2em !important;
+}
+
+.popover.hover-popover .markdown-preview-view h3,
+.hover-popover .markdown-preview-view h3 {
+    font-size: 1.05em !important;
+}
+
+/* Hide properties in hover preview */
 .popover.hover-popover .metadata-container,
 .popover.hover-popover .metadata-properties,
 .popover.hover-popover .frontmatter,
@@ -506,45 +634,55 @@ settings:
     display: none !important;
 }
 
-/* === Index page (folder index notes): compact square-ish layout === */
-/* Constrain overall width so content fills the screen instead of leaving big right gutter */
-.index-page .markdown-preview-view,
-.index-page .markdown-source-view,
-.index-page.mod-single-page .markdown-preview-view,
-.markdown-preview-section .index-page .markdown-preview-view {
+/* ================================================================== */
+/*  13. Index page (folder index notes) — compact centered layout     */
+/* ================================================================== */
+.view-content.index-page .markdown-preview-view,
+.view-content.index-page .markdown-source-view {
     max-width: 560px !important;
-    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     padding: 24px 28px !important;
-}
-
-/* Slightly larger base font on index pages */
-.index-page .markdown-preview-view {
     font-size: 15px !important;
     line-height: 1.65;
 }
 
-/* Callouts on index page: tighter padding, less wide */
-.index-page .callout,
-.index-page .cm-embed-block.callout,
-.index-page [data-callout] {
+.view-content.index-page .markdown-preview-view p,
+.view-content.index-page .markdown-preview-view li {
+    font-size: 14.5px !important;
+    line-height: 1.6;
+}
+
+.view-content.index-page .callout,
+.view-content.index-page [data-callout] {
     padding: 10px 14px !important;
     margin: 8px 0 !important;
 }
 
-/* List/paragraph on index page */
-.index-page ul,
-.index-page ol {
+.view-content.index-page ul,
+.view-content.index-page ol {
     padding-left: 22px !important;
 }
 
-.index-page p,
-.index-page li {
-    font-size: 14.5px;
-    line-height: 1.6;
-}
-
-/* Index page top heading — slightly smaller so the page reads more like a square card */
-.index-page h1 {
+.view-content.index-page h1 {
     font-size: 1.5em !important;
     margin-top: 0.2em !important;
+}
+
+/* ================================================================== */
+/*  14. Responsive                                                     */
+/* ================================================================== */
+@media (max-width: 900px) and (min-width: 701px) {
+    .home [data-callout="grid"] .callout-content {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .home [data-callout="grid"] .callout-content {
+        grid-template-columns: 1fr !important;
+    }
+    .home [data-callout="question"] .callout-content ol {
+        grid-template-columns: 1fr !important;
+    }
 }
