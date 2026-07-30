@@ -1,6 +1,14 @@
 ---
 cssclasses:
   - home
+  - index-page
+tags:
+  - folder-index
+标题:
+  "{ title }":
+日期:
+  "{ date }":
+标签:
 ---
 
 `=dateformat(date(today), "yyyy年MM月dd日")` **`=dateformat(date(today), "cccc")`** <span class="hp-brand">Obsidian · Homepage</span>
