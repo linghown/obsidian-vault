@@ -1,7 +1,7 @@
 /* ==================================================================== */
-/*  Homepage CSS v11 — Grid Layout + Single-Layer Callout Cards         */
-/*  3-column grid on .markdown-preview-section                          */
-/*  note/example/abstract callouts become side-by-side cards            */
+/*  Homepage CSS v12 — Obsidian 1.12 compatible                         */
+/*  Stable HTML reading-view layout + Blue Topaz compatibility          */
+/*  note/example/abstract callouts become side-by-side cards             */
 /* ==================================================================== */
 
 /* === Style Settings === */
@@ -53,6 +53,11 @@ settings:
     --hp-domain-color: #3498db;
     --hp-project-color: #e67e22;
     --hp-resource-color: #8e44ad;
+    --hp-surface: var(--background-primary);
+    --hp-surface-soft: var(--background-secondary);
+    --hp-border: var(--background-modifier-border);
+    --hp-text: var(--text-normal);
+    --hp-muted: var(--text-muted);
 }
 
 /* ================================================================== */
@@ -66,10 +71,17 @@ settings:
 }
 
 /* ================================================================== */
-/*  2. Grid layout — 3 columns on .markdown-preview-section            */
-/*     All children span full width by default;                        */
-/*     note/example/abstract callouts each take 1 column               */
+/*  2. Reading-view page + 3-column grid                               */
+/*     Homepage plugin is configured to enforce Reading view.          */
+/*     Both old and Obsidian 1.12 wrapper structures are supported.    */
 /* ================================================================== */
+.home.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
+.home.markdown-rendered.is-readable-line-width .markdown-preview-sizer {
+    width: min(1120px, calc(100% - 40px)) !important;
+    max-width: 1120px !important;
+    margin-inline: auto !important;
+}
+
 .home .markdown-preview-section {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -85,9 +97,13 @@ settings:
 /* 3 card callouts each take 1 column → side by side */
 .home .markdown-preview-section > [data-callout="note"],
 .home .markdown-preview-section > [data-callout="example"],
-.home .markdown-preview-section > [data-callout="abstract"] {
+.home .markdown-preview-section > [data-callout="abstract"],
+.home .markdown-preview-section > .el-callout:has(> [data-callout="note"]),
+.home .markdown-preview-section > .el-callout:has(> [data-callout="example"]),
+.home .markdown-preview-section > .el-callout:has(> [data-callout="abstract"]) {
     grid-column: auto !important;
     grid-row: auto !important;
+    min-width: 0;
 }
 
 /* Hide empty paragraphs (from blank lines between callouts) */
@@ -114,7 +130,7 @@ settings:
     border-bottom: none !important;
     margin-top: 1.8em !important;
     margin-bottom: 0.5em !important;
-    color: #2c3e50 !important;
+    color: var(--hp-text) !important;
 }
 
 .home .markdown-preview-section h2::before {
@@ -186,45 +202,50 @@ settings:
 }
 
 /* ================================================================== */
-/*  5. Quick access pills (first ul after h2 #1)                       */
+/*  5. Quick access pills                                              */
+/*     The second selector handles Obsidian's .el-h2/.el-ul wrappers.  */
 /* ================================================================== */
-.home h2:nth-of-type(1) + ul {
+.home h2:nth-of-type(1) + ul,
+.home .markdown-preview-section > .el-h2 + .el-ul > ul {
     display: flex !important;
     flex-wrap: wrap;
     gap: 10px;
     padding: 12px 16px !important;
     margin: 12px 0 20px 0 !important;
     list-style: none !important;
-    background: #f5f6f8;
-    border: 1px solid #e8ecf1;
+    background: var(--hp-surface-soft);
+    border: 1px solid var(--hp-border);
     border-radius: 12px;
 }
 
-.home h2:nth-of-type(1) + ul li {
+.home h2:nth-of-type(1) + ul li,
+.home .markdown-preview-section > .el-h2 + .el-ul > ul > li {
     display: inline-flex !important;
     align-items: center;
     gap: 4px;
-    background: #ffffff;
-    border: 1px solid #e8ecf1;
+    background: var(--hp-surface);
+    border: 1px solid var(--hp-border);
     border-radius: 20px;
     padding: 5px 14px;
     font-size: 13px;
     font-weight: 600;
-    color: #5a6a76;
+    color: var(--hp-muted);
     margin: 0 !important;
     line-height: 1.4;
     cursor: pointer;
     transition: all 0.15s;
 }
 
-.home h2:nth-of-type(1) + ul li:hover {
-    background: #e8f4ff;
+.home h2:nth-of-type(1) + ul li:hover,
+.home .markdown-preview-section > .el-h2 + .el-ul > ul > li:hover {
+    background: color-mix(in srgb, var(--hp-accent) 10%, var(--hp-surface));
     border-color: var(--hp-accent);
     color: var(--hp-accent);
     transform: translateY(-1px);
 }
 
-.home h2:nth-of-type(1) + ul li a {
+.home h2:nth-of-type(1) + ul li a,
+.home .markdown-preview-section > .el-h2 + .el-ul > ul > li a {
     color: inherit !important;
     text-decoration: none !important;
 }
@@ -238,9 +259,9 @@ settings:
 .home [data-callout="note"],
 .home [data-callout="example"],
 .home [data-callout="abstract"] {
-    background: #fafbfc !important;
-    border: 1px solid #e8ecf1 !important;
-    border-left: 1px solid #e8ecf1 !important;
+    background: var(--hp-surface) !important;
+    border: 1px solid var(--hp-border) !important;
+    border-left: 1px solid var(--hp-border) !important;
     border-radius: var(--hp-card-radius) !important;
     margin: 0 0 20px 0 !important;
     padding: 0 !important;
@@ -266,7 +287,7 @@ settings:
 .home [data-callout="example"] > .callout-title,
 .home [data-callout="abstract"] > .callout-title {
     background: transparent !important;
-    color: #2c3e50 !important;
+    color: var(--hp-text) !important;
     font-size: 14px !important;
     font-weight: 700 !important;
     padding: 12px 14px 4px !important;
@@ -322,7 +343,7 @@ settings:
 .home [data-callout="note"] .callout-content li a,
 .home [data-callout="example"] .callout-content li a,
 .home [data-callout="abstract"] .callout-content li a {
-    color: #2c3e50 !important;
+    color: var(--hp-text) !important;
     text-decoration: none !important;
     font-weight: 500;
     display: inline-flex;
@@ -632,6 +653,10 @@ settings:
 }
 
 @media (max-width: 700px) {
+    .home.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
+    .home.markdown-rendered.is-readable-line-width .markdown-preview-sizer {
+        width: calc(100% - 24px) !important;
+    }
     .home .markdown-preview-section {
         grid-template-columns: 1fr !important;
     }
