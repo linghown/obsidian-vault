@@ -264,19 +264,19 @@ settings:
 /* === Task list card styling (refined) === */
 .home .task-list-item,
 .home .cm-embed-block .task-list-item {
-    padding: 8px 12px !important;
-    border-radius: 8px;
-    margin-bottom: 6px;
+    padding: 6px 10px !important;
+    border-radius: 6px;
+    margin-bottom: 5px;
     border: 1px solid var(--background-modifier-border, #e8ecf1) !important;
     background: var(--background-secondary-alt, #f8f9fb);
-    font-size: 13.5px !important;
-    line-height: 1.5;
+    font-size: 13px !important;
+    line-height: 1.45;
     list-style: none;
     transition: all 0.15s;
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-height: 38px;
+    gap: 8px;
+    min-height: 32px;
     overflow: hidden;
 }
 
@@ -291,8 +291,8 @@ settings:
 .home .cm-embed-block .task-list-item .task-list-item-checkbox {
     margin: 0 !important;
     flex-shrink: 0;
-    width: 16px !important;
-    height: 16px !important;
+    width: 14px !important;
+    height: 14px !important;
     transform: scale(0.95);
 }
 
@@ -308,16 +308,18 @@ settings:
     word-break: break-word;
 }
 
-/* Date / priority badge in task */
+/* Date / priority badge in task — push to rightmost */
 .home .task-list-item .task-meta,
 .home .cm-embed-block .task-list-item .task-meta {
     flex-shrink: 0;
-    font-size: 12px !important;
-    padding: 2px 6px;
+    margin-left: auto !important;
+    font-size: 11px !important;
+    padding: 1px 6px;
     border-radius: 4px;
     background: var(--background-modifier-border-hover, #e8ecf1);
     color: var(--text-muted, #8a9ba8);
     white-space: nowrap;
+    order: 99;
 }
 
 .home .contains-task-list,
@@ -475,4 +477,74 @@ settings:
 .home h4 > .emoji, .index-page h4 > .emoji {
     font-size: 0.85em !important;
     vertical-align: middle;
+}
+
+/* === Page Preview (hover popover) — shrink to ~2/3 and hide properties === */
+.popover.hover-popover,
+.hover-popover {
+    transform: scale(0.67) !important;
+    transform-origin: top left !important;
+    width: 150% !important;        /* compensate for the scale so width appears as 2/3 of original */
+    max-width: 600px !important;
+}
+
+.popover.hover-popover .markdown-preview-view,
+.hover-popover .markdown-preview-view {
+    max-height: 600px;
+    overflow: auto;
+}
+
+/* Hide the frontmatter / properties block in hover preview */
+.popover.hover-popover .metadata-container,
+.popover.hover-popover .metadata-properties,
+.popover.hover-popover .frontmatter,
+.popover.hover-popover .mod-header,
+.hover-popover .metadata-container,
+.hover-popover .metadata-properties,
+.hover-popover .frontmatter,
+.hover-popover .mod-header {
+    display: none !important;
+}
+
+/* === Index page (folder index notes): compact square-ish layout === */
+/* Constrain overall width so content fills the screen instead of leaving big right gutter */
+.index-page .markdown-preview-view,
+.index-page .markdown-source-view,
+.index-page.mod-single-page .markdown-preview-view,
+.markdown-preview-section .index-page .markdown-preview-view {
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    padding: 24px 28px !important;
+}
+
+/* Slightly larger base font on index pages */
+.index-page .markdown-preview-view {
+    font-size: 15px !important;
+    line-height: 1.65;
+}
+
+/* Callouts on index page: tighter padding, less wide */
+.index-page .callout,
+.index-page .cm-embed-block.callout,
+.index-page [data-callout] {
+    padding: 10px 14px !important;
+    margin: 8px 0 !important;
+}
+
+/* List/paragraph on index page */
+.index-page ul,
+.index-page ol {
+    padding-left: 22px !important;
+}
+
+.index-page p,
+.index-page li {
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* Index page top heading — slightly smaller so the page reads more like a square card */
+.index-page h1 {
+    font-size: 1.5em !important;
+    margin-top: 0.2em !important;
 }
