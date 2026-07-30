@@ -13,13 +13,13 @@ cssclasses:
 ## 快速入口
 
 > [!shortcuts]
-> - [📥 收件箱](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22%E6%94%B6%E4%BB%B6%E7%AE%B1%22) `0`
-> - [📁 领域](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22%E9%A2%86%E5%9F%9F%22) `9`
-> - [📂 项目](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22%E9%A1%B9%E7%9B%AE%22) `2`
-> - [📚 资源](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22%E8%B5%84%E6%BA%90%22) `158`
-> - [📦 归档](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22%E5%BD%92%E6%A1%A3%22) `0`
-> - [📎 附件](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22Attachments%22) `3`
-> - [🧩 模板](obsidian://search?vault=Obsidian%20Vault&query=path%3A%22Templates%22) `1`
+> - [📥 收件箱](obsidian://search?query=path%3A%22%E6%94%B6%E4%BB%B6%E7%AE%B1%22) `0`
+> - [📁 领域](obsidian://search?query=path%3A%22%E9%A2%86%E5%9F%9F%22) `9`
+> - [📂 项目](obsidian://search?query=path%3A%22%E9%A1%B9%E7%9B%AE%22) `2`
+> - [📚 资源](obsidian://search?query=path%3A%22%E8%B5%84%E6%BA%90%22) `158`
+> - [📦 归档](obsidian://search?query=path%3A%22%E5%BD%92%E6%A1%A3%22) `0`
+> - [📎 附件](obsidian://search?query=path%3A%22Attachments%22) `3`
+> - [🧩 模板](obsidian://search?query=path%3A%22Templates%22) `1`
 
 > [!navgrid]
 > > [!note] 📁　领域　　`9篇`
