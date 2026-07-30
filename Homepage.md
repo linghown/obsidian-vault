@@ -13,7 +13,12 @@ cssclasses:
 ## 快速入口
 
 > [!pill]
-> **[[领域|领域]]** · **[[项目|项目]]** · **[[资源|资源]]** · **[[收件箱|收件箱]]** · **[[归档|归档]]** · **[[attachments|附件]]**
+> **[[领域|领域]]**
+> **[[项目|项目]]**
+> **[[资源|资源]]**
+> **[[收件箱|收件箱]]**
+> **[[归档|归档]]**
+> **[[attachments|附件]]**
 
 > [!grid]
 > > [!note] 领域
@@ -34,16 +39,18 @@ cssclasses:
 > > - [[胸腔镜下右上肺癌根治术]]
 > > - [[肺癌超进展]]
 
-## 最近编辑
+## 最近文件
 
 ```dataview
 TABLE WITHOUT ID
-  file.link AS "笔记",
+  file.link AS "文件",
   dateformat(file.mtime, "MM-dd HH:mm") AS "修改时间"
 FROM ""
 WHERE file.name != "Homepage"
+  AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "attachments")
+  AND !startswith(file.folder, "资源/Evernote")
 SORT file.mtime DESC
-LIMIT 6
+LIMIT 8
 ```
 
 ## 待办

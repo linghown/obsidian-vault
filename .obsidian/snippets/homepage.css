@@ -95,12 +95,25 @@ settings:
 }
 
 /* === Folder link pills === */
-.home [data-callout="pill"] .callout-content p,
-.home .cm-embed-block[data-callout="pill"] .callout-content p {
+.home [data-callout="pill"] .callout-content,
+.home .cm-embed-block[data-callout="pill"] .callout-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
     margin: 0;
+}
+
+.home [data-callout="pill"] .callout-content p,
+.home .cm-embed-block[data-callout="pill"] .callout-content p {
+    margin: 0 !important;
+    line-height: 1;
+    display: flex;
+}
+
+.home [data-callout="pill"] .callout-content strong,
+.home .cm-embed-block[data-callout="pill"] .callout-content strong {
+    font-weight: 700;
+    display: inline-flex;
 }
 
 .home [data-callout="pill"] .callout-content a,
@@ -111,11 +124,13 @@ settings:
     background: var(--background-secondary-alt, #f5f6f8);
     border: 1px solid var(--background-modifier-border, #e8ecf1);
     border-radius: var(--hp-pill-radius);
-    padding: 5px 14px;
+    padding: 6px 16px;
     font-size: 13px;
+    font-weight: 600;
     color: var(--text-normal, #5a6a76) !important;
     text-decoration: none !important;
     transition: all 0.15s;
+    line-height: 1.4;
 }
 
 .home [data-callout="pill"] .callout-content a:hover,
@@ -123,6 +138,7 @@ settings:
     background: var(--interactive-accent-hover, #e8f4ff);
     border-color: var(--interactive-accent, #4a9eff);
     color: var(--interactive-accent, #4a9eff) !important;
+    transform: translateY(-1px);
 }
 
 /* === 3-column grid for quick entry cards === */
@@ -245,21 +261,83 @@ settings:
     display: none !important;
 }
 
-/* === Task list card styling === */
-.home [data-callout="grid2"] [data-callout="warning"] .contains-task-list,
-.home .cm-embed-block[data-callout="grid2"] [data-callout="warning"] .contains-task-list {
-    padding-left: 0 !important;
-    list-style: none !important;
-}
-
-.home [data-callout="grid2"] [data-callout="warning"] .task-list-item,
-.home .cm-embed-block[data-callout="grid2"] [data-callout="warning"] .task-list-item {
-    padding: 8px 10px !important;
+/* === Task list card styling (refined) === */
+.home .task-list-item,
+.home .cm-embed-block .task-list-item {
+    padding: 8px 12px !important;
     border-radius: 8px;
     margin-bottom: 6px;
     border: 1px solid var(--background-modifier-border, #e8ecf1) !important;
     background: var(--background-secondary-alt, #f8f9fb);
     font-size: 13.5px !important;
+    line-height: 1.5;
+    list-style: none;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 38px;
+    overflow: hidden;
+}
+
+.home .task-list-item:hover,
+.home .cm-embed-block .task-list-item:hover {
+    background: var(--background-secondary, #f0f3f7);
+    border-color: var(--interactive-accent, #4a9eff) !important;
+    box-shadow: 0 1px 4px rgba(74, 158, 255, 0.08);
+}
+
+.home .task-list-item .task-list-item-checkbox,
+.home .cm-embed-block .task-list-item .task-list-item-checkbox {
+    margin: 0 !important;
+    flex-shrink: 0;
+    width: 16px !important;
+    height: 16px !important;
+    transform: scale(0.95);
+}
+
+.home .task-list-item .task-list-text,
+.home .cm-embed-block .task-list-item .task-list-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+}
+
+/* Date / priority badge in task */
+.home .task-list-item .task-meta,
+.home .cm-embed-block .task-list-item .task-meta {
+    flex-shrink: 0;
+    font-size: 12px !important;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--background-modifier-border-hover, #e8ecf1);
+    color: var(--text-muted, #8a9ba8);
+    white-space: nowrap;
+}
+
+.home .contains-task-list,
+.home .cm-embed-block .contains-task-list {
+    padding-left: 0 !important;
+    list-style: none !important;
+    margin: 0 !important;
+}
+
+/* Done task visual */
+.home .task-list-item.is-checked,
+.home .cm-embed-block .task-list-item.is-checked {
+    opacity: 0.55;
+    text-decoration: line-through;
+}
+
+/* Task priority/due date accent */
+.home .task-list-item .task-priority,
+.home .cm-embed-block .task-list-item .task-priority {
+    font-weight: 700;
 }
 
 /* === Questions callout === */
@@ -355,4 +433,46 @@ settings:
     .home .cm-embed-block[data-callout="grid"] .callout-content {
         grid-template-columns: 1fr 1fr !important;
     }
+}
+
+/* === Shrink heading size on home and index pages (incl. emoji) === */
+.home h1, .index-page h1,
+.home h2, .index-page h2,
+.home h3, .index-page h3,
+.home h4, .index-page h4,
+.home h5, .index-page h5,
+.home h6, .index-page h6 {
+    line-height: 1.3;
+}
+
+.home h1, .index-page h1 {
+    font-size: 1.6em !important;
+    margin: 0.4em 0 0.3em !important;
+}
+
+.home h2, .index-page h2 {
+    font-size: 1.25em !important;
+    margin: 0.5em 0 0.25em !important;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--background-modifier-border, #eef0f3);
+}
+
+.home h3, .index-page h3 {
+    font-size: 1.1em !important;
+    margin: 0.4em 0 0.2em !important;
+}
+
+.home h4, .index-page h4 {
+    font-size: 1em !important;
+    margin: 0.3em 0 0.2em !important;
+    font-weight: 600;
+}
+
+/* Shrink the embedded heading emoji character */
+.home h1 > .emoji, .index-page h1 > .emoji,
+.home h2 > .emoji, .index-page h2 > .emoji,
+.home h3 > .emoji, .index-page h3 > .emoji,
+.home h4 > .emoji, .index-page h4 > .emoji {
+    font-size: 0.85em !important;
+    vertical-align: middle;
 }
