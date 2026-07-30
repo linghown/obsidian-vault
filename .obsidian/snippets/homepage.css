@@ -956,3 +956,106 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
         min-height: 0 !important;
     }
 }
+
+/* Mobile-only homepage: plugin-free and deliberately compact */
+.home-mobile .hp-mobile-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 12px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--hp-border);
+    color: var(--hp-text);
+}
+
+.home-mobile .hp-mobile-head > span {
+    font-size: 18px;
+    font-weight: 750;
+}
+
+.home-mobile .hp-mobile-head > small {
+    color: var(--hp-muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] {
+    margin: 0 0 14px !important;
+    padding: 7px 14px !important;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: var(--hp-radius) !important;
+    background: var(--hp-surface-soft) !important;
+    box-shadow: none !important;
+    --callout-color: 72, 155, 255 !important;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] .callout-title {
+    padding: 6px 2px 8px !important;
+    font-size: 14px !important;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] .callout-content {
+    padding: 0 !important;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] li {
+    margin: 0 !important;
+    padding: 10px 4px !important;
+    border-top: 1px solid var(--hp-border);
+    line-height: 1.45;
+}
+
+.home-mobile .callout[data-callout="mobileactions"] li::marker {
+    content: "";
+}
+
+.home-mobile .callout[data-callout="mobileactions"] a {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.home-mobile .callout[data-callout="tip"] {
+    margin: 0 0 12px !important;
+    border-radius: var(--hp-radius) !important;
+    font-size: 12px;
+}
+
+@media (max-width: 700px) {
+    .home-mobile.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
+    .home-mobile.markdown-rendered.is-readable-line-width .markdown-preview-sizer,
+    .markdown-preview-view.home-mobile .markdown-preview-sizer,
+    .markdown-rendered.home-mobile .markdown-preview-sizer {
+        width: calc(100% - 20px) !important;
+        padding: 10px 0 28px !important;
+    }
+
+    .home-mobile h2 {
+        margin-top: 18px !important;
+        margin-bottom: 12px !important;
+        font-size: 20px !important;
+    }
+
+    .home-mobile .callout[data-callout="quote"] {
+        margin-bottom: 18px !important;
+        padding: 12px 14px !important;
+    }
+
+    .home-mobile .callout[data-callout="shortcuts"] {
+        margin-bottom: 24px !important;
+    }
+
+    .home-mobile .callout[data-callout="shortcuts"] ul {
+        gap: 10px !important;
+    }
+
+    .home-mobile .callout[data-callout="navgrid"] > .callout-content {
+        gap: 12px !important;
+    }
+}
