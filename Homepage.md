@@ -3,7 +3,7 @@ cssclasses:
   - home
 ---
 
-`=dateformat(date(today), "yyyy年MM月dd日")` **`=dateformat(date(today), "cccc")`**
+`=dateformat(date(today), "yyyy年MM月dd日")` **`=dateformat(date(today), "cccc")`** <span class="hp-brand">Obsidian · Homepage</span>
 
 > [!quote] 今日格言
 > 戒掉情绪，所有的事情都是同样的逻辑，情绪无效，先处理情绪，再处理事情。
@@ -11,50 +11,53 @@ cssclasses:
 
 ## 快速入口
 
-- [[领域|📁 领域]]
-- [[项目|📂 项目]]
-- [[资源|📚 资源]]
-- [[收件箱|📥 收件箱]]
-- [[归档|📦 归档]]
-- [[attachments|📎 附件]]
+> [!shortcuts]
+> - [[领域|📁 领域]] `9`
+> - [[项目|📂 项目]] `2`
+> - [[资源|📚 资源]] `158`
+> - [[收件箱|📥 收件箱]] `0`
+> - [[归档|📦 归档]] `0`
+> - [[attachments|📎 附件]] `3`
 
-> [!note] 📁　领域　　`9篇`
-> - [[肺叶切除术]]
-> - [[肺段切除术]]
-> - [[清扫淋巴结]]
-> - [[开放肺叶切或全肺切]]
-> - [[成长]]
+> [!navgrid]
+> > [!note] 📁　领域　　`9篇`
+> > - [[肺叶切除术]]
+> > - [[肺段切除术]]
+> > - [[清扫淋巴结]]
+> > - [[开放肺叶切或全肺切]]
+> > - [[成长]]
+>
+> > [!example] 📂　项目　　`2篇`
+> > - [[新手小白|新手小白（SCI写作打怪版）]]
+> > - [[文献汇报 多发肺大疱|文献汇报 · 多发肺大疱]]
+>
+> > [!abstract] 📚　资源　　`158篇`
+> > - [[纵隔肿瘤切除]]
+> > - [[手汗症]]
+> > - [[特殊病例]]
+> > - [[胸腔镜下右上肺癌根治术]]
+> > - [[肺癌超进展]]
 
-> [!example] 📂　项目　　`2篇`
-> - [[新手小白|新手小白（SCI写作打怪版）]]
-> - [[文献汇报 多发肺大疱|文献汇报 · 多发肺大疱]]
-
-> [!abstract] 📚　资源　　`158篇`
-> - [[纵隔肿瘤切除]]
-> - [[手汗症]]
-> - [[特殊病例]]
-> - [[胸腔镜下右上肺癌根治术]]
-> - [[肺癌超进展]]
-
-> [!info] 最近编辑
-> ```dataview
-> TABLE WITHOUT ID
->   file.link AS "文件",
->   dateformat(file.mtime, "MM-dd HH:mm") AS "修改时间"
-> FROM ""
-> WHERE file.name != "Homepage"
->   AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "attachments")
->   AND !startswith(file.folder, "资源/Evernote")
-> SORT file.mtime DESC
-> LIMIT 6
-> ```
-
-> [!todo] 待办
-> ```tasks
-> not done
-> sort by due
-> limit 3
-> ```
+> [!workgrid]
+> > [!info] 最近编辑
+> > ```dataview
+> > TABLE WITHOUT ID
+> >   file.link AS "文件",
+> >   dateformat(file.mtime, "MM-dd HH:mm") AS "修改时间"
+> > FROM ""
+> > WHERE file.name != "Homepage"
+> >   AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "attachments")
+> >   AND !startswith(file.folder, "资源/Evernote")
+> > SORT file.mtime DESC
+> > LIMIT 6
+> > ```
+>
+> > [!todo] 待办
+> > ```tasks
+> > not done
+> > sort by due
+> > limit 3
+> > ```
 
 ## 我的12个问题
 
