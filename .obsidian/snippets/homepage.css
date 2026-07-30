@@ -1,68 +1,40 @@
-/* ==================================================================== */
-/*  Homepage CSS v12 — Obsidian 1.12 compatible                         */
-/*  Stable HTML reading-view layout + Blue Topaz compatibility          */
-/*  note/example/abstract callouts become side-by-side cards             */
-/* ==================================================================== */
+/* ================================================================== */
+/* Homepage CSS v13 — screenshot-matched dashboard                     */
+/* Obsidian 1.12 + Blue Topaz + Homepage/Dataview/Tasks                */
+/* ================================================================== */
 
-/* === Style Settings === */
 /* @settings
 name: Homepage 主页样式
 id: homepage
-description: 主页 Homepage.md 的卡片布局、颜色、间距等自定义设置
 settings:
     -
-        id: hp-card-radius
-        title: 卡片圆角
-        type: variable-text
-        default: 10px
-    -
-        id: hp-card-gap
-        title: 卡片间距
-        type: variable-text
-        default: 12px
-    -
-        id: hp-accent-color
-        title: 强调色（H2竖条、链接）
+        id: hp-accent
+        title: 主页强调色
         type: variable-color
         format: hex
         default: '#4a9eff'
     -
-        id: hp-domain-color
-        title: 领域卡片颜色
-        type: variable-color
-        format: hex
-        default: '#3498db'
-    -
-        id: hp-project-color
-        title: 项目卡片颜色
-        type: variable-color
-        format: hex
-        default: '#e67e22'
-    -
-        id: hp-resource-color
-        title: 资源卡片颜色
-        type: variable-color
-        format: hex
-        default: '#8e44ad'
+        id: hp-page-width
+        title: 主页最大宽度
+        type: variable-text
+        default: 1120px
 */
 
 :root {
     --hp-accent: #4a9eff;
-    --hp-card-radius: 10px;
-    --hp-card-gap: 12px;
-    --hp-domain-color: #3498db;
-    --hp-project-color: #e67e22;
-    --hp-resource-color: #8e44ad;
-    --hp-surface: var(--background-primary);
-    --hp-surface-soft: var(--background-secondary);
-    --hp-border: var(--background-modifier-border);
-    --hp-text: var(--text-normal);
-    --hp-muted: var(--text-muted);
+    --hp-page-width: 1120px;
+    --hp-gap: 22px;
+    --hp-radius: 12px;
+    --hp-border: #e3e8ef;
+    --hp-surface: #f8fafc;
+    --hp-muted: #91a6b8;
+    --hp-text: #24384b;
+    --hp-domain: #3a9ed8;
+    --hp-project: #ee7e25;
+    --hp-resource: #9344ad;
 }
 
-/* ================================================================== */
-/*  1. Hide properties panel                                           */
-/* ================================================================== */
+/* Page frame */
 .home .metadata-container,
 .home .metadata-properties,
 .home .frontmatter,
@@ -70,104 +42,75 @@ settings:
     display: none !important;
 }
 
-/* ================================================================== */
-/*  2. Reading-view page + 3-column grid                               */
-/*     Homepage plugin is configured to enforce Reading view.          */
-/*     Both old and Obsidian 1.12 wrapper structures are supported.    */
-/* ================================================================== */
 .home.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
 .home.markdown-rendered.is-readable-line-width .markdown-preview-sizer {
-    width: min(1120px, calc(100% - 40px)) !important;
-    max-width: 1120px !important;
+    width: min(var(--hp-page-width), calc(100% - 56px)) !important;
+    max-width: var(--hp-page-width) !important;
     margin-inline: auto !important;
+    padding: 36px 0 64px !important;
 }
 
 .home .markdown-preview-section {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    column-gap: var(--hp-card-gap) !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    column-gap: var(--hp-gap) !important;
     row-gap: 0 !important;
 }
 
-/* All direct children span all 3 columns by default */
 .home .markdown-preview-section > * {
     grid-column: 1 / -1;
-}
-
-/* 3 card callouts each take 1 column → side by side */
-.home .markdown-preview-section > [data-callout="note"],
-.home .markdown-preview-section > [data-callout="example"],
-.home .markdown-preview-section > [data-callout="abstract"],
-.home .markdown-preview-section > .el-callout:has(> [data-callout="note"]),
-.home .markdown-preview-section > .el-callout:has(> [data-callout="example"]),
-.home .markdown-preview-section > .el-callout:has(> [data-callout="abstract"]) {
-    grid-column: auto !important;
-    grid-row: auto !important;
     min-width: 0;
 }
 
-/* Hide empty paragraphs (from blank lines between callouts) */
-.home .markdown-preview-section > p:empty {
-    display: none !important;
+/* Top date and brand line */
+.home .markdown-preview-section > .el-p:has(.hp-brand),
+.home .markdown-preview-section > p:has(.hp-brand) {
+    display: flex !important;
+    align-items: center;
+    min-height: 48px;
+    margin: 0 0 42px !important;
+    padding: 0 0 20px !important;
+    border-bottom: 2px solid var(--hp-border);
+    color: var(--hp-muted);
+    font-size: 18px;
+    line-height: 1.4;
 }
 
-/* ================================================================== */
-/*  3. H1 / H2 heading styles                                          */
-/* ================================================================== */
-.home .markdown-preview-section h1 {
-    font-size: 1.6em !important;
-    font-weight: 700 !important;
-    margin: 0.3em 0 0.5em !important;
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
+.home .markdown-preview-section > .el-p:has(.hp-brand) > p {
+    width: 100%;
+    margin: 0 !important;
 }
 
-.home .markdown-preview-section h2 {
-    position: relative;
-    padding-left: 14px !important;
-    font-size: 1.25em !important;
-    font-weight: 700 !important;
-    border-bottom: none !important;
-    margin-top: 1.8em !important;
-    margin-bottom: 0.5em !important;
-    color: var(--hp-text) !important;
+.home .markdown-preview-section > .el-p:has(.hp-brand) strong,
+.home .markdown-preview-section > p:has(.hp-brand) strong {
+    color: var(--hp-accent);
+    margin-left: 5px;
 }
 
-.home .markdown-preview-section h2::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 18px;
-    background: var(--hp-accent);
-    border-radius: 2px;
+.home .hp-brand {
+    float: right;
+    color: var(--hp-muted);
+    font-weight: 400;
+    letter-spacing: .02em;
 }
 
-/* ================================================================== */
-/*  4. Quote callout — gradient banner                                */
-/* ================================================================== */
+/* Quote banner */
 .home [data-callout="quote"] {
-    background: linear-gradient(135deg, #f0f7ff 0%, #f5f0ff 100%) !important;
-    border: none !important;
-    border-left: 4px solid var(--hp-accent) !important;
-    border-radius: 0 8px 8px 0 !important;
-    padding: 12px 20px !important;
-    margin: 0 0 24px 0 !important;
+    background: linear-gradient(120deg, #eef6ff 0%, #f5f0ff 100%) !important;
+    border: 0 !important;
+    border-left: 5px solid var(--hp-accent) !important;
+    border-radius: 0 var(--hp-radius) var(--hp-radius) 0 !important;
+    padding: 20px 30px !important;
+    margin: 0 0 46px !important;
     box-shadow: none !important;
-    --callout-color: 0, 0, 0 !important;
+    --callout-color: 74, 158, 255 !important;
 }
 
 .home [data-callout="quote"] .callout-title {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 0 6px !important;
+    padding: 0 0 10px !important;
     color: var(--hp-accent) !important;
-    font-size: 12px !important;
+    font-size: 17px !important;
     font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .home [data-callout="quote"] .callout-icon,
@@ -176,126 +119,148 @@ settings:
 }
 
 .home [data-callout="quote"] .callout-content {
-    background: transparent !important;
     padding: 0 !important;
 }
 
 .home [data-callout="quote"] .callout-content p {
-    margin: 4px 0 !important;
-    line-height: 1.6;
+    margin: 3px 0 !important;
 }
 
 .home [data-callout="quote"] .callout-content p:first-child {
-    font-size: 13px !important;
-    color: #8a9ba8 !important;
-}
-
-.home [data-callout="quote"] .callout-content p:nth-child(2) {
-    font-size: 15px !important;
-    color: #3d4f5c !important;
+    color: var(--hp-text);
+    font-size: 19px !important;
     font-style: italic;
+    line-height: 1.75;
 }
 
-.home [data-callout="quote"] .callout-content p:last-child {
-    font-size: 12px !important;
-    color: #a0b0bc !important;
-}
-
-/* ================================================================== */
-/*  5. Quick access pills                                              */
-/*     The second selector handles Obsidian's .el-h2/.el-ul wrappers.  */
-/* ================================================================== */
-.home h2:nth-of-type(1) + ul,
-.home .markdown-preview-section > .el-h2 + .el-ul > ul {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 12px 16px !important;
-    margin: 12px 0 20px 0 !important;
-    list-style: none !important;
-    background: var(--hp-surface-soft);
-    border: 1px solid var(--hp-border);
-    border-radius: 12px;
-}
-
-.home h2:nth-of-type(1) + ul li,
-.home .markdown-preview-section > .el-h2 + .el-ul > ul > li {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 4px;
-    background: var(--hp-surface);
-    border: 1px solid var(--hp-border);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--hp-muted);
-    margin: 0 !important;
-    line-height: 1.4;
-    cursor: pointer;
-    transition: all 0.15s;
-}
-
-.home h2:nth-of-type(1) + ul li:hover,
-.home .markdown-preview-section > .el-h2 + .el-ul > ul > li:hover {
-    background: color-mix(in srgb, var(--hp-accent) 10%, var(--hp-surface));
-    border-color: var(--hp-accent);
-    color: var(--hp-accent);
-    transform: translateY(-1px);
-}
-
-.home h2:nth-of-type(1) + ul li a,
-.home .markdown-preview-section > .el-h2 + .el-ul > ul > li a {
-    color: inherit !important;
+.home [data-callout="quote"] .callout-content p:last-child,
+.home [data-callout="quote"] .callout-content p:last-child a {
+    color: var(--hp-muted) !important;
+    font-size: 14px !important;
     text-decoration: none !important;
 }
 
-/* ================================================================== */
-/*  6. Three big cards — note / example / abstract callouts            */
-/*     Each is a card with colored top border + note list inside       */
-/* ================================================================== */
+/* Section headings */
+.home .markdown-preview-section h2 {
+    position: relative;
+    margin: 8px 0 24px !important;
+    padding-left: 18px !important;
+    border: 0 !important;
+    color: var(--hp-text) !important;
+    font-size: 24px !important;
+    font-weight: 750 !important;
+    line-height: 1.35;
+}
 
-/* Base card style — strip default callout chrome */
+.home .markdown-preview-section h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 5px;
+    height: 27px;
+    border-radius: 4px;
+    background: var(--hp-accent);
+    transform: translateY(-50%);
+}
+
+/* Quick shortcuts */
+.home .hp-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 20px;
+}
+
+.home .hp-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 11px 14px;
+    border: 1px solid var(--hp-border);
+    border-radius: 11px;
+    background: #f5f7f9;
+    color: #4c6072 !important;
+    font-size: 16px;
+    text-decoration: none !important;
+    transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.home .hp-shortcut:hover {
+    border-color: var(--hp-accent);
+    box-shadow: 0 4px 14px rgba(74, 158, 255, .11);
+    transform: translateY(-1px);
+}
+
+.home .hp-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.home .hp-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.home .hp-badge {
+    margin-left: auto;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: #fff;
+    color: var(--hp-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Three navigation cards */
+.home .markdown-preview-section > [data-callout="note"],
+.home .markdown-preview-section > [data-callout="example"],
+.home .markdown-preview-section > [data-callout="abstract"],
+.home .markdown-preview-section > .el-callout:has(> [data-callout="note"]),
+.home .markdown-preview-section > .el-callout:has(> [data-callout="example"]),
+.home .markdown-preview-section > .el-callout:has(> [data-callout="abstract"]) {
+    grid-column: span 2 !important;
+}
+
 .home [data-callout="note"],
 .home [data-callout="example"],
 .home [data-callout="abstract"] {
-    background: var(--hp-surface) !important;
-    border: 1px solid var(--hp-border) !important;
-    border-left: 1px solid var(--hp-border) !important;
-    border-radius: var(--hp-card-radius) !important;
-    margin: 0 0 20px 0 !important;
-    padding: 0 !important;
+    min-height: 250px;
+    margin: 0 0 46px !important;
+    padding: 24px 26px 20px !important;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: var(--hp-radius) !important;
+    box-shadow: none !important;
     --callout-color: 0, 0, 0 !important;
-    height: fit-content;
 }
 
-/* Colored top borders */
 .home [data-callout="note"] {
-    border-top: 3px solid var(--hp-domain-color) !important;
-}
-.home [data-callout="example"] {
-    border-top: 3px solid var(--hp-project-color) !important;
-}
-.home [data-callout="abstract"] {
-    border-top: 3px solid var(--hp-resource-color) !important;
+    background: #f0f6fc !important;
+    border-top: 4px solid var(--hp-domain) !important;
 }
 
-/* Card title */
+.home [data-callout="example"] {
+    background: #fcf3eb !important;
+    border-top: 4px solid var(--hp-project) !important;
+}
+
+.home [data-callout="abstract"] {
+    background: #f7eef8 !important;
+    border-top: 4px solid var(--hp-resource) !important;
+}
+
 .home [data-callout="note"] > .callout-title,
 .home [data-callout="example"] > .callout-title,
 .home [data-callout="abstract"] > .callout-title {
-    background: transparent !important;
+    padding: 0 0 16px !important;
     color: var(--hp-text) !important;
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    padding: 12px 14px 4px !important;
-    border: none !important;
-    border-radius: 0 !important;
+    font-size: 17px !important;
+    font-weight: 750 !important;
 }
 
-/* Hide card icons */
 .home [data-callout="note"] > .callout-title .callout-icon,
 .home [data-callout="example"] > .callout-title .callout-icon,
 .home [data-callout="abstract"] > .callout-title .callout-icon,
@@ -305,203 +270,216 @@ settings:
     display: none !important;
 }
 
-/* Card content area */
 .home [data-callout="note"] > .callout-content,
 .home [data-callout="example"] > .callout-content,
 .home [data-callout="abstract"] > .callout-content {
-    background: transparent !important;
-    padding: 0 14px 12px !important;
+    padding: 0 !important;
 }
 
-/* Card list — no bullets */
-.home [data-callout="note"] .callout-content ul,
-.home [data-callout="example"] .callout-content ul,
-.home [data-callout="abstract"] .callout-content ul {
-    padding-left: 0 !important;
+.home [data-callout="note"] ul,
+.home [data-callout="example"] ul,
+.home [data-callout="abstract"] ul {
+    margin: 0 !important;
+    padding: 0 !important;
     list-style: none !important;
+}
+
+.home [data-callout="note"] li,
+.home [data-callout="example"] li,
+.home [data-callout="abstract"] li {
     margin: 0 !important;
+    padding: 8px 0 !important;
+    border-bottom: 1px dashed #e7ebef;
+    font-size: 15px;
 }
 
-/* Card list items — dashed separator */
-.home [data-callout="note"] .callout-content li,
-.home [data-callout="example"] .callout-content li,
-.home [data-callout="abstract"] .callout-content li {
-    padding: 6px 0 !important;
-    border-bottom: 1px dashed #eef0f3 !important;
-    font-size: 13.5px !important;
-    line-height: 1.5;
-    margin: 0 !important;
+.home [data-callout="note"] li:last-child,
+.home [data-callout="example"] li:last-child,
+.home [data-callout="abstract"] li:last-child {
+    border-bottom: 0;
 }
 
-.home [data-callout="note"] .callout-content li:last-child,
-.home [data-callout="example"] .callout-content li:last-child,
-.home [data-callout="abstract"] .callout-content li:last-child {
-    border-bottom: none !important;
-}
-
-/* Card links — ▸ marker */
-.home [data-callout="note"] .callout-content li a,
-.home [data-callout="example"] .callout-content li a,
-.home [data-callout="abstract"] .callout-content li a {
-    color: var(--hp-text) !important;
+.home [data-callout="note"] li a,
+.home [data-callout="example"] li a,
+.home [data-callout="abstract"] li a {
+    color: #388cff !important;
+    font-weight: 450;
     text-decoration: none !important;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
 }
 
-.home [data-callout="note"] .callout-content li a::before,
-.home [data-callout="example"] .callout-content li a::before,
-.home [data-callout="abstract"] .callout-content li a::before {
-    content: '▸';
-    color: #c8d4dd;
+.home [data-callout="note"] li a::before,
+.home [data-callout="example"] li a::before,
+.home [data-callout="abstract"] li a::before {
+    content: "▸";
+    margin-right: 10px;
+    color: #ccd8e2;
+    font-size: 10px;
+}
+
+/* Recent + Todo two-column section */
+.home .markdown-preview-section > [data-callout="info"],
+.home .markdown-preview-section > [data-callout="todo"],
+.home .markdown-preview-section > .el-callout:has(> [data-callout="info"]),
+.home .markdown-preview-section > .el-callout:has(> [data-callout="todo"]) {
+    grid-column: span 3 !important;
+}
+
+.home [data-callout="info"],
+.home [data-callout="todo"] {
+    margin: 0 0 48px !important;
+    padding: 0 8px 0 30px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    --callout-color: 74, 158, 255 !important;
+}
+
+.home [data-callout="info"] > .callout-title,
+.home [data-callout="todo"] > .callout-title {
+    position: relative;
+    margin: 0 0 22px !important;
+    padding: 0 !important;
+    color: var(--hp-text) !important;
+    font-size: 23px !important;
+    font-weight: 750 !important;
+}
+
+.home [data-callout="info"] > .callout-title::before,
+.home [data-callout="todo"] > .callout-title::before {
+    content: "";
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    width: 5px;
+    height: 27px;
+    border-radius: 4px;
+    background: var(--hp-accent);
+    transform: translateY(-50%);
+}
+
+.home [data-callout="info"] .callout-icon,
+.home [data-callout="info"] .callout-fold,
+.home [data-callout="todo"] .callout-icon,
+.home [data-callout="todo"] .callout-fold {
+    display: none !important;
+}
+
+.home [data-callout="info"] > .callout-content,
+.home [data-callout="todo"] > .callout-content {
+    padding: 0 !important;
+}
+
+.home [data-callout="info"]::after,
+.home [data-callout="todo"]::after {
+    display: inline-block;
+    margin: 16px 8px 0;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background: #f0f3f6;
+    color: var(--hp-muted);
     font-size: 11px;
 }
 
-.home [data-callout="note"] .callout-content li a:hover {
-    color: var(--hp-domain-color) !important;
-}
-.home [data-callout="example"] .callout-content li a:hover {
-    color: var(--hp-project-color) !important;
-}
-.home [data-callout="abstract"] .callout-content li a:hover {
-    color: var(--hp-resource-color) !important;
+.home [data-callout="info"]::after {
+    content: "Dataview · 自动刷新";
 }
 
-/* ================================================================== */
-/*  7. Dataview table — recent files                                  */
-/* ================================================================== */
-.home .dataview.table-view-table {
+.home [data-callout="todo"]::after {
+    content: "Tasks 插件 · 自动汇总";
+}
+
+/* Dataview info table */
+.home [data-callout="info"] .dataview.table-view-table {
     width: 100%;
-    font-size: 14.5px;
     border-collapse: collapse;
 }
 
-.home .dataview.table-view-table th {
+.home [data-callout="info"] .dataview.table-view-table th {
     display: none;
 }
 
-.home .dataview.table-view-table td {
-    padding: 8px 6px !important;
-    border-bottom: 1px solid #f0f2f5 !important;
-    font-size: 14.5px;
+.home [data-callout="info"] .dataview.table-view-table td {
+    padding: 10px 8px !important;
+    border-bottom: 1px solid #edf0f3 !important;
+    font-size: 15px;
 }
 
-.home .dataview.table-view-table td:last-child {
-    color: #a0b0bc;
-    font-size: 12.5px;
+.home [data-callout="info"] .dataview.table-view-table td:first-child a {
+    color: var(--hp-text) !important;
+    text-decoration: none !important;
+}
+
+.home [data-callout="info"] .dataview.table-view-table td:last-child {
+    color: var(--hp-muted);
+    font-size: 13px;
     text-align: right;
     white-space: nowrap;
 }
 
-.home .dataview.table-view-table td a {
-    font-size: 14.5px;
-    font-weight: 500;
-    color: #3d4f5c !important;
-    text-decoration: none !important;
-}
-
-.home .dataview.table-view-table td a:hover {
-    color: var(--hp-accent) !important;
-}
-
-/* ================================================================== */
-/*  8. Tasks — 2-column card grid                                      */
-/* ================================================================== */
-.home .plugin-tasks-toolbar {
+/* Tasks cards */
+.home [data-callout="todo"] .plugin-tasks-toolbar {
     display: none !important;
 }
 
-.home .contains-task-list {
+.home [data-callout="todo"] .contains-task-list {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px;
+    gap: 10px;
+    margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
-    margin: 8px 0 24px 0 !important;
 }
 
-.home .task-list-item {
-    padding: 8px 12px !important;
-    border-radius: 8px !important;
+.home [data-callout="todo"] .task-list-item {
+    display: grid !important;
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 4px 12px;
+    min-height: 64px;
     margin: 0 !important;
-    border: 1px solid #e8ecf1 !important;
-    background: #f8f9fb;
-    font-size: 13px !important;
+    padding: 13px 18px !important;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: 11px !important;
+    background: #f8fafc;
+    color: var(--hp-text);
+    font-size: 15px;
     line-height: 1.45;
-    list-style: none;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 36px;
-    overflow: hidden;
+    list-style: none !important;
 }
 
-.home .task-list-item:hover {
-    background: #f0f3f7;
-    border-color: var(--hp-accent) !important;
-    box-shadow: 0 2px 6px rgba(74, 158, 255, 0.1);
+.home [data-callout="todo"] .task-list-item:has([data-task-priority="high"]),
+.home [data-callout="todo"] .task-list-item:has(.task-due[data-task-due^="2026-08"]) {
+    border-color: #ffc5c2 !important;
+    background: #fff5f4;
 }
 
-.home .task-list-item .task-list-item-checkbox {
-    margin: 0 !important;
-    flex-shrink: 0;
-    width: 15px !important;
-    height: 15px !important;
-    cursor: pointer;
+.home [data-callout="todo"] .task-list-item-checkbox {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 21px !important;
+    height: 21px !important;
+    margin: 2px 0 0 !important;
 }
 
-.home .task-list-item .task-list-text {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    word-break: break-word;
+.home [data-callout="todo"] .task-list-item > *:not(.task-list-item-checkbox) {
+    grid-column: 2;
 }
 
-.home .task-list-item .task-meta {
-    flex-shrink: 0;
-    margin-left: auto !important;
-    font-size: 11px !important;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background: #e8ecf1;
-    color: #8a9ba8;
-    white-space: nowrap;
-    order: 99;
-}
-
-.home .task-list-item.is-checked {
-    opacity: 0.55;
-    text-decoration: line-through;
-}
-
-/* ================================================================== */
-/*  9. Question callout — 12 费曼 questions (2-col grid inside)       */
-/* ================================================================== */
+/* Questions */
 .home [data-callout="question"] {
-    background: #fafbfc !important;
-    border: 1px solid #e8ecf1 !important;
-    border-left: 1px solid #e8ecf1 !important;
-    border-radius: 10px !important;
-    padding: 16px 20px !important;
-    margin: 0 0 24px 0 !important;
+    margin: 0 0 24px !important;
+    padding: 26px 36px !important;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: var(--hp-radius) !important;
+    background: #fbfcfd !important;
     box-shadow: none !important;
     --callout-color: 0, 0, 0 !important;
 }
 
 .home [data-callout="question"] .callout-title {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 0 10px !important;
-    color: #a0b0bc !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
+    padding: 0 0 18px !important;
+    color: var(--hp-muted) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
 }
 
 .home [data-callout="question"] .callout-icon,
@@ -510,145 +488,74 @@ settings:
 }
 
 .home [data-callout="question"] .callout-content {
-    background: transparent !important;
     padding: 0 !important;
 }
 
-.home [data-callout="question"] .callout-content ol {
+.home [data-callout="question"] ol {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4px 20px;
-    padding-left: 0 !important;
-    list-style: none !important;
-    counter-reset: q-counter;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px 34px;
     margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    counter-reset: hp-question;
 }
 
-.home [data-callout="question"] .callout-content ol li {
-    counter-increment: q-counter;
+.home [data-callout="question"] li {
+    counter-increment: hp-question;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 13px;
+    gap: 11px;
+    margin: 0 !important;
     padding: 3px 0;
-    color: #5a6a76;
-    line-height: 1.5;
+    color: #53687a;
+    font-size: 14px;
+    line-height: 1.55;
 }
 
-.home [data-callout="question"] .callout-content ol li::before {
-    content: counter(q-counter);
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 700;
-    display: flex;
+.home [data-callout="question"] li::before {
+    content: counter(hp-question);
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    background: #e8ecf1;
-    color: #8a9ba8;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #edf1f5;
+    color: var(--hp-muted);
+    font-size: 12px;
+    font-weight: 700;
 }
 
-/* ================================================================== */
-/*  10. Hover popover — shrink to ~2/3                                 */
-/* ================================================================== */
-.popover.hover-popover,
-.hover-popover {
-    max-width: 300px !important;
-    width: 300px !important;
+/* Dark theme */
+.theme-dark .home {
+    --hp-border: var(--background-modifier-border);
+    --hp-surface: var(--background-secondary);
+    --hp-muted: var(--text-muted);
+    --hp-text: var(--text-normal);
 }
 
-.popover.hover-popover .markdown-preview-view,
-.hover-popover .markdown-preview-view {
-    max-height: 500px;
-    overflow: auto;
-    padding: 12px 14px !important;
-    font-size: 12px !important;
-    line-height: 1.5;
+.theme-dark .home .hp-shortcut,
+.theme-dark .home .hp-badge,
+.theme-dark .home [data-callout="todo"] .task-list-item,
+.theme-dark .home [data-callout="question"] {
+    background: var(--background-secondary) !important;
 }
 
-.popover.hover-popover .markdown-preview-view p,
-.popover.hover-popover .markdown-preview-view li,
-.hover-popover .markdown-preview-view p,
-.hover-popover .markdown-preview-view li {
-    font-size: 12px !important;
-}
-
-.popover.hover-popover .markdown-preview-view h1,
-.hover-popover .markdown-preview-view h1 {
-    font-size: 1.4em !important;
-}
-
-.popover.hover-popover .markdown-preview-view h2,
-.hover-popover .markdown-preview-view h2 {
-    font-size: 1.2em !important;
-}
-
-.popover.hover-popover .markdown-preview-view h3,
-.hover-popover .markdown-preview-view h3 {
-    font-size: 1.05em !important;
-}
-
-.popover.hover-popover .metadata-container,
-.popover.hover-popover .metadata-properties,
-.popover.hover-popover .frontmatter,
-.popover.hover-popover .mod-header,
-.hover-popover .metadata-container,
-.hover-popover .metadata-properties,
-.hover-popover .frontmatter,
-.hover-popover .mod-header {
-    display: none !important;
-}
-
-/* ================================================================== */
-/*  11. Index page (folder index notes) — centered                     */
-/* ================================================================== */
-.view-content.index-page .markdown-preview-view,
-.view-content.index-page .markdown-source-view {
-    max-width: 560px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    padding: 24px 28px !important;
-    font-size: 15px !important;
-    line-height: 1.65;
-}
-
-.view-content.index-page .markdown-preview-view p,
-.view-content.index-page .markdown-preview-view li {
-    font-size: 14.5px !important;
-    line-height: 1.6;
-}
-
-.view-content.index-page .callout,
-.view-content.index-page [data-callout] {
-    padding: 10px 14px !important;
-    margin: 8px 0 !important;
-}
-
-.view-content.index-page ul,
-.view-content.index-page ol {
-    padding-left: 22px !important;
-}
-
-.view-content.index-page h1 {
-    font-size: 1.5em !important;
-    margin-top: 0.2em !important;
-}
-
-/* ================================================================== */
-/*  12. Responsive                                                     */
-/* ================================================================== */
-@media (max-width: 900px) and (min-width: 701px) {
-    .home .markdown-preview-section {
-        grid-template-columns: 1fr 1fr !important;
+/* Responsive */
+@media (max-width: 900px) {
+    .home .hp-shortcuts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .home .contains-task-list {
-        grid-template-columns: 1fr !important;
-    }
-    .home [data-callout="question"] .callout-content ol {
-        grid-template-columns: 1fr !important;
+
+    .home .markdown-preview-section > [data-callout="note"],
+    .home .markdown-preview-section > [data-callout="example"],
+    .home .markdown-preview-section > [data-callout="abstract"],
+    .home .markdown-preview-section > .el-callout:has(> [data-callout="note"]),
+    .home .markdown-preview-section > .el-callout:has(> [data-callout="example"]),
+    .home .markdown-preview-section > .el-callout:has(> [data-callout="abstract"]) {
+        grid-column: span 3 !important;
     }
 }
 
@@ -656,14 +563,23 @@ settings:
     .home.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
     .home.markdown-rendered.is-readable-line-width .markdown-preview-sizer {
         width: calc(100% - 24px) !important;
+        padding-top: 20px !important;
     }
-    .home .markdown-preview-section {
-        grid-template-columns: 1fr !important;
+
+    .home .hp-brand {
+        display: none;
     }
-    .home .contains-task-list {
-        grid-template-columns: 1fr !important;
+
+    .home .hp-shortcuts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .home [data-callout="question"] .callout-content ol {
-        grid-template-columns: 1fr !important;
+
+    .home .markdown-preview-section > [data-callout],
+    .home .markdown-preview-section > .el-callout:has(> [data-callout]) {
+        grid-column: 1 / -1 !important;
+    }
+
+    .home [data-callout="question"] ol {
+        grid-template-columns: 1fr;
     }
 }
