@@ -1,7 +1,7 @@
 /* ==================================================================== */
-/*  Homepage CSS v9 — Complete Rewrite to Match Preview HTML            */
-/*  Overrides Blue Topaz theme defaults with !important                 */
-/*  Works in Reading View (primary) and Live Preview (secondary)        */
+/*  Homepage CSS v11 — Grid Layout + Single-Layer Callout Cards         */
+/*  3-column grid on .markdown-preview-section                          */
+/*  note/example/abstract callouts become side-by-side cards            */
 /* ==================================================================== */
 
 /* === Style Settings === */
@@ -14,14 +14,18 @@ settings:
         id: hp-card-radius
         title: 卡片圆角
         type: variable-text
-        description: 快速入口卡片的圆角大小
         default: 10px
     -
         id: hp-card-gap
         title: 卡片间距
         type: variable-text
-        description: 卡片之间的间距
-        default: 14px
+        default: 12px
+    -
+        id: hp-accent-color
+        title: 强调色（H2竖条、链接）
+        type: variable-color
+        format: hex
+        default: '#4a9eff'
     -
         id: hp-domain-color
         title: 领域卡片颜色
@@ -40,31 +44,19 @@ settings:
         type: variable-color
         format: hex
         default: '#8e44ad'
-    -
-        id: hp-note-size
-        title: 笔记列表字号
-        type: variable-text
-        default: 13.5px
-    -
-        id: hp-pill-radius
-        title: 文件夹链接圆角
-        type: variable-text
-        default: 8px
 */
 
 :root {
     --hp-accent: #4a9eff;
     --hp-card-radius: 10px;
-    --hp-card-gap: 14px;
+    --hp-card-gap: 12px;
     --hp-domain-color: #3498db;
     --hp-project-color: #e67e22;
     --hp-resource-color: #8e44ad;
-    --hp-note-size: 13.5px;
-    --hp-pill-radius: 8px;
 }
 
 /* ================================================================== */
-/*  1. Hide properties panel (YAML frontmatter display)               */
+/*  1. Hide properties panel                                           */
 /* ================================================================== */
 .home .metadata-container,
 .home .metadata-properties,
@@ -74,31 +66,57 @@ settings:
 }
 
 /* ================================================================== */
-/*  2. H1 / H2 heading styles                                          */
+/*  2. Grid layout — 3 columns on .markdown-preview-section            */
+/*     All children span full width by default;                        */
+/*     note/example/abstract callouts each take 1 column               */
 /* ================================================================== */
+.home .markdown-preview-section {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    column-gap: var(--hp-card-gap) !important;
+    row-gap: 0 !important;
+}
 
-/* H1 — subtle, not too large */
-.home .markdown-preview-section h1,
-.home h1.cm-header-1 {
+/* All direct children span all 3 columns by default */
+.home .markdown-preview-section > * {
+    grid-column: 1 / -1;
+}
+
+/* 3 card callouts each take 1 column → side by side */
+.home .markdown-preview-section > [data-callout="note"],
+.home .markdown-preview-section > [data-callout="example"],
+.home .markdown-preview-section > [data-callout="abstract"] {
+    grid-column: auto !important;
+    grid-row: auto !important;
+}
+
+/* Hide empty paragraphs (from blank lines between callouts) */
+.home .markdown-preview-section > p:empty {
+    display: none !important;
+}
+
+/* ================================================================== */
+/*  3. H1 / H2 heading styles                                          */
+/* ================================================================== */
+.home .markdown-preview-section h1 {
     font-size: 1.6em !important;
     font-weight: 700 !important;
     margin: 0.3em 0 0.5em !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
 }
 
-/* H2 — section title with blue vertical bar (like preview) */
-.home .markdown-preview-section h2,
-.home h2.cm-header-2 {
+.home .markdown-preview-section h2 {
     position: relative;
     padding-left: 14px !important;
     font-size: 1.25em !important;
     font-weight: 700 !important;
     border-bottom: none !important;
-    margin-top: 1.5em !important;
-    margin-bottom: 0.6em !important;
+    margin-top: 1.8em !important;
+    margin-bottom: 0.5em !important;
     color: #2c3e50 !important;
 }
 
-/* Blue bar before H2 — Reading View */
 .home .markdown-preview-section h2::before {
     content: '';
     position: absolute;
@@ -111,15 +129,8 @@ settings:
     border-radius: 2px;
 }
 
-/* H3 */
-.home .markdown-preview-section h3,
-.home h3.cm-header-3 {
-    font-size: 1.1em !important;
-    margin: 0.4em 0 0.2em !important;
-}
-
 /* ================================================================== */
-/*  3. Quote callout — gradient banner (like preview)                  */
+/*  4. Quote callout — gradient banner                                */
 /* ================================================================== */
 .home [data-callout="quote"] {
     background: linear-gradient(135deg, #f0f7ff 0%, #f5f0ff 100%) !important;
@@ -129,13 +140,13 @@ settings:
     padding: 12px 20px !important;
     margin: 0 0 24px 0 !important;
     box-shadow: none !important;
+    --callout-color: 0, 0, 0 !important;
 }
 
-/* Quote title — small label style */
 .home [data-callout="quote"] .callout-title {
     background: transparent !important;
     border: none !important;
-    padding: 0 0 4px !important;
+    padding: 0 0 6px !important;
     color: var(--hp-accent) !important;
     font-size: 12px !important;
     font-weight: 700 !important;
@@ -143,12 +154,11 @@ settings:
     letter-spacing: 1px;
 }
 
-/* Hide quote icon */
-.home [data-callout="quote"] .callout-icon {
+.home [data-callout="quote"] .callout-icon,
+.home [data-callout="quote"] .callout-fold {
     display: none !important;
 }
 
-/* Quote content */
 .home [data-callout="quote"] .callout-content {
     background: transparent !important;
     padding: 0 !important;
@@ -156,201 +166,195 @@ settings:
 
 .home [data-callout="quote"] .callout-content p {
     margin: 4px 0 !important;
+    line-height: 1.6;
 }
 
-/* First paragraph (date) — muted */
 .home [data-callout="quote"] .callout-content p:first-child {
-    font-size: 14px !important;
+    font-size: 13px !important;
     color: #8a9ba8 !important;
 }
 
-/* Second paragraph (quote text) — italic, larger */
 .home [data-callout="quote"] .callout-content p:nth-child(2) {
     font-size: 15px !important;
     color: #3d4f5c !important;
     font-style: italic;
 }
 
-/* Last paragraph (source) — small, muted */
 .home [data-callout="quote"] .callout-content p:last-child {
     font-size: 12px !important;
     color: #a0b0bc !important;
 }
 
 /* ================================================================== */
-/*  4. Container callouts (pill, grid) — strip ALL default chrome      */
+/*  5. Quick access pills (first ul after h2 #1)                       */
 /* ================================================================== */
-.home [data-callout="pill"],
-.home [data-callout="grid"] {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 0 20px 0 !important;
-    --callout-color: 0, 0, 0 !important;
-}
-
-/* Hide container callout titles */
-.home [data-callout="pill"] .callout-title,
-.home [data-callout="grid"] .callout-title {
-    display: none !important;
-}
-
-/* Container callout content — no padding, transparent */
-.home [data-callout="pill"] .callout-content,
-.home [data-callout="grid"] .callout-content {
-    padding: 0 !important;
-    background: transparent !important;
-}
-
-/* ================================================================== */
-/*  5. Pill links — folder quick-access buttons                        */
-/* ================================================================== */
-.home [data-callout="pill"] .callout-content {
+.home h2:nth-of-type(1) + ul {
     display: flex !important;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 16px !important;
+    padding: 12px 16px !important;
+    margin: 12px 0 20px 0 !important;
+    list-style: none !important;
+    background: #f5f6f8;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
 }
 
-/* Each <p> becomes a pill button */
-.home [data-callout="pill"] .callout-content p {
+.home h2:nth-of-type(1) + ul li {
     display: inline-flex !important;
     align-items: center;
     gap: 4px;
-    background: #f5f6f8;
+    background: #ffffff;
     border: 1px solid #e8ecf1;
-    border-radius: var(--hp-pill-radius);
-    padding: 6px 16px;
+    border-radius: 20px;
+    padding: 5px 14px;
     font-size: 13px;
     font-weight: 600;
     color: #5a6a76;
     margin: 0 !important;
     line-height: 1.4;
-    transition: all 0.15s;
     cursor: pointer;
+    transition: all 0.15s;
 }
 
-/* Pill hover */
-.home [data-callout="pill"] .callout-content p:hover {
+.home h2:nth-of-type(1) + ul li:hover {
     background: #e8f4ff;
     border-color: var(--hp-accent);
     color: var(--hp-accent);
     transform: translateY(-1px);
 }
 
-/* Links inside pills inherit color */
-.home [data-callout="pill"] .callout-content p a {
+.home h2:nth-of-type(1) + ul li a {
     color: inherit !important;
     text-decoration: none !important;
 }
 
 /* ================================================================== */
-/*  6. Grid — 3-column card layout                                     */
-/* ================================================================== */
-.home [data-callout="grid"] .callout-content {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--hp-card-gap);
-}
-
-/* ================================================================== */
-/*  7. Card styling — clean white cards with colored top border        */
-/*     Override Obsidian default (left border + colored background)    */
+/*  6. Three big cards — note / example / abstract callouts            */
+/*     Each is a card with colored top border + note list inside       */
 /* ================================================================== */
 
-/* Base card: remove ALL default callout styling */
-.home [data-callout="grid"] .callout-content > .callout {
+/* Base card style — strip default callout chrome */
+.home [data-callout="note"],
+.home [data-callout="example"],
+.home [data-callout="abstract"] {
     background: #fafbfc !important;
     border: 1px solid #e8ecf1 !important;
     border-left: 1px solid #e8ecf1 !important;
     border-radius: var(--hp-card-radius) !important;
-    margin: 0 !important;
-    overflow: hidden;
-    box-shadow: none !important;
+    margin: 0 0 20px 0 !important;
     padding: 0 !important;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+    --callout-color: 0, 0, 0 !important;
+    height: fit-content;
 }
 
-/* Card top border colors */
-.home [data-callout="grid"] .callout-content > [data-callout="note"] {
+/* Colored top borders */
+.home [data-callout="note"] {
     border-top: 3px solid var(--hp-domain-color) !important;
 }
-.home [data-callout="grid"] .callout-content > [data-callout="example"] {
+.home [data-callout="example"] {
     border-top: 3px solid var(--hp-project-color) !important;
 }
-.home [data-callout="grid"] .callout-content > [data-callout="abstract"] {
+.home [data-callout="abstract"] {
     border-top: 3px solid var(--hp-resource-color) !important;
 }
 
-/* Card title — clean, no icon */
-.home [data-callout="grid"] .callout-content > .callout > .callout-title {
+/* Card title */
+.home [data-callout="note"] > .callout-title,
+.home [data-callout="example"] > .callout-title,
+.home [data-callout="abstract"] > .callout-title {
     background: transparent !important;
     color: #2c3e50 !important;
     font-size: 14px !important;
     font-weight: 700 !important;
-    padding: 10px 14px 2px !important;
-    border-radius: 0 !important;
+    padding: 12px 14px 4px !important;
     border: none !important;
+    border-radius: 0 !important;
 }
 
 /* Hide card icons */
-.home [data-callout="grid"] .callout-content > .callout > .callout-title .callout-icon,
-.home [data-callout="grid"] .callout-content > .callout > .callout-title .callout-fold {
+.home [data-callout="note"] > .callout-title .callout-icon,
+.home [data-callout="example"] > .callout-title .callout-icon,
+.home [data-callout="abstract"] > .callout-title .callout-icon,
+.home [data-callout="note"] > .callout-title .callout-fold,
+.home [data-callout="example"] > .callout-title .callout-fold,
+.home [data-callout="abstract"] > .callout-title .callout-fold {
     display: none !important;
 }
 
 /* Card content area */
-.home [data-callout="grid"] .callout-content > .callout > .callout-content {
+.home [data-callout="note"] > .callout-content,
+.home [data-callout="example"] > .callout-content,
+.home [data-callout="abstract"] > .callout-content {
     background: transparent !important;
-    padding: 0 14px 10px !important;
+    padding: 0 14px 12px !important;
 }
 
-/* Card list — no bullets, custom styling */
-.home [data-callout="grid"] .callout-content > .callout > .callout-content ul {
+/* Card list — no bullets */
+.home [data-callout="note"] .callout-content ul,
+.home [data-callout="example"] .callout-content ul,
+.home [data-callout="abstract"] .callout-content ul {
     padding-left: 0 !important;
     list-style: none !important;
     margin: 0 !important;
 }
 
 /* Card list items — dashed separator */
-.home [data-callout="grid"] .callout-content > .callout > .callout-content li {
-    padding: 5px 0 !important;
+.home [data-callout="note"] .callout-content li,
+.home [data-callout="example"] .callout-content li,
+.home [data-callout="abstract"] .callout-content li {
+    padding: 6px 0 !important;
     border-bottom: 1px dashed #eef0f3 !important;
-    font-size: var(--hp-note-size) !important;
+    font-size: 13.5px !important;
     line-height: 1.5;
+    margin: 0 !important;
 }
 
-.home [data-callout="grid"] .callout-content > .callout > .callout-content li:last-child {
+.home [data-callout="note"] .callout-content li:last-child,
+.home [data-callout="example"] .callout-content li:last-child,
+.home [data-callout="abstract"] .callout-content li:last-child {
     border-bottom: none !important;
 }
 
-/* Card links — blue with ▸ marker */
-.home [data-callout="grid"] .callout-content > .callout > .callout-content li a {
-    color: var(--hp-accent) !important;
+/* Card links — ▸ marker */
+.home [data-callout="note"] .callout-content li a,
+.home [data-callout="example"] .callout-content li a,
+.home [data-callout="abstract"] .callout-content li a {
+    color: #2c3e50 !important;
     text-decoration: none !important;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
-.home [data-callout="grid"] .callout-content > .callout > .callout-content li a:hover {
-    color: #1a7de8 !important;
-    text-decoration: underline !important;
-}
-
-/* ▸ marker before each link */
-.home [data-callout="grid"] .callout-content > .callout > .callout-content li a::before {
+.home [data-callout="note"] .callout-content li a::before,
+.home [data-callout="example"] .callout-content li a::before,
+.home [data-callout="abstract"] .callout-content li a::before {
     content: '▸';
     color: #c8d4dd;
     font-size: 11px;
 }
 
+.home [data-callout="note"] .callout-content li a:hover {
+    color: var(--hp-domain-color) !important;
+}
+.home [data-callout="example"] .callout-content li a:hover {
+    color: var(--hp-project-color) !important;
+}
+.home [data-callout="abstract"] .callout-content li a:hover {
+    color: var(--hp-resource-color) !important;
+}
+
 /* ================================================================== */
-/*  8. Dataview table — clean list style                               */
+/*  7. Dataview table — recent files                                  */
 /* ================================================================== */
 .home .dataview.table-view-table {
     width: 100%;
     font-size: 14.5px;
+    border-collapse: collapse;
 }
 
 .home .dataview.table-view-table th {
@@ -382,29 +386,25 @@ settings:
 }
 
 /* ================================================================== */
-/*  9. Tasks — compact card style                                      */
+/*  8. Tasks — 2-column card grid                                      */
 /* ================================================================== */
-
-/* Hide Tasks plugin toolbar (Filter + Copy) */
-.home .plugin-tasks-toolbar,
-.home .cm-embed-block .plugin-tasks-toolbar {
+.home .plugin-tasks-toolbar {
     display: none !important;
 }
 
-/* Task list — no indentation, no bullets */
-.home .contains-task-list,
-.home .cm-embed-block .contains-task-list {
-    padding-left: 0 !important;
+.home .contains-task-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px;
+    padding: 0 !important;
     list-style: none !important;
-    margin: 0 !important;
+    margin: 8px 0 24px 0 !important;
 }
 
-/* Task item — card style */
-.home .task-list-item,
-.home .cm-embed-block .task-list-item {
-    padding: 6px 10px !important;
-    border-radius: 6px;
-    margin-bottom: 5px;
+.home .task-list-item {
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    margin: 0 !important;
     border: 1px solid #e8ecf1 !important;
     background: #f8f9fb;
     font-size: 13px !important;
@@ -414,32 +414,25 @@ settings:
     display: flex;
     align-items: center;
     gap: 8px;
-    min-height: 32px;
+    min-height: 36px;
     overflow: hidden;
 }
 
-/* Task hover */
-.home .task-list-item:hover,
-.home .cm-embed-block .task-list-item:hover {
+.home .task-list-item:hover {
     background: #f0f3f7;
     border-color: var(--hp-accent) !important;
-    box-shadow: 0 1px 4px rgba(74, 158, 255, 0.08);
+    box-shadow: 0 2px 6px rgba(74, 158, 255, 0.1);
 }
 
-/* Checkbox */
-.home .task-list-item .task-list-item-checkbox,
-.home .cm-embed-block .task-list-item .task-list-item-checkbox {
+.home .task-list-item .task-list-item-checkbox {
     margin: 0 !important;
     flex-shrink: 0;
-    width: 14px !important;
-    height: 14px !important;
-    transform: scale(0.95);
+    width: 15px !important;
+    height: 15px !important;
     cursor: pointer;
 }
 
-/* Task text — flex grow, 2-line clamp */
-.home .task-list-item .task-list-text,
-.home .cm-embed-block .task-list-item .task-list-text {
+.home .task-list-item .task-list-text {
     flex: 1;
     min-width: 0;
     overflow: hidden;
@@ -450,13 +443,11 @@ settings:
     word-break: break-word;
 }
 
-/* Task meta (date/priority) — push to rightmost */
-.home .task-list-item .task-meta,
-.home .cm-embed-block .task-list-item .task-meta {
+.home .task-list-item .task-meta {
     flex-shrink: 0;
     margin-left: auto !important;
     font-size: 11px !important;
-    padding: 1px 6px;
+    padding: 2px 8px;
     border-radius: 4px;
     background: #e8ecf1;
     color: #8a9ba8;
@@ -464,52 +455,44 @@ settings:
     order: 99;
 }
 
-/* Done task */
-.home .task-list-item.is-checked,
-.home .cm-embed-block .task-list-item.is-checked {
+.home .task-list-item.is-checked {
     opacity: 0.55;
     text-decoration: line-through;
 }
 
 /* ================================================================== */
-/*  10. 12 Questions — 2-column grid with numbered squares             */
+/*  9. Question callout — 12 费曼 questions (2-col grid inside)       */
 /* ================================================================== */
-
-/* Question callout — clean container */
 .home [data-callout="question"] {
     background: #fafbfc !important;
     border: 1px solid #e8ecf1 !important;
     border-left: 1px solid #e8ecf1 !important;
     border-radius: 10px !important;
     padding: 16px 20px !important;
-    margin: 0 0 20px 0 !important;
+    margin: 0 0 24px 0 !important;
     box-shadow: none !important;
     --callout-color: 0, 0, 0 !important;
 }
 
-/* Question title — small muted label */
 .home [data-callout="question"] .callout-title {
     background: transparent !important;
     border: none !important;
-    padding: 0 0 8px !important;
+    padding: 0 0 10px !important;
     color: #a0b0bc !important;
-    font-size: 12px !important;
-    font-weight: 400 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
 }
 
-/* Hide question icon */
 .home [data-callout="question"] .callout-icon,
 .home [data-callout="question"] .callout-fold {
     display: none !important;
 }
 
-/* Question content */
 .home [data-callout="question"] .callout-content {
     background: transparent !important;
     padding: 0 !important;
 }
 
-/* 2-column grid for questions */
 .home [data-callout="question"] .callout-content ol {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -520,7 +503,6 @@ settings:
     margin: 0 !important;
 }
 
-/* Each question item */
 .home [data-callout="question"] .callout-content ol li {
     counter-increment: q-counter;
     display: flex;
@@ -532,7 +514,6 @@ settings:
     line-height: 1.5;
 }
 
-/* Numbered square */
 .home [data-callout="question"] .callout-content ol li::before {
     content: counter(q-counter);
     width: 20px;
@@ -550,40 +531,7 @@ settings:
 }
 
 /* ================================================================== */
-/*  11. Heading size overrides (home + index pages)                    */
-/* ================================================================== */
-.home h1, .index-page h1 {
-    font-size: 1.6em !important;
-    margin: 0.3em 0 0.5em !important;
-}
-
-.home h2, .index-page h2 {
-    font-size: 1.25em !important;
-    margin: 0.5em 0 0.25em !important;
-}
-
-.home h3, .index-page h3 {
-    font-size: 1.1em !important;
-    margin: 0.4em 0 0.2em !important;
-}
-
-.home h4, .index-page h4 {
-    font-size: 1em !important;
-    margin: 0.3em 0 0.2em !important;
-    font-weight: 600;
-}
-
-/* Shrink heading emoji */
-.home h1 > .emoji, .index-page h1 > .emoji,
-.home h2 > .emoji, .index-page h2 > .emoji,
-.home h3 > .emoji, .index-page h3 > .emoji,
-.home h4 > .emoji, .index-page h4 > .emoji {
-    font-size: 0.85em !important;
-    vertical-align: middle;
-}
-
-/* ================================================================== */
-/*  12. Hover popover — shrink to 2/3, hide properties                 */
+/*  10. Hover popover — shrink to ~2/3                                 */
 /* ================================================================== */
 .popover.hover-popover,
 .hover-popover {
@@ -622,7 +570,6 @@ settings:
     font-size: 1.05em !important;
 }
 
-/* Hide properties in hover preview */
 .popover.hover-popover .metadata-container,
 .popover.hover-popover .metadata-properties,
 .popover.hover-popover .frontmatter,
@@ -635,7 +582,7 @@ settings:
 }
 
 /* ================================================================== */
-/*  13. Index page (folder index notes) — compact centered layout     */
+/*  11. Index page (folder index notes) — centered                     */
 /* ================================================================== */
 .view-content.index-page .markdown-preview-view,
 .view-content.index-page .markdown-source-view {
@@ -670,16 +617,25 @@ settings:
 }
 
 /* ================================================================== */
-/*  14. Responsive                                                     */
+/*  12. Responsive                                                     */
 /* ================================================================== */
 @media (max-width: 900px) and (min-width: 701px) {
-    .home [data-callout="grid"] .callout-content {
+    .home .markdown-preview-section {
         grid-template-columns: 1fr 1fr !important;
+    }
+    .home .contains-task-list {
+        grid-template-columns: 1fr !important;
+    }
+    .home [data-callout="question"] .callout-content ol {
+        grid-template-columns: 1fr !important;
     }
 }
 
 @media (max-width: 700px) {
-    .home [data-callout="grid"] .callout-content {
+    .home .markdown-preview-section {
+        grid-template-columns: 1fr !important;
+    }
+    .home .contains-task-list {
         grid-template-columns: 1fr !important;
     }
     .home [data-callout="question"] .callout-content ol {
