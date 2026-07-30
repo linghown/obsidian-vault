@@ -42,8 +42,7 @@ cssclasses:
 > > [!info] 最近编辑
 > > ```dataview
 > > TABLE WITHOUT ID
-> >   file.link AS "文件",
-> >   dateformat(file.mtime, "MM-dd HH:mm") AS "修改时间"
+> >   file.link AS "文件"
 > > FROM ""
 > > WHERE file.name != "Homepage"
 > >   AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "attachments")
@@ -57,9 +56,14 @@ cssclasses:
 > > not done
 > > sort by due
 > > limit 3
+> > hide task count
+> > hide backlinks
+> > hide edit button
+> > hide postpone button
+> > hide urgency
 > > ```
 
-## 我的12个问题
+## 12个问题
 
 > [!question] 费曼学习法 · 持续思考的问题
 > 1. 淋巴结清扫术（7组、2/4组、10组、4L组）
