@@ -17,7 +17,7 @@ cssclasses:
 > - [[资源|📚 资源]] `158`
 > - [[收件箱|📥 收件箱]] `0`
 > - [[归档|📦 归档]] `0`
-> - [[attachments|📎 附件]] `3`
+> - [[Attachments/Attachments|📎 附件]] `3`
 
 > [!navgrid]
 > > [!note] 📁　领域　　`9篇`
@@ -45,7 +45,7 @@ cssclasses:
 > >   file.link AS "文件"
 > > FROM ""
 > > WHERE file.name != "Homepage"
-> >   AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "attachments")
+> >   AND !(file.name = "领域" OR file.name = "项目" OR file.name = "资源" OR file.name = "收件箱" OR file.name = "归档" OR file.name = "Attachments")
 > >   AND !startswith(file.folder, "资源/Evernote")
 > > SORT file.mtime DESC
 > > LIMIT 6
@@ -53,9 +53,10 @@ cssclasses:
 >
 > > [!todo] 待办
 > > ```tasks
-> > not done
+> > (not done) OR (done today)
+> > sort by done reverse
 > > sort by due
-> > limit 3
+> > limit 12
 > > hide task count
 > > hide backlinks
 > > hide edit button

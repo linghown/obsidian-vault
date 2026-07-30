@@ -254,13 +254,15 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 
 /* Quick shortcuts */
 .home .callout[data-callout="shortcuts"] {
+    margin-top: 14px !important;
     margin-bottom: 14px !important;
 }
 
 .home .callout[data-callout="shortcuts"] ul {
     display: grid !important;
     grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 10px;
+    column-gap: 14px;
+    row-gap: 12px;
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
@@ -295,7 +297,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     align-items: center;
     min-width: 0;
     min-height: 42px;
-    padding: 7px 34px 7px 10px;
+    padding: 7px 36px 7px 11px;
     overflow: hidden;
     border: 1px solid var(--hp-border);
     border-radius: 10px;
@@ -317,7 +319,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     grid-column: 2;
     grid-row: 1;
     z-index: 1;
-    margin-right: 8px;
+    margin-right: 9px;
     padding: 2px 6px;
     border: 0;
     border-radius: 5px;
@@ -431,7 +433,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     min-height: 0 !important;
     height: auto !important;
     margin: 0 !important;
-    padding: 0 4px 0 18px !important;
+    padding: 0 4px 0 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
@@ -442,7 +444,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 .home .callout[data-callout="workgrid"] .callout-title {
     position: relative;
     margin: 0 0 11px !important;
-    padding: 0 !important;
+    padding: 0 0 0 22px !important;
     color: var(--hp-text) !important;
     font-size: 20px !important;
     font-weight: 750 !important;
@@ -451,7 +453,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 .home .callout[data-callout="workgrid"] .callout-title::before {
     content: "";
     position: absolute;
-    left: -15px;
+    left: 0;
     top: 50%;
     width: 5px;
     height: 24px;
@@ -469,10 +471,25 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     padding: 0 !important;
 }
 
+.home .callout[data-callout="workgrid"] :is(
+    .block-language-dataview,
+    .block-language-tasks,
+    .cm-preview-code-block
+) {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 /* Dataview recent list */
 .home .callout[data-callout="info"] .dataview.table-view-table {
     width: 100%;
-    border-collapse: collapse;
+    margin: 0 !important;
+    overflow: hidden;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: 11px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #f9fbfd;
 }
 
 .home .callout[data-callout="info"] .dataview.table-view-table th {
@@ -480,9 +497,13 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 }
 
 .home .callout[data-callout="info"] .dataview.table-view-table td {
-    padding: 8px 7px !important;
+    padding: 9px 14px !important;
     border-bottom: 1px solid #edf0f3 !important;
     font-size: 14px;
+}
+
+.home .callout[data-callout="info"] .dataview.table-view-table tr:last-child td {
+    border-bottom: 0 !important;
 }
 
 .home .callout[data-callout="info"] .dataview.table-view-table td a {
@@ -510,10 +531,13 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 }
 
 .home .callout[data-callout="todo"] .contains-task-list {
-    display: grid !important;
-    gap: 8px;
+    display: block !important;
     margin: 0 !important;
     padding: 0 !important;
+    overflow: hidden;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: 11px;
+    background: #f9fbfd;
     list-style: none !important;
 }
 
@@ -527,13 +551,31 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     min-height: 52px;
     margin: 0 !important;
     padding: 12px 16px !important;
-    border: 1px solid var(--hp-border) !important;
-    border-radius: 11px !important;
-    background: #f9fbfd;
+    border: 0 !important;
+    border-bottom: 1px solid #e5ebf0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
     color: var(--hp-text);
     font-size: 14px;
     line-height: 1.5;
+    text-align: left !important;
     list-style: none !important;
+}
+
+.home .callout[data-callout="todo"] .task-list-item[data-task-status-type="TODO"]:nth-child(
+    n + 4 of .task-list-item[data-task-status-type="TODO"]
+) {
+    display: none !important;
+}
+
+.home .callout[data-callout="todo"] .task-list-item[data-task-status-type="DONE"]:nth-child(
+    n + 2 of .task-list-item[data-task-status-type="DONE"]
+) {
+    display: none !important;
+}
+
+.home .callout[data-callout="todo"] .task-list-item:last-child {
+    border-bottom: 0 !important;
 }
 
 .home .callout[data-callout="todo"] .task-list-item-checkbox {
@@ -546,16 +588,28 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 
 .home .callout[data-callout="todo"] .tasks-list-text,
 .home .callout[data-callout="todo"] .task-list-text {
-    display: contents !important;
+    display: grid !important;
+    grid-column: 2;
+    grid-row: 1;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: min-content;
+    justify-items: stretch;
+    width: 100% !important;
+    min-width: 0;
+    text-align: left !important;
 }
 
 .home .callout[data-callout="todo"] .task-description {
-    grid-column: 2;
+    display: block !important;
+    grid-column: 1;
     grid-row: 1;
+    width: 100% !important;
     min-width: 0;
     max-width: 100%;
     justify-self: stretch;
     padding-right: 4px;
+    padding-left: 7px;
+    box-sizing: border-box;
     color: var(--hp-text);
     font-size: 14px;
     line-height: 1.55;
@@ -566,7 +620,7 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 }
 
 .home .callout[data-callout="todo"] .task-due {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: 1;
     justify-self: start;
     padding: 1px 7px;
@@ -589,6 +643,47 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 
 .home .callout[data-callout="todo"] .task-list-item:has(.task-due) {
     min-height: 72px;
+}
+
+@keyframes hp-task-undo-window {
+    0%,
+    84% {
+        max-height: 120px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-bottom-width: 1px;
+        opacity: 1;
+    }
+
+    100% {
+        max-height: 0;
+        min-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        border-bottom-width: 0;
+        opacity: 0;
+    }
+}
+
+.home .callout[data-callout="todo"] .task-list-item[data-task-status-type="DONE"] {
+    overflow: hidden;
+    background: #eef9f2 !important;
+    animation: hp-task-undo-window 10s ease forwards;
+}
+
+.home .callout[data-callout="todo"] .task-list-item[data-task-status-type="DONE"]::after {
+    content: "已完成 · 10 秒内再次点击可撤销";
+    grid-column: 2;
+    grid-row: 3;
+    padding-left: 7px;
+    color: #4f9b6a;
+    font-size: 11.5px;
+    line-height: 1.4;
+    text-decoration: none !important;
+}
+
+.home .callout[data-callout="todo"] .task-list-item[data-task-status-type="DONE"] .task-description {
+    color: #799087 !important;
 }
 
 /* Folder index notes */
@@ -650,13 +745,22 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     width: min(480px, calc(100vw - 32px)) !important;
     max-width: min(480px, calc(100vw - 32px)) !important;
     max-height: min(480px, calc(100vh - 32px)) !important;
+    overflow: visible !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    z-index: 9999 !important;
+    isolation: isolate;
+}
+
+.popover.hover-popover > .markdown-embed,
+.hover-popover > .markdown-embed {
     overflow: hidden !important;
     border: 1px solid var(--background-modifier-border) !important;
     border-radius: 12px !important;
     background: var(--background-primary) !important;
     box-shadow: 0 12px 34px rgba(24, 39, 56, .18) !important;
-    z-index: 9999 !important;
-    isolation: isolate;
 }
 
 .popover.hover-popover > .markdown-embed,
@@ -704,8 +808,13 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     margin-bottom: 12px !important;
 }
 
-.theme-dark .home .callout[data-callout="todo"] .task-list-item {
+.theme-dark .home .callout[data-callout="todo"] .contains-task-list,
+.theme-dark .home .callout[data-callout="info"] .dataview.table-view-table {
     background: var(--background-secondary) !important;
+}
+
+.theme-dark .home .callout[data-callout="todo"] .task-list-item[data-task-status-type="DONE"] {
+    background: rgba(79, 155, 106, .14) !important;
 }
 
 /* Questions */
@@ -801,6 +910,12 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 
     .home .callout[data-callout="navgrid"] > .callout-content {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .home .callout[data-callout="shortcuts"] ul {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
