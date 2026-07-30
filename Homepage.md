@@ -3,7 +3,7 @@ cssclasses:
   - home
 ---
 
-`=dateformat(date(today), "yyyy年MM月dd日")` **`=dateformat(date(today), "cccc")`** <span class="hp-brand">Obsidian · Homepage</span>
+`=dateformat(date(today), "yyyy年MM月dd日")` **`=dateformat(date(today), "cccc")`**
 
 > [!quote] 今日格言
 > 戒掉情绪，所有的事情都是同样的逻辑，情绪无效，先处理情绪，再处理事情。
@@ -11,7 +11,12 @@ cssclasses:
 
 ## 快速入口
 
-<div class="hp-shortcuts"><a class="internal-link hp-shortcut" data-href="领域" href="领域"><span class="hp-icon">📁</span><span class="hp-label">领域</span><span class="hp-badge">9</span></a><a class="internal-link hp-shortcut" data-href="项目" href="项目"><span class="hp-icon">📂</span><span class="hp-label">项目</span><span class="hp-badge">2</span></a><a class="internal-link hp-shortcut" data-href="资源" href="资源"><span class="hp-icon">📚</span><span class="hp-label">资源</span><span class="hp-badge">158</span></a><a class="internal-link hp-shortcut" data-href="收件箱" href="收件箱"><span class="hp-icon">📥</span><span class="hp-label">收件箱</span><span class="hp-badge">0</span></a><a class="internal-link hp-shortcut" data-href="归档" href="归档"><span class="hp-icon">📦</span><span class="hp-label">归档</span><span class="hp-badge">0</span></a><a class="internal-link hp-shortcut" data-href="attachments" href="attachments"><span class="hp-icon">📎</span><span class="hp-label">附件</span><span class="hp-badge">3</span></a></div>
+- [[领域|📁 领域]]
+- [[项目|📂 项目]]
+- [[资源|📚 资源]]
+- [[收件箱|📥 收件箱]]
+- [[归档|📦 归档]]
+- [[attachments|📎 附件]]
 
 > [!note] 📁　领域　　`9篇`
 > - [[肺叶切除术]]
