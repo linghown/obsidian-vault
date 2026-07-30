@@ -1,7 +1,7 @@
 /* ================================================================== */
-/* Homepage CSS v17 — eliminate all extra vertical whitespace         */
-/* Fix: top padding, date→quote gap, h2→pills gap, pill bullet dots, */
-/*      question trailing space, Blue Topaz callout min-height        */
+/* Homepage CSS v18 — match reference web preview                    */
+/* Fix: equal-height 3 cards, task date on right, dataview headers,  */
+/*      show icons on note/example/abstract callouts                 */
 /* ================================================================== */
 
 /* @settings
@@ -249,6 +249,7 @@ settings:
 .home .callout[data-callout="note"],
 .home .callout[data-callout="example"],
 .home .callout[data-callout="abstract"] {
+    min-height: 200px;
     margin: 0 0 12px !important;
     padding: 12px 16px 10px !important;
     overflow: hidden;
@@ -282,9 +283,6 @@ settings:
     font-weight: 750 !important;
 }
 
-.home .callout[data-callout="note"] .callout-icon,
-.home .callout[data-callout="example"] .callout-icon,
-.home .callout[data-callout="abstract"] .callout-icon,
 .home .callout[data-callout="note"] .callout-fold,
 .home .callout[data-callout="example"] .callout-fold,
 .home .callout[data-callout="abstract"] .callout-fold {
@@ -391,7 +389,13 @@ settings:
 }
 
 .home .callout[data-callout="info"] .dataview.table-view-table th {
-    display: none;
+    padding: 4px 6px !important;
+    border-bottom: 1px solid var(--hp-border) !important;
+    color: var(--hp-muted);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: left;
+    background: transparent;
 }
 
 .home .callout[data-callout="info"] .dataview.table-view-table td {
@@ -426,9 +430,10 @@ settings:
 }
 
 .home .callout[data-callout="todo"] .task-list-item {
-    display: grid !important;
-    grid-template-columns: 24px minmax(0, 1fr);
-    gap: 4px 10px;
+    display: flex !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
     min-height: 48px;
     margin: 0 !important;
     padding: 10px 14px !important;
@@ -448,15 +453,22 @@ settings:
 }
 
 .home .callout[data-callout="todo"] .task-list-item-checkbox {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+    flex: 0 0 18px;
     width: 18px !important;
     height: 18px !important;
-    margin: 2px 0 0 !important;
+    margin: 0 !important;
 }
 
-.home .callout[data-callout="todo"] .task-list-item > *:not(.task-list-item-checkbox) {
-    grid-column: 2;
+.home .callout[data-callout="todo"] .task-list-item .task-description {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.home .callout[data-callout="todo"] .task-list-item .task-meta {
+    flex: 0 0 auto;
+    margin-left: auto;
+    color: var(--hp-muted);
+    font-size: 12px;
 }
 
 /* ---- Questions (compact) ---- */
