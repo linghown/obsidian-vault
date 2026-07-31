@@ -7,7 +7,6 @@ properties:
     displayName: 类型
   file.mtime:
     displayName: 修改时间
-
 views:
   - type: table
     name: 收件箱
@@ -25,7 +24,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 领域
     filters:
@@ -42,7 +40,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 项目
     filters:
@@ -59,7 +56,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 资源
     filters:
@@ -76,7 +72,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 归档
     filters:
@@ -93,7 +88,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 附件
     filters:
@@ -109,7 +103,6 @@ views:
       - property: file.name
         direction: ASC
     limit: 300
-
   - type: table
     name: 模板
     filters:
