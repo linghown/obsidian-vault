@@ -1,0 +1,121 @@
+properties:
+  file.name:
+    displayName: 文件
+  file.folder:
+    displayName: 所在文件夹
+  file.ext:
+    displayName: 类型
+  file.mtime:
+    displayName: 修改时间
+views:
+  - type: table
+    name: 收件箱
+    filters:
+      and:
+        - file.inFolder("01收件箱")
+        - file.ext == "md"
+        - file.path != "01收件箱/01收件箱.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 领域
+    filters:
+      and:
+        - file.inFolder("03领域")
+        - file.ext == "md"
+        - file.path != "03领域/03领域.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 项目
+    filters:
+      and:
+        - file.inFolder("02项目")
+        - file.ext == "md"
+        - file.path != "02项目/02项目.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 资源
+    filters:
+      and:
+        - file.inFolder("04资源")
+        - file.ext == "md"
+        - file.path != "04资源/04资源.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 归档
+    filters:
+      and:
+        - file.inFolder("05归档")
+        - file.ext == "md"
+        - file.path != "05归档/05归档.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 附件
+    filters:
+      and:
+        - file.inFolder("Attachments")
+        - file.path != "Attachments/Attachments.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300
+  - type: table
+    name: 模板
+    filters:
+      and:
+        - file.inFolder("Templates")
+        - file.ext == "md"
+        - file.path != "Templates/Templates.md"
+    order:
+      - file.name
+      - file.folder
+      - file.ext
+      - file.mtime
+    sort:
+      - property: file.name
+        direction: ASC
+    limit: 300

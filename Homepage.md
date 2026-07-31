@@ -12,13 +12,13 @@ cssclasses:
 ## 快速入口
 
 > [!shortcuts]
-> - [[领域|📁 领域]] `9`
-> - [[项目|📂 项目]] `2`
-> - [[资源|📚 资源]] `158`
-> - [[收件箱|📥 收件箱]] `0`
-> - [[归档|📦 归档]] `0`
-> - [[Attachments/Attachments|📎 附件]] `3`
-> - [[Templates/Templates|🧩 模板]] `1`
+> - [[01收件箱/Mobile Folder Browser.base#领域|📁 领域]] `9`
+> - [[01收件箱/Mobile Folder Browser.base#项目|📂 项目]] `2`
+> - [[01收件箱/Mobile Folder Browser.base#资源|📚 资源]] `158`
+> - [[01收件箱/Mobile Folder Browser.base#收件箱|📥 收件箱]] `0`
+> - [[01收件箱/Mobile Folder Browser.base#归档|📦 归档]] `0`
+> - [[01收件箱/Mobile Folder Browser.base#附件|📎 附件]] `3`
+> - [[01收件箱/Mobile Folder Browser.base#模板|🧩 模板]] `1`
 
 > [!navgrid]
 > > [!note] 📁　领域　　`9篇`
