@@ -6,9 +6,47 @@ cssclasses:
 
 <div class="hp-mobile-head"><span>移动工作台</span><small>Obsidian · Mobile</small></div>
 
-> [!quote] 今日格言
-> 戒掉情绪，所有的事情都是同样的逻辑，情绪无效，先处理情绪，再处理事情。
-> — [[成长|《成长》第1条]]
+```dataviewjs
+const sourcePath = "03领域/成长/每日格言.md";
+const raw = await dv.io.load(sourcePath);
+const quotes = (raw ?? "")
+  .split("\n")
+  .map(line => line.trim())
+  .filter(line => line.startsWith("- "))
+  .map(line => line.slice(2).split("｜").map(part => part.trim()))
+  .filter(parts => parts.length >= 3 && parts[0]);
+
+if (quotes.length) {
+  const now = new Date();
+  const localDay = Math.floor(
+    new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000
+  );
+  const [text, source, link] = quotes[localDay % quotes.length];
+  const root = dv.container;
+  root.classList.add("callout", "hp-daily-quote");
+  root.setAttribute("data-callout", "quote");
+
+  const title = root.createDiv({ cls: "callout-title" });
+  title.createDiv({ cls: "callout-title-inner", text: "今日格言" });
+
+  const content = root.createDiv({ cls: "callout-content" });
+  content.createEl("p", { text });
+  const sourceLine = content.createEl("p", { cls: "hp-daily-quote-source" });
+  sourceLine.appendText("— ");
+  const sourceLink = sourceLine.createEl("a", {
+    cls: "internal-link",
+    text: `《${source}》`,
+    href: link
+  });
+  sourceLink.dataset.href = link;
+  sourceLink.addEventListener("click", event => {
+    event.preventDefault();
+    app.workspace.openLinkText(link, dv.current().file.path);
+  });
+} else {
+  dv.paragraph("今日格言库暂时为空。");
+}
+```
 
 ## 快速入口
 

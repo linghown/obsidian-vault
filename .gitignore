@@ -8,6 +8,7 @@
 .obsidian/cache
 .obsidian/plugins/*/data.json
 !.obsidian/plugins/homepage/data.json
+!.obsidian/plugins/dataview/data.json
 
 # Trash
 .trash/
