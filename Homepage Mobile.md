@@ -14,7 +14,7 @@ cssclasses:
 
 > [!shortcuts]
 > - [[01收件箱/Mobile Folder Browser.base#收件箱|📥 收件箱]] `0`
-> - [[01收件箱/Mobile Folder Browser.base#领域|📁 领域]] `9`
+> - [[01收件箱/Mobile Folder Browser.base#领域|📁 领域]] `10`
 > - [[01收件箱/Mobile Folder Browser.base#项目|📂 项目]] `2`
 > - [[01收件箱/Mobile Folder Browser.base#资源|📚 资源]] `158`
 > - [[01收件箱/Mobile Folder Browser.base#归档|📦 归档]] `0`
@@ -22,7 +22,7 @@ cssclasses:
 > - [[01收件箱/Mobile Folder Browser.base#模板|🧩 模板]] `1`
 
 > [!navgrid]
-> > [!note] 📁　领域　　`9篇`
+> > [!note] 📁　领域　　`10篇`
 > > - [[肺叶切除术|肺叶切除术]]
 > > - [[肺段切除术|肺段切除术]]
 > > - [[清扫淋巴结|清扫淋巴结]]
