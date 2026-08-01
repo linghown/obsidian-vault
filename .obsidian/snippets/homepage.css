@@ -959,22 +959,6 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
 
 /* Mobile-only homepage: plugin-free and deliberately compact */
 
-/*
- * Mobile daily quote fallback:
- * - Hide the raw DataviewJS source or its error container when the plugin
- *   is unavailable on mobile.
- * - When DataviewJS renders successfully, hide the ordinary Markdown
- *   fallback quote and keep the generated daily quote.
- */
-.home-mobile pre:has(> code.language-dataviewjs),
-.home-mobile .block-language-dataviewjs:not(.hp-daily-quote) {
-    display: none !important;
-}
-
-.home-mobile:has(.hp-daily-quote)
-    .callout[data-callout="quote"]:not(.hp-daily-quote) {
-    display: none !important;
-}
 .home-mobile .hp-mobile-head {
     display: flex;
     align-items: baseline;
