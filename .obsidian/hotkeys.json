@@ -31,5 +31,13 @@
       ],
       "key": "D"
     }
+  ],
+  "quickadd:runQuickAdd": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "W"
+    }
   ]
 }
