@@ -1,7 +1,10 @@
 Gorillaback18  14725836@
 kyozclove   Wqnmlgb8
 客户端下载Gmail，用自己手机，手机号码注册，因为会收集设备信息
-
+安卓手机 Google Play 订阅Chatgpt 工行星座VISA可以用
+https://www.youtube.com/watch?v=o9GhNogsFuI
+建议用美国免税州地址生成器
+https://usaddressgen.com/tax-free-address/
 
 # 一.Google Play订阅
 >   
