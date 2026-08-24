@@ -81,33 +81,41 @@ settings:
     min-width: 0;
 }
 
-/* Top date line */
-.home .el-p:has(.hp-brand),
-.home p:has(.hp-brand) {
-    margin: 0 0 22px !important;
-}
-
-.home .el-p:has(.hp-brand) > p,
-.home p:has(.hp-brand) {
+/* Mac date and time bar */
+.mac-home .hp-datebar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     min-height: 32px;
-    margin: 0 !important;
-    padding: 0 0 12px !important;
+    margin: 0 0 22px;
+    padding: 0 0 12px;
     border-bottom: 2px solid var(--hp-border);
     color: var(--hp-muted);
     font-size: 15px;
     line-height: 1.5;
+    white-space: nowrap;
 }
 
-.home .el-p:has(.hp-brand) strong,
-.home p:has(.hp-brand) strong {
-    margin-left: 4px;
+.mac-home .hp-datebar-date {
+    font-variant-numeric: tabular-nums;
+}
+
+.mac-home .hp-datebar-weekday,
+.mac-home .hp-datebar-time {
     color: var(--hp-accent);
+    font-weight: 650;
 }
 
-.home .hp-brand {
-    float: right;
+.mac-home .hp-datebar-time {
+    padding-left: 10px;
+    border-left: 1px solid var(--hp-border);
+    font-variant-numeric: tabular-nums;
+}
+
+.mac-home .hp-datebar-brand {
+    margin-left: auto;
     color: var(--hp-muted);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
     letter-spacing: .02em;
 }
@@ -1010,7 +1018,13 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
         padding-top: 12px !important;
     }
 
-    .home .hp-brand {
+    .mac-home .hp-datebar {
+        gap: 8px;
+        margin-bottom: 18px;
+        font-size: 14px;
+    }
+
+    .mac-home .hp-datebar-brand {
         display: none;
     }
 

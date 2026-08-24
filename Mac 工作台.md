@@ -6,7 +6,22 @@ cssclasses:
 
 # ⌘ 工作台
 
-`=dateformat(date(today), "yyyy年MM月dd日")`　**`=dateformat(date(today), "cccc")`**　<span class="hp-brand">Obsidian · Mac</span>
+```dataviewjs
+const now = new Date();
+const dateLabel = new Intl.DateTimeFormat("zh-CN", {
+  year: "numeric", month: "long", day: "numeric"
+}).format(now);
+const weekdayLabel = new Intl.DateTimeFormat("zh-CN", { weekday: "long" }).format(now);
+const timeLabel = new Intl.DateTimeFormat("zh-CN", {
+  hour: "2-digit", minute: "2-digit", hour12: false
+}).format(now);
+
+const datebar = dv.container.createDiv({ cls: "hp-datebar" });
+datebar.createSpan({ cls: "hp-datebar-date", text: dateLabel });
+datebar.createSpan({ cls: "hp-datebar-weekday", text: weekdayLabel });
+datebar.createSpan({ cls: "hp-datebar-time", text: timeLabel });
+datebar.createSpan({ cls: "hp-datebar-brand", text: "Obsidian · Mac" });
+```
 
 ```dataviewjs
 const sourcePath = "03领域/成长/每日格言.md";
