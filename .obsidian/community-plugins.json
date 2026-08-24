@@ -15,5 +15,7 @@
   "templater-obsidian",
   "codex-panel",
   "obsidian-local-rest-api",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-outliner",
+  "quickadd"
 ]
