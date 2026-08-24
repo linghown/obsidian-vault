@@ -1,21 +1,11 @@
 [
-  "obsidian-importer",
-  "templater-obsidian",
-  "obsidian-excalidraw-plugin",
   "dataview",
-  "homepage",
-  "recent-files-obsidian",
-  "obsidian-git",
-  "obsidian-tasks-plugin",
-  "tag-wrangler",
-  "omnisearch",
-  "table-editor-obsidian",
-  "codex-panel",
   "editing-toolbar",
-  "explorer-sort",
+  "homepage",
   "homepage-task-grace",
-  "obsidian-outliner",
-  "quickadd",
+  "recent-files-obsidian",
   "obsidian-style-settings",
-  "folder-color-system"
+  "obsidian-tasks-plugin",
+  "obsidian-excalidraw-plugin",
+  "table-editor-obsidian"
 ]
