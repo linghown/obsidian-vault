@@ -7,5 +7,10 @@
   "obsidian-style-settings",
   "obsidian-tasks-plugin",
   "obsidian-excalidraw-plugin",
-  "table-editor-obsidian"
+  "table-editor-obsidian",
+  "explorer-sort",
+  "folder-color-system",
+  "omnisearch",
+  "tag-wrangler",
+  "templater-obsidian"
 ]
