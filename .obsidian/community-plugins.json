@@ -12,5 +12,8 @@
   "folder-color-system",
   "omnisearch",
   "tag-wrangler",
-  "templater-obsidian"
+  "templater-obsidian",
+  "codex-panel",
+  "obsidian-local-rest-api",
+  "obsidian-git"
 ]
