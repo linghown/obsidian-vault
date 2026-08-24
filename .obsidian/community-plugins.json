@@ -1,18 +1,12 @@
 [
-  "obsidian-excalidraw-plugin",
-  "templater-obsidian",
-  "dataview",
   "obsidian-importer",
-  "obsidian-git",
-  "codex-panel",
-  "editing-toolbar",
-  "table-editor-obsidian",
-  "quickadd",
-  "calendar",
-  "obsidian-tasks-plugin",
-  "recent-files-obsidian",
-  "obsidian-outliner",
+  "templater-obsidian",
+  "obsidian-excalidraw-plugin",
+  "dataview",
   "homepage",
-  "homepage-task-grace",
-  "obsidian-style-settings"
+  "recent-files-obsidian",
+  "obsidian-git",
+  "obsidian-tasks-plugin",
+  "tag-wrangler",
+  "omnisearch"
 ]

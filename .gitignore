@@ -4,22 +4,13 @@
 .obsidian/workspace.json.bak
 .obsidian/graph.json
 
-# Obsidian cache
+# Obsidian cache and OS files
 .obsidian/cache
 .obsidian/plugins/*/data.json
 !.obsidian/plugins/homepage/data.json
 !.obsidian/plugins/dataview/data.json
-
-# Trash
 .trash/
-
-# OS files
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Claude/AI temp
 .claudian/
-
-# Large files over GitHub 100MB push limit (local copy kept, not pushed)
-资源/Evernote/电刀 2/_resources/电刀_2.resources/2021-01-25 21.37.58.gif
