@@ -434,6 +434,11 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     gap: var(--hp-gap);
 }
 
+/* DataviewJS generates the three cards at runtime; let them participate in the grid directly. */
+.home .callout[data-callout="navgrid"] > .callout-content > .block-language-dataviewjs {
+    display: contents;
+}
+
 .home .callout[data-callout="navgrid"] .callout[data-callout="note"],
 .home .callout[data-callout="navgrid"] .callout[data-callout="example"],
 .home .callout[data-callout="navgrid"] .callout[data-callout="abstract"] {

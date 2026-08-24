@@ -33,36 +33,47 @@ const quotes = (raw ?? "")
   .map(line => line.slice(2).split("｜").map(part => part.trim()))
   .filter(parts => parts.length >= 3 && parts[0]);
 
-if (quotes.length) {
-  const now = new Date();
-  const localDay = Math.floor(
-    new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000
-  );
-  const [text, source, link] = quotes[localDay % quotes.length];
-  const root = dv.container;
-  root.classList.add("callout", "hp-daily-quote");
-  root.setAttribute("data-callout", "quote");
+const root = dv.container;
+root.classList.add("callout", "hp-daily-quote");
+root.setAttribute("data-callout", "quote");
 
+const renderQuote = () => {
+  root.replaceChildren();
   const title = root.createDiv({ cls: "callout-title" });
-  title.createDiv({ cls: "callout-title-inner", text: "每日格言" });
-
+  title.createDiv({ cls: "callout-title-inner", text: "今日格言" });
   const content = root.createDiv({ cls: "callout-content" });
+
+  if (!quotes.length) {
+    content.createEl("p", { text: "今日格言库暂时为空。" });
+    return;
+  }
+
+  const now = new Date();
+  const localDay = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
+  const [text, source, link] = quotes[localDay % quotes.length];
   content.createEl("p", { text });
   const sourceLine = content.createEl("p", { cls: "hp-daily-quote-source" });
   sourceLine.appendText("— ");
-  const sourceLink = sourceLine.createEl("a", {
-    cls: "internal-link",
-    text: `《${source}》`,
-    href: link
-  });
+  const sourceLink = sourceLine.createEl("a", { cls: "internal-link", text: `《${source}》`, href: link });
   sourceLink.dataset.href = link;
   sourceLink.addEventListener("click", event => {
     event.preventDefault();
     app.workspace.openLinkText(link, dv.current().file.path);
   });
-} else {
-  dv.paragraph("每日格言库暂时为空。");
-}
+};
+
+const refreshAtNextMidnight = () => {
+  const now = new Date();
+  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  window.setTimeout(() => {
+    if (!root.isConnected) return;
+    renderQuote();
+    refreshAtNextMidnight();
+  }, Math.max(1000, next.getTime() - now.getTime() + 100));
+};
+
+renderQuote();
+refreshAtNextMidnight();
 ```
 
 ## 快速入口

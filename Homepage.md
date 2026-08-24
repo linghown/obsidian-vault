@@ -21,67 +21,109 @@ const quotes = (raw ?? "")
   .map(line => line.slice(2).split("｜").map(part => part.trim()))
   .filter(parts => parts.length >= 3 && parts[0]);
 
-if (quotes.length) {
-  const now = new Date();
-  const localDay = Math.floor(
-    new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000
-  );
-  const [text, source, link] = quotes[localDay % quotes.length];
-  const root = dv.container;
-  root.classList.add("callout", "hp-daily-quote");
-  root.setAttribute("data-callout", "quote");
+const root = dv.container;
+root.classList.add("callout", "hp-daily-quote");
+root.setAttribute("data-callout", "quote");
 
+const renderQuote = () => {
+  root.replaceChildren();
   const title = root.createDiv({ cls: "callout-title" });
   title.createDiv({ cls: "callout-title-inner", text: "今日格言" });
-
   const content = root.createDiv({ cls: "callout-content" });
+
+  if (!quotes.length) {
+    content.createEl("p", { text: "今日格言库暂时为空。" });
+    return;
+  }
+
+  const now = new Date();
+  const localDay = Math.floor(new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime() / 86400000);
+  const [text, source, link] = quotes[localDay % quotes.length];
   content.createEl("p", { text });
   const sourceLine = content.createEl("p", { cls: "hp-daily-quote-source" });
   sourceLine.appendText("— ");
-  const sourceLink = sourceLine.createEl("a", {
-    cls: "internal-link",
-    text: `《${source}》`,
-    href: link
-  });
+  const sourceLink = sourceLine.createEl("a", { cls: "internal-link", text: `《${source}》`, href: link });
   sourceLink.dataset.href = link;
   sourceLink.addEventListener("click", event => {
     event.preventDefault();
     app.workspace.openLinkText(link, dv.current().file.path);
   });
-} else {
-  dv.paragraph("今日格言库暂时为空。");
-}
+};
+
+const refreshAtNextMidnight = () => {
+  const now = new Date();
+  const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  window.setTimeout(() => {
+    if (!root.isConnected) return;
+    renderQuote();
+    refreshAtNextMidnight();
+  }, Math.max(1000, next.getTime() - now.getTime() + 100));
+};
+
+renderQuote();
+refreshAtNextMidnight();
 ```
 
 ## 快速入口
 
 > [!shortcuts]
-> - [[01收件箱/Mobile Folder Browser.base#领域|📁 领域]] `10`
-> - [[01收件箱/Mobile Folder Browser.base#项目|📂 项目]] `2`
-> - [[01收件箱/Mobile Folder Browser.base#资源|📚 资源]] `158`
-> - [[01收件箱/Mobile Folder Browser.base#收件箱|📥 收件箱]] `0`
-> - [[01收件箱/Mobile Folder Browser.base#归档|📦 归档]] `0`
-> - [[01收件箱/Mobile Folder Browser.base#附件|📎 附件]] `3`
-> - [[01收件箱/Mobile Folder Browser.base#模板|🧩 模板]] `1`
+> ```dataviewjs
+> const destinations = [
+>   { icon: "📁", label: "领域", folder: "03领域", index: "03领域/03领域.md", target: "01收件箱/Mobile Folder Browser.base#领域" },
+>   { icon: "📂", label: "项目", folder: "02项目", index: "02项目/02项目.md", target: "01收件箱/Mobile Folder Browser.base#项目" },
+>   { icon: "📚", label: "资源", folder: "04资源", index: "04资源/04资源.md", target: "01收件箱/Mobile Folder Browser.base#资源" },
+>   { icon: "📥", label: "收件箱", folder: "01收件箱", index: "01收件箱/01收件箱.md", target: "01收件箱/Mobile Folder Browser.base#收件箱" },
+>   { icon: "📦", label: "归档", folder: "05归档", index: "05归档/05归档.md", target: "01收件箱/Mobile Folder Browser.base#归档" },
+>   { icon: "📎", label: "附件", folder: "Attachments", index: "Attachments/Attachments.md", target: "01收件箱/Mobile Folder Browser.base#附件", attachments: true },
+>   { icon: "🧩", label: "模板", folder: "Templates", index: "Templates/Templates.md", target: "01收件箱/Mobile Folder Browser.base#模板" }
+> ];
+>
+> const list = dv.container.createEl("ul");
+> for (const item of destinations) {
+>   const count = item.attachments
+>     ? app.vault.getFiles().filter(file => file.path.startsWith(`${item.folder}/`) && file.extension !== "md").length
+>     : dv.pages(`"${item.folder}"`).where(page => page.file.path !== item.index).length;
+>   const row = list.createEl("li");
+>   const link = row.createEl("a", { cls: "internal-link", text: `${item.icon} ${item.label}`, href: item.target });
+>   link.dataset.href = item.target;
+>   link.addEventListener("click", event => {
+>     event.preventDefault();
+>     app.workspace.openLinkText(item.target, dv.current().file.path);
+>   });
+>   row.createEl("code", { text: String(count) });
+> }
+> ```
 
 > [!navgrid]
-> > [!note] 📁　领域　　`10篇`
-> > - [[肺叶切除术]]
-> > - [[肺段切除术]]
-> > - [[清扫淋巴结]]
-> > - [[开放肺叶切或全肺切]]
-> > - [[成长]]
+> ```dataviewjs
+> const collections = [
+>   { icon: "📁", label: "领域", folder: "03领域", index: "03领域/03领域.md", type: "note" },
+>   { icon: "📂", label: "项目", folder: "02项目", index: "02项目/02项目.md", type: "example" },
+>   { icon: "📚", label: "资源", folder: "04资源", index: "04资源/04资源.md", type: "abstract" }
+> ];
 >
-> > [!example] 📂　项目　　`2篇`
-> > - [[新手小白|新手小白（SCI写作打怪版）]]
-> > - [[1.多发肺大疱|文献汇报 · 多发肺大疱]]
->
-> > [!abstract] 📚　资源　　`158篇`
-> > - [[纵隔肿瘤切除]]
-> > - [[手汗症]]
-> > - [[特殊病例]]
-> > - [[胸腔镜下右上肺癌根治术]]
-> > - [[肺癌超进展]]
+> for (const collection of collections) {
+>   const pages = Array.from(dv.pages(`"${collection.folder}"`)
+>     .where(page => page.file.path !== collection.index))
+>     .sort((a, b) => b.file.mtime.toMillis() - a.file.mtime.toMillis());
+>   const card = dv.container.createDiv({ cls: "callout" });
+>   card.dataset.callout = collection.type;
+>   const title = card.createDiv({ cls: "callout-title" });
+>   title.createDiv({ cls: "callout-title-inner", text: `${collection.icon}　${collection.label}　　${pages.length}篇` });
+>   const content = card.createDiv({ cls: "callout-content" });
+>   const list = content.createEl("ul");
+>   for (const page of pages.slice(0, 5)) {
+>     const row = list.createEl("li");
+>     const link = row.createEl("a", { cls: "internal-link", text: page.file.name, href: page.file.path });
+>     link.dataset.href = page.file.path;
+>     link.addEventListener("click", event => {
+>       event.preventDefault();
+>       app.workspace.openLinkText(page.file.path, dv.current().file.path);
+>     });
+>   }
+>   if (pages.length === 0) list.createEl("li", { text: "暂无笔记" });
+> }
+> ```
 
 > [!workgrid]
 > > [!info] 最近编辑
