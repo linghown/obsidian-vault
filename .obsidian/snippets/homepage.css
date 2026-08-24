@@ -340,6 +340,80 @@ body.clutter-free-headings .markdown-source-view.home .cm-header::before,
     pointer-events: none;
 }
 
+/* Mac desktop homepage: a horizontal dock and softer macOS-style cards. */
+.mac-home .callout[data-callout="shortcuts"] {
+    margin: 24px 0 28px !important;
+}
+
+.mac-home .callout[data-callout="shortcuts"] ul {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    overflow-x: auto;
+    padding: 2px 1px 8px !important;
+    scrollbar-width: thin;
+}
+
+.mac-home .callout[data-callout="shortcuts"] li {
+    flex: 1 0 116px;
+    min-height: 58px;
+    padding: 0 12px !important;
+    border-color: color-mix(in srgb, var(--hp-border) 78%, white) !important;
+    border-radius: 14px;
+    background: linear-gradient(145deg, var(--hp-surface), var(--hp-surface-soft)) !important;
+    box-shadow: 0 2px 7px rgba(38, 59, 78, .05);
+}
+
+.mac-home .callout[data-callout="shortcuts"] li a {
+    min-height: 58px;
+    padding: 12px 0 4px;
+    color: var(--hp-text) !important;
+    font-size: 15px;
+    font-weight: 650;
+}
+
+.mac-home .callout[data-callout="shortcuts"] li code {
+    top: 7px;
+    right: 8px;
+    min-width: 20px;
+    padding: 1px 5px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--hp-accent) 10%, var(--background-primary)) !important;
+    color: var(--hp-accent);
+    font-size: 10px;
+    font-weight: 750;
+    line-height: 16px;
+}
+
+.mac-home .callout[data-callout="shortcuts"] li:has(a:hover) {
+    box-shadow: 0 8px 18px rgba(38, 59, 78, .12);
+    transform: translateY(-2px);
+}
+
+.mac-home .callout[data-callout="quote"] {
+    margin-bottom: 2px !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 22px rgba(74, 158, 255, .09) !important;
+}
+
+.mac-home .callout[data-callout="tip"] {
+    margin: 8px 0 22px !important;
+    padding: 13px 18px !important;
+    border: 1px solid var(--hp-border) !important;
+    border-radius: 14px !important;
+    background: var(--hp-surface) !important;
+    box-shadow: 0 2px 8px rgba(38, 59, 78, .04) !important;
+}
+
+.mac-home .callout[data-callout="tip"] .callout-title {
+    color: var(--hp-accent);
+    font-weight: 750;
+}
+
+.mac-home .callout[data-callout="tip"] .callout-content {
+    padding-top: 3px;
+}
+
 /* Three navigation cards — local grid only */
 .home .callout[data-callout="navgrid"] {
     margin-bottom: 22px !important;

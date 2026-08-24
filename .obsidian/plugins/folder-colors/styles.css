@@ -1,0 +1,1420 @@
+/* =========================================================
+   BASE VARIABLES
+========================================================= */
+:root {
+  --font-size: 14px;
+  --font-family: inherit;
+  --font-weight: 400;
+  --font-style: normal;
+  --text-decoration: none;
+  --text-transform: none;
+  --font-variant: normal;
+  --letter-spacing: 0px;
+  --word-spacing: 0px;
+  --line-height: 1.4;
+  --text-color-dark: #ffffff;
+  --text-color-light: #000000;
+
+  --active-folder-text-color-dark: 255,255,255;
+  --active-folder-text-color-light: 0,0,0;
+  --active-folder-text-color: var(--active-folder-text-color-dark);
+  --active-folder-text-opacity: 1;
+  --active-folder-font-size: 14px;
+  --active-folder-font-family: inherit;
+  --active-folder-font-weight: 600;
+  --active-folder-font-style: normal;
+  --active-folder-text-decoration: none;
+  --active-folder-text-transform: none;
+  --active-folder-font-variant: normal;
+  --active-folder-letter-spacing: 0px;
+  --active-folder-word-spacing: 0px;
+  --active-folder-line-height: 1.4;
+
+  --background-opacity: 0.75;
+  --background-custom-color-dark: 127,106,168;
+  --background-custom-color-light: 127,106,168;
+  --background-custom-color-value: var(--background-custom-color-dark);
+  --border-opacity: 1;
+  --border-custom-color-dark: 216,216,216;
+  --border-custom-color-light: 216,216,216;
+  --border-custom-color-value: var(--border-custom-color-dark);
+  --left-border-width: 4px;
+  --right-border-width: 4px;
+  --top-border-width: 1px;
+  --bottom-border-width: 1px;
+  --left-border-radius: 8px;
+  --right-border-radius: 8px;
+  --right-dot-size: 7px;
+  --right-dot-offset: 8px;
+
+  --folder-icon-color-dark: 216,216,216;
+  --folder-icon-color-light: 102,102,102;
+  --folder-icon-color: var(--folder-icon-color-dark);
+  --folder-icon-opacity: 1;
+  --folder-icon-size: 16px;
+  --folder-icon-stroke-width: 1.5;
+  --file-icon-color-dark: 216,216,216;
+  --file-icon-color-light: 102,102,102;
+  --file-icon-color: var(--file-icon-color-dark);
+  --file-icon-opacity: 1;
+  --file-icon-size: 14px;
+  --file-icon-stroke-width: 1.5;
+
+  --active-bg-custom-color-dark: 127,106,168;
+  --active-bg-custom-color-light: 127,106,168;
+  --active-bg-custom-color: var(--active-bg-custom-color-dark);
+  --active-bg-opacity: 0.35;
+  --active-border-custom-color-dark: 255,255,255;
+  --active-border-custom-color-light: 0,0,0;
+  --active-border-custom-color: var(--active-border-custom-color-dark);
+  --active-border-opacity: 1;
+  --active-left-border-width: 4px;
+  --active-right-border-width: 4px;
+  --active-top-border-width: 1px;
+  --active-bottom-border-width: 1px;
+  --active-left-border-radius: 8px;
+  --active-right-border-radius: 8px;
+  --active-right-dot-size: 7px;
+  --active-right-dot-offset: 8px;
+  --active-text-color-dark: 255,255,255;
+  --active-text-color-light: 0,0,0;
+  --active-text-color: var(--active-text-color-dark);
+  --active-text-opacity: 1;
+  --active-font-size: 14px;
+  --active-font-family: inherit;
+  --active-font-weight: 700;
+  --active-font-style: normal;
+  --active-text-decoration: none;
+  --active-text-transform: none;
+  --active-font-variant: normal;
+  --active-letter-spacing: 0px;
+  --active-word-spacing: 0px;
+  --active-line-height: 1.4;
+  --active-icon-color-dark: 255,255,255;
+  --active-icon-color-light: 0,0,0;
+  --active-folder-text-color: var(--active-folder-text-color-dark);
+  --active-icon-color: var(--active-icon-color-dark);
+  --active-icon-opacity: 1;
+  --active-icon-size: 14px;
+  --active-icon-stroke-width: 1.5;
+  --active-icon-mask: var(--lucide-file);
+  --active-border-line-style: solid;
+
+  --folder-color-custom-dark-1: 255,107,157;
+  --folder-color-custom-dark-2: 255,142,114;
+  --folder-color-custom-dark-3: 255,198,109;
+  --folder-color-custom-dark-4: 229,214,111;
+  --folder-color-custom-dark-5: 126,214,165;
+  --folder-color-custom-dark-6: 101,214,206;
+  --folder-color-custom-dark-7: 114,199,255;
+  --folder-color-custom-dark-8: 143,167,255;
+  --folder-color-custom-dark-9: 184,149,255;
+  --folder-color-custom-dark-10: 227,140,255;
+  --folder-color-custom-light-1: 255,107,157;
+  --folder-color-custom-light-2: 255,142,114;
+  --folder-color-custom-light-3: 255,198,109;
+  --folder-color-custom-light-4: 229,214,111;
+  --folder-color-custom-light-5: 126,214,165;
+  --folder-color-custom-light-6: 101,214,206;
+  --folder-color-custom-light-7: 114,199,255;
+  --folder-color-custom-light-8: 143,167,255;
+  --folder-color-custom-light-9: 184,149,255;
+  --folder-color-custom-light-10: 227,140,255;
+
+  --folder-color-custom-1: var(--folder-color-custom-dark-1);
+  --folder-color-custom-2: var(--folder-color-custom-dark-2);
+  --folder-color-custom-3: var(--folder-color-custom-dark-3);
+  --folder-color-custom-4: var(--folder-color-custom-dark-4);
+  --folder-color-custom-5: var(--folder-color-custom-dark-5);
+  --folder-color-custom-6: var(--folder-color-custom-dark-6);
+  --folder-color-custom-7: var(--folder-color-custom-dark-7);
+  --folder-color-custom-8: var(--folder-color-custom-dark-8);
+  --folder-color-custom-9: var(--folder-color-custom-dark-9);
+  --folder-color-custom-10: var(--folder-color-custom-dark-10);
+
+  --f1: 220,150,190;
+  --f2: 210,140,215;
+  --f3: 195,135,225;
+  --f4: 175,140,230;
+  --f5: 160,150,235;
+  --f6: 150,160,235;
+  --f7: 170,145,230;
+  --f8: 185,140,220;
+  --f9: 200,145,210;
+  --f10: 215,155,200;
+
+  --border-line-style: solid;
+  --folder-icon-mask: none;
+  --folder-open-icon-mask: var(--folder-icon-mask);
+  --file-icon-mask: none;
+}
+
+body.theme-dark {
+  --text-color: var(--text-color-dark);
+  --background-custom-color-value: var(--background-custom-color-dark);
+  --border-custom-color-value: var(--border-custom-color-dark);
+  --folder-icon-color: var(--folder-icon-color-dark);
+  --file-icon-color: var(--file-icon-color-dark);
+  --active-bg-custom-color: var(--active-bg-custom-color-dark);
+  --active-border-custom-color: var(--active-border-custom-color-dark);
+  --active-text-color: var(--active-text-color-dark);
+  --active-folder-text-color: var(--active-folder-text-color-dark);
+  --active-icon-color: var(--active-icon-color-dark);
+  --folder-color-custom-1: var(--folder-color-custom-dark-1);
+  --folder-color-custom-2: var(--folder-color-custom-dark-2);
+  --folder-color-custom-3: var(--folder-color-custom-dark-3);
+  --folder-color-custom-4: var(--folder-color-custom-dark-4);
+  --folder-color-custom-5: var(--folder-color-custom-dark-5);
+  --folder-color-custom-6: var(--folder-color-custom-dark-6);
+  --folder-color-custom-7: var(--folder-color-custom-dark-7);
+  --folder-color-custom-8: var(--folder-color-custom-dark-8);
+  --folder-color-custom-9: var(--folder-color-custom-dark-9);
+  --folder-color-custom-10: var(--folder-color-custom-dark-10);
+}
+
+body.theme-light {
+  --text-color: var(--text-color-light);
+  --background-custom-color-value: var(--background-custom-color-light);
+  --border-custom-color-value: var(--border-custom-color-light);
+  --folder-icon-color: var(--folder-icon-color-light);
+  --file-icon-color: var(--file-icon-color-light);
+  --active-bg-custom-color: var(--active-bg-custom-color-light);
+  --active-border-custom-color: var(--active-border-custom-color-light);
+  --active-text-color: var(--active-text-color-light);
+  --active-folder-text-color: var(--active-folder-text-color-light);
+  --active-icon-color: var(--active-icon-color-light);
+  --folder-color-custom-1: var(--folder-color-custom-light-1);
+  --folder-color-custom-2: var(--folder-color-custom-light-2);
+  --folder-color-custom-3: var(--folder-color-custom-light-3);
+  --folder-color-custom-4: var(--folder-color-custom-light-4);
+  --folder-color-custom-5: var(--folder-color-custom-light-5);
+  --folder-color-custom-6: var(--folder-color-custom-light-6);
+  --folder-color-custom-7: var(--folder-color-custom-light-7);
+  --folder-color-custom-8: var(--folder-color-custom-light-8);
+  --folder-color-custom-9: var(--folder-color-custom-light-9);
+  --folder-color-custom-10: var(--folder-color-custom-light-10);
+}
+
+/* =========================================================
+   BUILT-IN PALETTES
+========================================================= */
+body.palette-pink {
+  --f1: 220,150,190;
+  --f2: 210,140,215;
+  --f3: 195,135,225;
+  --f4: 175,140,230;
+  --f5: 160,150,235;
+  --f6: 150,160,235;
+  --f7: 170,145,230;
+  --f8: 185,140,220;
+  --f9: 200,145,210;
+  --f10: 215,155,200;
+}
+
+body.palette-blue {
+  --f1: 100,145,215;
+  --f2: 110,155,225;
+  --f3: 120,165,235;
+  --f4: 130,175,245;
+  --f5: 140,185,255;
+  --f6: 150,195,255;
+  --f7: 160,205,255;
+  --f8: 145,190,245;
+  --f9: 125,170,235;
+  --f10: 105,150,225;
+}
+
+body.palette-rainbow {
+  --f1: 255,80,90;
+  --f2: 255,125,65;
+  --f3: 255,170,65;
+  --f4: 245,210,70;
+  --f5: 135,215,90;
+  --f6: 60,205,145;
+  --f7: 50,195,215;
+  --f8: 70,145,255;
+  --f9: 135,105,245;
+  --f10: 210,95,220;
+}
+
+body.palette-mono {
+  --f1: 220,205,255;
+  --f2: 210,190,255;
+  --f3: 200,175,255;
+  --f4: 190,160,250;
+  --f5: 180,150,245;
+  --f6: 170,140,235;
+  --f7: 160,130,225;
+  --f8: 150,120,215;
+  --f9: 140,110,205;
+  --f10: 130,100,195;
+}
+
+body.palette-neon {
+  --f1: 0,255,200;
+  --f2: 0,220,255;
+  --f3: 60,140,255;
+  --f4: 120,0,255;
+  --f5: 200,0,255;
+  --f6: 255,0,200;
+  --f7: 255,50,120;
+  --f8: 255,170,0;
+  --f9: 255,255,0;
+  --f10: 0,255,110;
+}
+
+body.palette-forest {
+  --f1: 35,75,50;
+  --f2: 45,95,65;
+  --f3: 55,115,75;
+  --f4: 65,135,85;
+  --f5: 80,155,100;
+  --f6: 95,175,115;
+  --f7: 115,195,135;
+  --f8: 135,210,155;
+  --f9: 160,225,180;
+  --f10: 185,240,205;
+}
+
+body.palette-frost {
+  --f1: 175,240,255;
+  --f2: 145,225,255;
+  --f3: 120,210,255;
+  --f4: 105,190,250;
+  --f5: 120,175,245;
+  --f6: 145,160,245;
+  --f7: 170,155,245;
+  --f8: 195,165,250;
+  --f9: 215,185,255;
+  --f10: 235,210,255;
+}
+
+body.palette-sakura {
+  --f1: 255,225,238;
+  --f2: 255,210,232;
+  --f3: 250,195,225;
+  --f4: 245,180,218;
+  --f5: 240,165,210;
+  --f6: 235,150,202;
+  --f7: 230,140,195;
+  --f8: 240,165,210;
+  --f9: 250,190,225;
+  --f10: 255,215,238;
+}
+
+body.palette-ocean {
+  --f1: 25,65,115;
+  --f2: 25,85,135;
+  --f3: 25,105,155;
+  --f4: 30,125,175;
+  --f5: 35,145,195;
+  --f6: 45,165,210;
+  --f7: 60,185,225;
+  --f8: 80,205,235;
+  --f9: 105,220,245;
+  --f10: 135,235,255;
+}
+
+body.palette-sunset {
+  --f1: 255,90,75;
+  --f2: 255,110,80;
+  --f3: 255,130,85;
+  --f4: 255,150,95;
+  --f5: 255,175,110;
+  --f6: 250,145,145;
+  --f7: 230,120,170;
+  --f8: 205,105,185;
+  --f9: 170,95,185;
+  --f10: 135,85,175;
+}
+
+body.palette-autumn {
+  --f1: 165,60,35;
+  --f2: 185,75,40;
+  --f3: 205,95,45;
+  --f4: 220,115,50;
+  --f5: 235,140,60;
+  --f6: 225,160,65;
+  --f7: 200,150,60;
+  --f8: 170,125,50;
+  --f9: 135,95,45;
+  --f10: 105,70,40;
+}
+
+body.palette-candy {
+  --f1: 255,165,195;
+  --f2: 255,185,170;
+  --f3: 255,210,165;
+  --f4: 255,235,170;
+  --f5: 205,240,180;
+  --f6: 175,235,205;
+  --f7: 165,220,245;
+  --f8: 185,195,255;
+  --f9: 220,180,255;
+  --f10: 250,180,225;
+}
+
+body.palette-cyberpunk {
+  --f1: 255,0,120;
+  --f2: 255,60,0;
+  --f3: 255,210,0;
+  --f4: 0,255,140;
+  --f5: 0,240,255;
+  --f6: 30,130,255;
+  --f7: 110,50,255;
+  --f8: 190,0,255;
+  --f9: 255,0,200;
+  --f10: 255,50,100;
+}
+
+body.palette-earth {
+  --f1: 130,90,65;
+  --f2: 150,105,75;
+  --f3: 170,125,85;
+  --f4: 185,145,95;
+  --f5: 165,150,90;
+  --f6: 140,145,85;
+  --f7: 115,130,80;
+  --f8: 105,115,80;
+  --f9: 135,110,90;
+  --f10: 165,140,115;
+}
+
+body.palette-mint {
+  --f1: 165,245,220;
+  --f2: 150,235,210;
+  --f3: 135,225,200;
+  --f4: 120,215,190;
+  --f5: 105,205,180;
+  --f6: 90,195,170;
+  --f7: 80,180,160;
+  --f8: 100,195,170;
+  --f9: 125,215,190;
+  --f10: 150,235,210;
+}
+
+body.palette-grape {
+  --f1: 90,40,120;
+  --f2: 105,50,135;
+  --f3: 120,60,150;
+  --f4: 140,70,170;
+  --f5: 160,85,190;
+  --f6: 180,100,210;
+  --f7: 200,120,225;
+  --f8: 215,145,235;
+  --f9: 230,170,245;
+  --f10: 242,195,255;
+}
+
+body.palette-midnight {
+  --f1: 25,30,55;
+  --f2: 35,40,70;
+  --f3: 40,50,85;
+  --f4: 50,60,100;
+  --f5: 60,75,115;
+  --f6: 70,90,130;
+  --f7: 85,105,145;
+  --f8: 100,120,165;
+  --f9: 120,140,185;
+  --f10: 145,165,210;
+}
+
+body.palette-rosegold {
+  --f1: 190,130,125;
+  --f2: 200,140,130;
+  --f3: 210,150,140;
+  --f4: 220,160,150;
+  --f5: 230,170,160;
+  --f6: 235,180,165;
+  --f7: 240,190,175;
+  --f8: 245,200,185;
+  --f9: 248,210,195;
+  --f10: 250,220,205;
+}
+
+body.palette-fire {
+  --f1: 255,230,90;
+  --f2: 255,205,70;
+  --f3: 255,180,60;
+  --f4: 255,155,50;
+  --f5: 255,130,45;
+  --f6: 250,105,40;
+  --f7: 240,80,35;
+  --f8: 220,55,30;
+  --f9: 190,35,25;
+  --f10: 150,20,25;
+}
+
+body.palette-teal {
+  --f1: 130,235,225;
+  --f2: 110,225,215;
+  --f3: 90,215,205;
+  --f4: 70,205,195;
+  --f5: 55,195,185;
+  --f6: 45,180,170;
+  --f7: 40,165,160;
+  --f8: 35,150,150;
+  --f9: 45,170,165;
+  --f10: 70,195,185;
+}
+
+body.palette-lavender {
+  --f1: 235,220,255;
+  --f2: 225,205,255;
+  --f3: 215,190,250;
+  --f4: 205,175,245;
+  --f5: 195,160,240;
+  --f6: 185,150,235;
+  --f7: 175,140,225;
+  --f8: 190,155,235;
+  --f9: 210,180,245;
+  --f10: 225,205,255;
+}
+
+body.palette-peach {
+  --f1: 255,225,205;
+  --f2: 255,215,195;
+  --f3: 255,205,185;
+  --f4: 255,195,175;
+  --f5: 255,185,165;
+  --f6: 250,170,155;
+  --f7: 245,155,145;
+  --f8: 240,145,140;
+  --f9: 250,170,160;
+  --f10: 255,200,185;
+}
+
+body.palette-berry {
+  --f1: 105,40,80;
+  --f2: 120,45,90;
+  --f3: 140,50,100;
+  --f4: 160,55,110;
+  --f5: 180,65,125;
+  --f6: 200,75,140;
+  --f7: 220,90,155;
+  --f8: 225,105,170;
+  --f9: 205,95,180;
+  --f10: 175,80,180;
+}
+
+body.palette-emerald {
+  --f1: 20,90,65;
+  --f2: 25,105,70;
+  --f3: 30,120,80;
+  --f4: 35,135,90;
+  --f5: 40,150,100;
+  --f6: 50,165,110;
+  --f7: 60,180,120;
+  --f8: 75,195,135;
+  --f9: 95,210,150;
+  --f10: 120,225,170;
+}
+
+body.palette-desert {
+  --f1: 110,75,55;
+  --f2: 130,85,60;
+  --f3: 150,100,65;
+  --f4: 170,115,70;
+  --f5: 190,130,80;
+  --f6: 210,150,90;
+  --f7: 225,170,105;
+  --f8: 215,160,115;
+  --f9: 190,140,110;
+  --f10: 160,115,95;
+}
+
+body.palette-coffee {
+  --f1: 70,45,35;
+  --f2: 85,55,40;
+  --f3: 100,65,45;
+  --f4: 115,75,50;
+  --f5: 130,90,60;
+  --f6: 150,105,70;
+  --f7: 170,125,85;
+  --f8: 190,145,105;
+  --f9: 210,170,130;
+  --f10: 230,195,160;
+}
+
+body.palette-ice {
+  --f1: 220,248,255;
+  --f2: 205,242,255;
+  --f3: 190,235,255;
+  --f4: 175,228,255;
+  --f5: 160,220,255;
+  --f6: 145,210,250;
+  --f7: 130,200,245;
+  --f8: 145,210,250;
+  --f9: 170,225,255;
+  --f10: 200,240,255;
+}
+
+body.palette-vaporwave {
+  --f1: 255,90,220;
+  --f2: 245,95,240;
+  --f3: 225,95,255;
+  --f4: 190,100,255;
+  --f5: 150,110,255;
+  --f6: 100,135,255;
+  --f7: 65,175,255;
+  --f8: 50,210,240;
+  --f9: 70,235,215;
+  --f10: 255,130,205;
+}
+
+body.palette-solarized {
+  --f1: 181,137,0;
+  --f2: 203,75,22;
+  --f3: 220,50,47;
+  --f4: 211,54,130;
+  --f5: 108,113,196;
+  --f6: 38,139,210;
+  --f7: 42,161,152;
+  --f8: 133,153,0;
+  --f9: 88,110,117;
+  --f10: 147,161,161;
+}
+
+body.palette-slate {
+  --f1: 70,80,100;
+  --f2: 80,90,110;
+  --f3: 90,100,120;
+  --f4: 100,110,130;
+  --f5: 110,120,140;
+  --f6: 120,130,150;
+  --f7: 130,140,160;
+  --f8: 145,155,175;
+  --f9: 160,170,190;
+  --f10: 180,190,210;
+}
+
+body.palette-pastel-rainbow {
+  --f1: 255,180,190;
+  --f2: 255,195,175;
+  --f3: 255,215,170;
+  --f4: 250,235,175;
+  --f5: 205,240,190;
+  --f6: 180,235,210;
+  --f7: 175,225,240;
+  --f8: 185,205,250;
+  --f9: 205,190,250;
+  --f10: 240,185,230;
+}
+
+
+/* =========================================================
+   THEME-INSPIRED PALETTES
+   Adapted into Folder Color System's 10 repeating slots.
+========================================================= */
+
+/* Flexoki — semantic colors plus the theme's highlight tones. */
+body.theme-light.palette-flexoki-theme {
+  --f1: 175,48,41;
+  --f2: 188,82,21;
+  --f3: 173,131,1;
+  --f4: 102,128,11;
+  --f5: 36,131,123;
+  --f6: 32,94,166;
+  --f7: 94,64,157;
+  --f8: 160,47,111;
+  --f9: 187,220,206;
+  --f10: 247,209,61;
+}
+body.theme-dark.palette-flexoki-theme {
+  --f1: 209,77,65;
+  --f2: 218,112,44;
+  --f3: 208,162,21;
+  --f4: 135,154,57;
+  --f5: 58,169,159;
+  --f6: 67,133,190;
+  --f7: 139,126,200;
+  --f8: 206,93,151;
+  --f9: 30,95,91;
+  --f10: 213,159,17;
+}
+
+/* Minimal default semantic colors, expanded to ten slots. */
+body.palette-minimal-theme {
+  --f1: 208,66,85;
+  --f2: 213,118,63;
+  --f3: 229,181,103;
+  --f4: 168,195,115;
+  --f5: 115,187,178;
+  --f6: 108,153,187;
+  --f7: 158,134,200;
+  --f8: 176,82,121;
+  --f9: 133,156,194;
+  --f10: 192,92,102;
+}
+
+/* Catppuccin uses Latte in light mode and the selected dark flavor in dark mode. */
+body.theme-light:is(.palette-catppuccin-frappe,.palette-catppuccin-macchiato,.palette-catppuccin-mocha) {
+  --f1: 220,138,120;
+  --f2: 221,120,120;
+  --f3: 234,118,203;
+  --f4: 136,57,239;
+  --f5: 210,15,57;
+  --f6: 230,69,83;
+  --f7: 254,100,11;
+  --f8: 223,142,29;
+  --f9: 64,160,43;
+  --f10: 23,146,153;
+}
+body.theme-dark.palette-catppuccin-frappe {
+  --f1: 242,213,207;
+  --f2: 238,190,190;
+  --f3: 244,184,228;
+  --f4: 202,158,230;
+  --f5: 231,130,132;
+  --f6: 234,153,156;
+  --f7: 239,159,118;
+  --f8: 229,200,144;
+  --f9: 166,209,137;
+  --f10: 129,200,190;
+}
+body.theme-dark.palette-catppuccin-macchiato {
+  --f1: 244,219,214;
+  --f2: 240,198,198;
+  --f3: 245,189,230;
+  --f4: 198,160,246;
+  --f5: 237,135,150;
+  --f6: 238,153,160;
+  --f7: 245,169,127;
+  --f8: 238,212,159;
+  --f9: 166,218,149;
+  --f10: 139,213,202;
+}
+body.theme-dark.palette-catppuccin-mocha {
+  --f1: 245,224,220;
+  --f2: 242,205,205;
+  --f3: 245,194,231;
+  --f4: 203,166,247;
+  --f5: 243,139,168;
+  --f6: 235,160,172;
+  --f7: 250,179,135;
+  --f8: 249,226,175;
+  --f9: 166,227,161;
+  --f10: 148,226,213;
+}
+
+/* Things 3 / Minimal Things semantic colors and mode-specific blue/highlight tones. */
+body.theme-light.palette-things3-theme {
+  --f1: 255,48,108;
+  --f2: 255,149,2;
+  --f3: 255,213,0;
+  --f4: 75,191,94;
+  --f5: 73,174,164;
+  --f6: 27,97,194;
+  --f7: 176,81,222;
+  --f8: 255,46,85;
+  --f9: 202,226,255;
+  --f10: 125,127,132;
+}
+body.theme-dark.palette-things3-theme {
+  --f1: 255,48,108;
+  --f2: 255,149,2;
+  --f3: 255,213,0;
+  --f4: 75,191,94;
+  --f5: 73,174,164;
+  --f6: 77,149,247;
+  --f7: 176,81,222;
+  --f8: 255,46,85;
+  --f9: 40,119,236;
+  --f10: 203,204,205;
+}
+
+
+/* =========================================================
+   CUSTOM PALETTE
+========================================================= */
+body.palette-custom {
+  --f1: var(--folder-color-custom-1);
+  --f2: var(--folder-color-custom-2);
+  --f3: var(--folder-color-custom-3);
+  --f4: var(--folder-color-custom-4);
+  --f5: var(--folder-color-custom-5);
+  --f6: var(--folder-color-custom-6);
+  --f7: var(--folder-color-custom-7);
+  --f8: var(--folder-color-custom-8);
+  --f9: var(--folder-color-custom-9);
+  --f10: var(--folder-color-custom-10);
+}
+
+/* =========================================================
+   TYPOGRAPHY + ROW GEOMETRY
+========================================================= */
+.nav-file-title,
+.nav-folder-title {
+  font-size: var(--font-size);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  position: relative;
+  box-sizing: border-box;
+  border-radius: var(--left-border-radius) var(--right-border-radius) var(--right-border-radius) var(--left-border-radius);
+  border: 0 solid transparent;
+}
+
+body.folder-color-system-active.explorer-typography
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-file-title,.nav-folder-title) {
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  text-decoration: var(--text-decoration);
+  text-transform: var(--text-transform);
+  font-variant: var(--font-variant);
+  letter-spacing: var(--letter-spacing);
+  word-spacing: var(--word-spacing);
+  line-height: var(--line-height);
+}
+
+/* =========================================================
+   10-COLOR REPEATING SYSTEM
+========================================================= */
+.nav-folder,
+.nav-file {
+  --fc: var(--f1);
+  --row-bg-color: var(--fc);
+  --row-border-color: var(--fc);
+}
+.nav-folder:nth-child(10n + 1), .nav-file:nth-child(10n + 1) { --fc: var(--f1); }
+.nav-folder:nth-child(10n + 2), .nav-file:nth-child(10n + 2) { --fc: var(--f2); }
+.nav-folder:nth-child(10n + 3), .nav-file:nth-child(10n + 3) { --fc: var(--f3); }
+.nav-folder:nth-child(10n + 4), .nav-file:nth-child(10n + 4) { --fc: var(--f4); }
+.nav-folder:nth-child(10n + 5), .nav-file:nth-child(10n + 5) { --fc: var(--f5); }
+.nav-folder:nth-child(10n + 6), .nav-file:nth-child(10n + 6) { --fc: var(--f6); }
+.nav-folder:nth-child(10n + 7), .nav-file:nth-child(10n + 7) { --fc: var(--f7); }
+.nav-folder:nth-child(10n + 8), .nav-file:nth-child(10n + 8) { --fc: var(--f8); }
+.nav-folder:nth-child(10n + 9), .nav-file:nth-child(10n + 9) { --fc: var(--f9); }
+.nav-folder:nth-child(10n + 10), .nav-file:nth-child(10n + 10) { --fc: var(--f10); }
+
+/* Unlimited-depth inheritance. */
+body.inherit-colors .nav-folder .nav-folder,
+body.inherit-colors .nav-folder .nav-file { --fc: inherit; }
+
+body.background-custom-color .nav-folder,
+body.background-custom-color .nav-file { --row-bg-color: var(--background-custom-color-value); }
+body.border-custom-color .nav-folder,
+body.border-custom-color .nav-file { --row-border-color: var(--border-custom-color-value); }
+
+/* =========================================================
+   APPEARANCE: BACKGROUND + BORDERS
+========================================================= */
+
+/*
+   Start from a completely neutral row. This is intentionally
+   because many themes put their own background/border rules on nav rows.
+   Each appearance mode below then opts back into exactly what the user chose.
+*/
+.nav-folder-title,
+.nav-file-title {
+  background-color: transparent;
+  border: 0 none transparent;
+}
+
+/* Background Only */
+body.appearance-background .nav-folder-title,
+body.appearance-background .nav-file-title {
+  background-color: rgba(var(--row-bg-color), var(--background-opacity));
+  border: 0 none transparent;
+}
+
+/* Borders Only: force the old background fully off. */
+body.appearance-border .nav-folder-title,
+body.appearance-border .nav-file-title {
+  background: transparent;
+  background-color: transparent;
+  border: 0 none transparent;
+}
+
+/* Background + Borders */
+body.appearance-both .nav-folder-title,
+body.appearance-both .nav-file-title {
+  background-color: rgba(var(--row-bg-color), var(--background-opacity));
+  border: 0 none transparent;
+}
+
+/* None */
+body.appearance-none .nav-folder-title,
+body.appearance-none .nav-file-title {
+  background: transparent;
+  background-color: transparent;
+  border: 0 none transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+body.border-solid { --border-line-style: solid; }
+body.border-dashed { --border-line-style: dashed; }
+body.border-dotted { --border-line-style: dotted; }
+body.border-double { --border-line-style: double; }
+
+/*
+   Use side-specific SHORTHANDS rather than separate width/style/color
+   declarations. This beats themes that reset `border` with and
+   makes the enabled sides reliable after switching appearance modes.
+*/
+body:is(.appearance-border,.appearance-both).show-left-border .nav-folder-title,
+body:is(.appearance-border,.appearance-both).show-left-border .nav-file-title {
+  border-left: var(--left-border-width) var(--border-line-style) rgba(var(--row-border-color), var(--border-opacity));
+}
+
+body:is(.appearance-border,.appearance-both).right-border .nav-folder-title,
+body:is(.appearance-border,.appearance-both).right-border .nav-file-title {
+  border-right: var(--right-border-width) var(--border-line-style) rgba(var(--row-border-color), var(--border-opacity));
+}
+
+body:is(.appearance-border,.appearance-both).show-top-border .nav-folder-title,
+body:is(.appearance-border,.appearance-both).show-top-border .nav-file-title {
+  border-top: var(--top-border-width) var(--border-line-style) rgba(var(--row-border-color), var(--border-opacity));
+}
+
+body:is(.appearance-border,.appearance-both).show-bottom-border .nav-folder-title,
+body:is(.appearance-border,.appearance-both).show-bottom-border .nav-file-title {
+  border-bottom: var(--bottom-border-width) var(--border-line-style) rgba(var(--row-border-color), var(--border-opacity));
+}
+
+/* Explicitly keep every disabled side at zero. */
+body:is(.appearance-border,.appearance-both):not(.show-left-border) .nav-folder-title,
+body:is(.appearance-border,.appearance-both):not(.show-left-border) .nav-file-title {
+  border-left: 0 none transparent;
+}
+
+body:is(.appearance-border,.appearance-both):not(.right-border) .nav-folder-title,
+body:is(.appearance-border,.appearance-both):not(.right-border) .nav-file-title {
+  border-right: 0 none transparent;
+}
+
+body:is(.appearance-border,.appearance-both):not(.show-top-border) .nav-folder-title,
+body:is(.appearance-border,.appearance-both):not(.show-top-border) .nav-file-title {
+  border-top: 0 none transparent;
+}
+
+body:is(.appearance-border,.appearance-both):not(.show-bottom-border) .nav-folder-title,
+body:is(.appearance-border,.appearance-both):not(.show-bottom-border) .nav-file-title {
+  border-bottom: 0 none transparent;
+}
+
+/*
+   Some themes paint the tiny right-side curl with ::after rather than with
+   border-right. Disable that decoration whenever our right-side dot is off.
+   This does NOT touch the real CSS borders above.
+*/
+body:not(.right-dot) .nav-folder-title::after,
+body:not(.right-dot) .nav-file-title::after {
+  content: none;
+  display: none;
+  width: 0;
+  height: 0;
+  border: 0 none transparent;
+  background: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Right-side dot works with background, borders, both, or none. */
+body.right-dot .nav-folder-title::after,
+body.right-dot .nav-file-title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: var(--right-dot-offset);
+  top: 50%;
+  width: var(--right-dot-size);
+  height: var(--right-dot-size);
+  border: 0 none transparent;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: rgba(var(--row-border-color), var(--border-opacity));
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* =========================================================
+   RIGHT-SIDE HARD RESET
+   Some themes attach row decorations to wrapper/content pseudo-elements,
+   not to .nav-folder-title/.nav-file-title themselves. When Right Side is
+   set to None, neutralize every possible right-edge paint surface while
+   preserving left/top/bottom borders and our left-side/file icons.
+========================================================= */
+body.right-none .workspace-leaf-content[data-type="file-explorer"] :is(
+  .nav-folder,
+  .nav-file,
+  .nav-folder-title,
+  .nav-file-title,
+  .nav-folder-title-content,
+  .nav-file-title-content
+) {
+  border-right-width: 0;
+  border-right-style: none;
+  border-right-color: transparent;
+  border-right: 0 none transparent;
+  outline-right: 0;
+}
+
+body.right-none .workspace-leaf-content[data-type="file-explorer"] :is(
+  .nav-folder,
+  .nav-file,
+  .nav-folder-title,
+  .nav-file-title,
+  .nav-folder-title-content,
+  .nav-file-title-content
+)::after {
+  content: none;
+  display: none;
+  position: static;
+  inset: auto;
+  width: 0;
+  height: 0;
+  min-width: 0;
+  min-height: 0;
+  border: 0 none transparent;
+  border-right: 0 none transparent;
+  background: none;
+  background-image: none;
+  box-shadow: none;
+  outline: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* A few themes use inset shadows/outline effects on the title itself to fake
+   a border. Only suppress those when the plugin is in a border-capable mode
+   and the user explicitly selected Right Side = None. */
+body.right-none:is(.appearance-border,.appearance-both)
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-folder-title,.nav-file-title) {
+  box-shadow: none;
+  outline: none;
+}
+
+/* =========================================================
+   FOLDER + FILE ICONS
+   Icons are rendered by main.js with Obsidian's setIcon() API.
+   This avoids CSS masks and keeps icons compatible with Obsidian's
+   bundled Lucide icon set.
+========================================================= */
+
+/* Theme default folder arrow. */
+body.folder-color-system-active.folder-icon-default
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) {
+  opacity: var(--folder-icon-opacity);
+}
+
+body.folder-color-system-active.folder-icon-default
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg {
+  width: var(--folder-icon-size);
+  height: var(--folder-icon-size);
+  stroke-width: var(--folder-icon-stroke-width);
+}
+
+body.folder-color-system-active.folder-icon-default.icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg {
+  color: rgb(var(--fc));
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.folder-icon-default.icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg {
+  color: rgb(var(--folder-icon-color));
+  stroke: rgb(var(--folder-icon-color));
+}
+
+body.folder-color-system-active.folder-icon-default.icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.folder-icon-default.icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--folder-icon-color));
+}
+
+/* JS-injected folder icon replaces the arrow without changing click behavior. */
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-has-custom-icon > :not(.fcs-folder-icon) {
+  /* Themes may wrap the native chevron instead of placing the SVG directly
+     inside the collapse indicator. Hide every native visual child so it
+     cannot sit underneath the plugin icon. */
+  display: none;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-has-custom-icon::before,
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-has-custom-icon::after {
+  /* Some themes draw the collapse arrow with a pseudo-element. */
+  content: none;
+  display: none;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-has-custom-icon {
+  width: max(18px, var(--folder-icon-size));
+  min-width: max(18px, var(--folder-icon-size));
+  height: max(18px, var(--folder-icon-size));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: none;
+  rotate: 0deg;
+  opacity: 1;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon {
+  width: var(--folder-icon-size);
+  height: var(--folder-icon-size);
+  margin: 0;
+  padding: 0;
+  position: static;
+  inset: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--folder-icon-size);
+  opacity: var(--folder-icon-opacity);
+  pointer-events: none;
+  transform: none;
+  rotate: 0deg;
+}
+
+/* Own the SVG stroke color explicitly. Some themes set color/stroke directly
+   on collapse-indicator SVGs, which can otherwise turn palette-matched icons
+   gray even though the containing row has the correct --fc palette value. */
+body.folder-color-system-active.icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon,
+body.folder-color-system-active.icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg {
+  color: rgb(var(--fc));
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon,
+body.folder-color-system-active.icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg {
+  color: rgb(var(--folder-icon-color));
+  stroke: rgb(var(--folder-icon-color));
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: block;
+  stroke-width: var(--folder-icon-stroke-width);
+  transform: none;
+  rotate: 0deg;
+}
+
+body.folder-color-system-active.icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--folder-icon-color));
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-folder-icon svg :is(path,line,polyline,polygon,circle,rect,ellipse),
+body.folder-color-system-active.folder-icon-default
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title > :is(.collapse-icon,.nav-folder-collapse-indicator) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke-width: var(--folder-icon-stroke-width);
+  vector-effect: non-scaling-stroke;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke-width: var(--file-icon-stroke-width);
+  vector-effect: non-scaling-stroke;
+}
+
+/* File icons. */
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title-content.fcs-has-file-icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title-content.fcs-has-file-icon::before {
+  /* Avoid a theme-provided file glyph occupying the same slot as ours. */
+  content: none;
+  display: none;
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon {
+  width: var(--file-icon-size);
+  min-width: var(--file-icon-size);
+  height: var(--file-icon-size);
+  margin-right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 var(--file-icon-size);
+  opacity: var(--file-icon-opacity);
+  pointer-events: none;
+}
+
+body.folder-color-system-active.file-icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon),
+body.folder-color-system-active.file-icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon) svg {
+  color: rgb(var(--fc));
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.file-icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon),
+body.folder-color-system-active.file-icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon) svg {
+  color: rgb(var(--file-icon-color));
+  stroke: rgb(var(--file-icon-color));
+}
+
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke-width: var(--file-icon-stroke-width);
+  transform: none;
+  rotate: 0deg;
+}
+
+body.folder-color-system-active.file-icon-colorful
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--fc));
+}
+
+body.folder-color-system-active.file-icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .fcs-file-icon:not(.fcs-active-icon) svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke: rgb(var(--file-icon-color));
+}
+
+/* =========================================================
+   THEME/SNIPPET OVERRIDE SAFETY
+   The plugin uses a body marker plus File Explorer-specific selectors to
+   win normal theme rules without.
+========================================================= */
+body.folder-color-system-active
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-folder,.nav-file) {
+  background: transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.folder-color-system-active.appearance-none
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-folder-title,.nav-file-title) {
+  background: transparent;
+  background-image: none;
+  background-color: transparent;
+  border: 0 none transparent;
+  box-shadow: none;
+  outline: 0;
+}
+
+body.folder-color-system-active.appearance-border
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-folder-title,.nav-file-title) {
+  background: transparent;
+  background-image: none;
+  background-color: transparent;
+}
+
+body.folder-color-system-active:is(.appearance-background,.appearance-both)
+.workspace-leaf-content[data-type="file-explorer"] :is(.nav-folder-title,.nav-file-title) {
+  background-image: none;
+  background-color: rgba(var(--row-bg-color), var(--background-opacity));
+}
+
+/* =========================================================
+   ACTIVE FOLDER TYPOGRAPHY
+   main.js marks every ancestor folder of the active file with
+   .fcs-active-folder. This gives a stable meaning to "active folder"
+   even when several folders are expanded at once.
+========================================================= */
+body.folder-color-system-active.active-folder-typography
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title.fcs-active-folder {
+  color: rgba(var(--active-folder-text-color), var(--active-folder-text-opacity));
+  font-family: var(--active-folder-font-family);
+  font-size: var(--active-folder-font-size);
+  font-weight: var(--active-folder-font-weight);
+  font-style: var(--active-folder-font-style);
+  text-decoration: var(--active-folder-text-decoration);
+  text-transform: var(--active-folder-text-transform);
+  font-variant: var(--active-folder-font-variant);
+  letter-spacing: var(--active-folder-letter-spacing);
+  word-spacing: var(--active-folder-word-spacing);
+  line-height: var(--active-folder-line-height);
+}
+
+/* =========================================================
+   ACTIVE FILE - FULL CUSTOMIZATION
+========================================================= */
+
+/* Active row color sources. */
+body.active-bg-row-color .nav-file { --active-row-bg-color: var(--fc); }
+body.active-bg-custom-color .nav-file { --active-row-bg-color: var(--active-bg-custom-color); }
+body.active-border-row-color .nav-file { --active-row-border-color: var(--fc); }
+body.active-border-custom-color .nav-file { --active-row-border-color: var(--active-border-custom-color); }
+
+/* Safe defaults if a user upgrades from an older plugin version. */
+.nav-file {
+  --active-row-bg-color: var(--active-bg-custom-color);
+  --active-row-border-color: var(--active-border-custom-color);
+}
+
+body.active-border-solid { --active-border-line-style: solid; }
+body.active-border-dashed { --active-border-line-style: dashed; }
+body.active-border-dotted { --active-border-line-style: dotted; }
+body.active-border-double { --active-border-line-style: double; }
+
+/* Typography overrides. These intentionally beat theme .is-active rules. */
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  border-radius: var(--active-left-border-radius) var(--active-right-border-radius) var(--active-right-border-radius) var(--active-left-border-radius);
+}
+
+body.folder-color-system-active.active-file-typography
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  color: rgba(var(--active-text-color), var(--active-text-opacity));
+  font-family: var(--active-font-family);
+  font-size: var(--active-font-size);
+  font-weight: var(--active-font-weight);
+  font-style: var(--active-font-style);
+  text-decoration: var(--active-text-decoration);
+  text-transform: var(--active-text-transform);
+  font-variant: var(--active-font-variant);
+  letter-spacing: var(--active-letter-spacing);
+  word-spacing: var(--active-word-spacing);
+  line-height: var(--active-line-height);
+}
+
+/* No special active fill/border leaves normal row decoration intact. */
+body.active-appearance-none .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  /* Typography/icon settings still apply. */
+}
+
+/* Active Background Only. */
+body.active-appearance-background .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  background: rgba(var(--active-row-bg-color), var(--active-bg-opacity));
+  background-image: none;
+  border: 0 none transparent;
+  box-shadow: none;
+}
+
+/* Active Borders Only. */
+body.active-appearance-border .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  background: transparent;
+  background-image: none;
+  border: 0 none transparent;
+  box-shadow: none;
+}
+
+/* Active Background + Borders. */
+body.active-appearance-both .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  background: rgba(var(--active-row-bg-color), var(--active-bg-opacity));
+  background-image: none;
+  border: 0 none transparent;
+  box-shadow: none;
+}
+
+/* Active border sides. */
+body:is(.active-appearance-border,.active-appearance-both).active-show-left-border
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  border-left: var(--active-left-border-width) var(--active-border-line-style) rgba(var(--active-row-border-color), var(--active-border-opacity));
+}
+body:is(.active-appearance-border,.active-appearance-both).active-right-border
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  border-right: var(--active-right-border-width) var(--active-border-line-style) rgba(var(--active-row-border-color), var(--active-border-opacity));
+}
+body:is(.active-appearance-border,.active-appearance-both).active-show-top-border
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  border-top: var(--active-top-border-width) var(--active-border-line-style) rgba(var(--active-row-border-color), var(--active-border-opacity));
+}
+body:is(.active-appearance-border,.active-appearance-both).active-show-bottom-border
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  border-bottom: var(--active-bottom-border-width) var(--active-border-line-style) rgba(var(--active-row-border-color), var(--active-border-opacity));
+}
+
+body:is(.active-appearance-border,.active-appearance-both):not(.active-show-left-border)
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active { border-left: 0 none transparent; }
+body:is(.active-appearance-border,.active-appearance-both):not(.active-right-border)
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active { border-right: 0 none transparent; }
+body:is(.active-appearance-border,.active-appearance-both):not(.active-show-top-border)
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active { border-top: 0 none transparent; }
+body:is(.active-appearance-border,.active-appearance-both):not(.active-show-bottom-border)
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active { border-bottom: 0 none transparent; }
+
+/* Dedicated active right dot. It wins over the normal right-side decoration. */
+body.active-right-dot .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: var(--active-right-dot-offset);
+  top: 50%;
+  width: var(--active-right-dot-size);
+  height: var(--active-right-dot-size);
+  border: 0 none transparent;
+  border-radius: 999px;
+  transform: translateY(-50%);
+  background: rgba(var(--active-row-border-color), var(--active-border-opacity));
+  box-shadow: none;
+  opacity: 1;
+  pointer-events: none;
+}
+body.active-right-none .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active::after,
+body.active-right-border .workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active::after {
+  content: none;
+  display: none;
+}
+
+/* Active icon styling for the JS-injected file icon. */
+body.folder-color-system-active.active-show-icon
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon {
+  width: var(--active-icon-size);
+  min-width: var(--active-icon-size);
+  height: var(--active-icon-size);
+  flex-basis: var(--active-icon-size);
+  opacity: var(--active-icon-opacity);
+  color: rgba(var(--active-text-color), 1);
+}
+
+body.folder-color-system-active.active-show-icon.active-icon-row-color
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon {
+  color: rgb(var(--fc));
+}
+
+body.folder-color-system-active.active-show-icon.active-icon-text-color
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon {
+  color: inherit;
+}
+
+body.folder-color-system-active.active-show-icon.active-icon-custom-color
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon {
+  color: rgb(var(--active-icon-color));
+}
+
+body.folder-color-system-active.active-show-icon
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: var(--active-icon-stroke-width);
+}
+
+body.folder-color-system-active.active-show-icon
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .fcs-file-icon.fcs-active-icon svg :is(path,line,polyline,polygon,circle,rect,ellipse) {
+  stroke-width: var(--active-icon-stroke-width);
+  vector-effect: non-scaling-stroke;
+}
+
+/* Numeric value shown between sliders and their per-setting reset button. */
+.fcs-setting-value {
+  min-width: 3.5em;
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

@@ -2,15 +2,15 @@
   "version": 4,
   "homepages": {
     "Main Homepage": {
-      "value": "Homepage",
+      "value": "Mac 工作台",
       "kind": "File",
       "openOnStartup": true,
       "openMode": "Replace all open notes",
       "manualOpenMode": "Keep open notes",
-      "view": "Default view",
+      "view": "Reading view",
       "revertView": true,
       "openWhenEmpty": false,
-      "refreshDataview": false,
+      "refreshDataview": true,
       "autoCreate": false,
       "autoScroll": false,
       "pin": false,
