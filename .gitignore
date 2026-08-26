@@ -14,3 +14,7 @@
 Thumbs.db
 desktop.ini
 .claudian/
+
+# Secrets — never commit API keys or tokens
+03领域/Kye&/Kye.md
+03领域/Kye&/Token.md
