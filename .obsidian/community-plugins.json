@@ -1,16 +1,13 @@
 [
+  "table-editor-obsidian",
   "dataview",
   "editing-toolbar",
+  "folder-color-system",
   "homepage",
   "homepage-task-grace",
+  "omnisearch",
   "recent-files-obsidian",
   "obsidian-style-settings",
-  "obsidian-tasks-plugin",
-  "obsidian-excalidraw-plugin",
-  "table-editor-obsidian",
-  "explorer-sort",
-  "folder-color-system",
-  "omnisearch",
   "tag-wrangler",
   "templater-obsidian",
   "codex-panel",
@@ -19,5 +16,6 @@
   "obsidian-outliner",
   "quickadd",
   "ytranscript",
-  "whisper"
+  "whisper",
+  "obsidian-tasks-plugin"
 ]
