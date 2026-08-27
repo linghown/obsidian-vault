@@ -111,8 +111,7 @@ refreshAtNextMidnight();
 > > [!note] 最近项目
 > > ```dataview
 > > TABLE WITHOUT ID
-> >   file.link AS "项目",
-> >   dateformat(file.mtime, "MM-dd HH:mm") AS "修改时间"
+> >   file.link AS "项目"
 > > FROM "02项目"
 > > WHERE file.path != "02项目/02项目.md"
 > > SORT file.mtime DESC
