@@ -1,21 +1,22 @@
 [
   "table-editor-obsidian",
   "dataview",
-  "editing-toolbar",
-  "folder-color-system",
   "homepage",
   "homepage-task-grace",
   "omnisearch",
   "recent-files-obsidian",
-  "obsidian-style-settings",
   "tag-wrangler",
   "templater-obsidian",
   "codex-panel",
   "obsidian-local-rest-api",
   "obsidian-git",
-  "obsidian-outliner",
   "quickadd",
   "ytranscript",
-  "whisper",
-  "obsidian-tasks-plugin"
+  "obsidian-tasks-plugin",
+  "obsidian-excalidraw-plugin",
+  "editing-toolbar",
+  "explorer-sort",
+  "obsidian-outliner",
+  "obsidian-style-settings",
+  "folder-color-system"
 ]
