@@ -10,3 +10,5 @@
 
 
 主要用chatgpt，而不是codex，做复杂的运算，模型，需要持续操作电脑及软件时用codex，其他用chatgpt
+
+Workbuddy也可以尝试
