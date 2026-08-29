@@ -7,7 +7,6 @@
   "recent-files-obsidian",
   "tag-wrangler",
   "templater-obsidian",
-  "codex-panel",
   "obsidian-local-rest-api",
   "obsidian-git",
   "quickadd",
@@ -18,5 +17,6 @@
   "explorer-sort",
   "obsidian-outliner",
   "obsidian-style-settings",
-  "folder-color-system"
+  "folder-color-system",
+  "codex-panel"
 ]

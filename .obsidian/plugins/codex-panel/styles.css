@@ -1,4 +1,4 @@
-/* Codex Panel v5.5.6 */
+/* Codex Panel v5.6.0 */
 
 .codex-panel,
 .codex-panel-turn-diff,
@@ -815,6 +815,11 @@
   grid-template-columns: minmax(0, 1fr) auto;
 }
 
+.codex-panel__thread-row--auto-name-running {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--codex-panel-panel-gap);
+}
+
 .codex-panel__thread-row--archive-confirming {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--codex-panel-panel-gap);
@@ -894,6 +899,14 @@
 }
 
 .codex-panel__thread-row--archive-confirming .codex-panel__thread-action {
+  min-width: calc(var(--icon-size) + var(--codex-panel-control-gap) * 2);
+  width: auto;
+  padding: var(--codex-panel-control-gap);
+  overflow: visible;
+  opacity: 1;
+}
+
+.codex-panel__thread-row--auto-name-running .codex-panel__thread-action {
   min-width: calc(var(--icon-size) + var(--codex-panel-control-gap) * 2);
   width: auto;
   padding: var(--codex-panel-control-gap);
@@ -2342,6 +2355,8 @@
 }
 
 .codex-panel-threads__row--renaming {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--codex-panel-panel-gap);
   cursor: default;
 }
 
@@ -2377,7 +2392,6 @@
   min-width: 0;
   width: 100%;
   min-height: var(--nav-item-size, var(--codex-panel-size-nav-item));
-  padding-right: calc(var(--codex-panel-size-icon-s) + var(--codex-panel-panel-gap) * 2 + var(--codex-panel-item-gap));
 }
 
 .codex-panel-threads__rename-field {
