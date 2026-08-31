@@ -108,14 +108,49 @@ refreshAtNextMidnight();
 > ```
 
 > [!workgrid] 现在处理
-> > [!note] 最近项目
-> > ```dataview
-> > TABLE WITHOUT ID
-> >   file.link AS "项目"
-> > FROM "02项目"
-> > WHERE file.path != "02项目/02项目.md"
-> > SORT file.mtime DESC
-> > LIMIT 8
+> > [!note] 最近文件
+> > ```dataviewjs
+> > const root = dv.container;
+> > root.classList.add("hp-recent-files");
+> > const recentPlugin = app.plugins.plugins["recent-files-obsidian"];
+> >
+> > const renderRecentFiles = () => {
+> >   root.replaceChildren();
+> >   const entries = Array.from(recentPlugin?.data?.recentFiles ?? [])
+> >     .filter(entry => entry.path !== dv.current().file.path)
+> >     .filter(entry => app.vault.getAbstractFileByPath(entry.path))
+> >     .slice(0, 8);
+> >
+> >   if (entries.length === 0) {
+> >     root.createEl("p", { cls: "hp-recent-files-empty", text: "暂无最近打开的文件" });
+> >     return;
+> >   }
+> >
+> >   const list = root.createEl("ul");
+> >   for (const entry of entries) {
+> >     const row = list.createEl("li");
+> >     const link = row.createEl("a", {
+> >       cls: "internal-link",
+> >       text: entry.basename,
+> >       href: entry.path
+> >     });
+> >     link.dataset.href = entry.path;
+> >     link.addEventListener("click", event => {
+> >       event.preventDefault();
+> >       app.workspace.openLinkText(entry.path, dv.current().file.path);
+> >     });
+> >     const folder = entry.path.includes("/") ? entry.path.slice(0, entry.path.lastIndexOf("/")) : "笔记库根目录";
+> >     row.createEl("small", { text: folder });
+> >   }
+> > };
+> >
+> > renderRecentFiles();
+> > const recentFileEvent = app.workspace.on("file-open", () => window.setTimeout(renderRecentFiles, 100));
+> > const cleanupTimer = window.setInterval(() => {
+> >   if (root.isConnected) return;
+> >   app.workspace.offref(recentFileEvent);
+> >   window.clearInterval(cleanupTimer);
+> > }, 5000);
 > > ```
 >
 > > [!todo] 待办
