@@ -4,11 +4,11 @@
 .obsidian/workspace.json.bak
 .obsidian/graph.json
 
-# Obsidian cache and OS files
+# Obsidian cache, local third-party plugins, and OS files
+# Keep plugins machine-local to prevent version/config conflicts between devices.
 .obsidian/cache
-.obsidian/plugins/*/data.json
-!.obsidian/plugins/homepage/data.json
-!.obsidian/plugins/dataview/data.json
+.obsidian/plugins/
+.obsidian/community-plugins.json
 .trash/
 .DS_Store
 Thumbs.db
