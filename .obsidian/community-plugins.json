@@ -16,5 +16,8 @@
   "templater-obsidian",
   "ytranscript",
   "obsidian-excalidraw-plugin",
-  "obsidian-git"
+  "obsidian-git",
+  "obsidian-importer",
+  "obsidian-local-rest-api",
+  "codex-panel"
 ]
