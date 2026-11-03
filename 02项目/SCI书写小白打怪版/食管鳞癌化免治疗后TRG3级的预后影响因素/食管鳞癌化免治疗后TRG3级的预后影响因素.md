@@ -55,3 +55,6 @@
 1. 15引用文献为结直肠癌，不是肺癌。引用不当。
 2. 红线部分需要修改
 3. 翻译
+
+
+投稿  Annals of Gastroenterological Surgery  平均审稿时间11周
